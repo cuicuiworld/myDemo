@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src='../flowJs.js'></script>
+<script>
+flowJS({
+	init:function(){
+		this.setNext('步骤1').setNext('步骤2').setNext('步骤3');
+		this.next();
+	},
+	'步骤1':function(){
+		console.log('执行 步骤1');
+		this.next();
+	},
+	'步骤2':function(){
+		console.log('执行 步骤2');
+		this.next();
+	},
+	'步骤3':function(){
+		console.log('执行 步骤3');
+		this.next();
+	},
+	
+})
+</script>
+</head>
+<body>
+</body>
+</html>

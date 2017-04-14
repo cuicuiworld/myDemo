@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>destructuring</title>
+</head>
+<body>
+</body>
+<script>
+	function Breakfast(){
+		return ['apple','pen','applepen'];
+	}
+	/* var breakfast = Breakfast(),
+		apple = breakfast[0],
+		pen = breakfast[1],
+		applepen = breakfast[2]; */
+	
+	let [apple, pen, applepen] = Breakfast();
+	console.log(apple,pen,applepen);
+	
+	let name = 'pet',
+		age = '18',
+		persons ={name,age};
+	console.log(persons);
+
+	let per = {names:'pet',ages:'18'};
+	let	{names,ages} = per;
+	console.log(per);
+	
+	/* 
+	* ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
+	* 以上是三种方式
+	*/
+</script>
+</html>

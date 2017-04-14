@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta chartset="UTF-8">
+<title>INDEX</title>
+<script src='./../jquery-1.11.1.min.js'></script>
+<body>
+	<script>
+		/**
+		 * reduce
+		 * 对数组中的所有元素调用指定的回调函数。该回调函数的返回值为累积结果，并且此返回值在下一次调用该回调函数时作为参数提供。
+		 * array1.reduce(callbackfn[, initialValue])
+		 * initialValue该参数如果未提供，则从第二个函数开始 每个元素调用 
+		 */
+
+		var arr = [ '111', '222', '333', '444' ];
+		function appendCurrent(prev, current) {
+			return prev + '+' + current + '\n';
+		}
+		var result = arr.reduce(appendCurrent);
+		console.log(result);
+		
+		
+	</script>
+</body>
+</head>
+</html>

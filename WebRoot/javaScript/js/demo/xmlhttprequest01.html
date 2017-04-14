@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟ajax</title>
+</head>
+<body>
+	<script>
+		var url = _global_settings.service.url+'/common/customer'+'?='+Math.random()+'&null';
+		var xmlhttp;	// XMLHttpRequest对象用于在后台与服务器交换数据
+			if (window.XMLHttpRequest) 
+			    xmlhttp=new XMLHttpRequest(); 
+			else 
+			    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		
+			xmlhttp.open('GET',url,true);
+			xmlhttp.onreadystatechange = function(res){
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200 || xmlhttp.status == 304) {  // readyState==4说明请求已完成
+					window.location.href = url;
+					console.log(res);
+					console.log(JSON.parse(res.target.responseText));
+				}
+			}
+			xmlhttp.send(null);
+			
+		var Ajax = {
+				get: function(url,fn){
+					var xmlhttp = new XMLHttpReqeust();
+						xmlhttp.open('GET',url,true);
+						xmlhttp.onreadystatechange = function(res){
+							if (obj.readyState == 4 && obj.status == 200 || obj.status == 304) { // readyState==4说明请求已完成
+								 fn.call(this, xmlhttp.responseText);   //从服务器获得数据
+							}
+						}
+						xmlhttp.send(null);
+				},
+				post: function(url,data,fn){
+					var xmlhttp = new XMLHttpRequest();
+						xmlhttp.open('POST',url,true);
+						xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  // 发送信息至服务器时内容编码类型
+						xml.onreadystatechange = function(res){
+							if(xmlhttp.readyState = 4 && (xmlhttp.status = 200 && xml || xmlhttp.status = 304)){
+								fn.call(this, xmlhttp.responseText);   //从服务器获得数据
+							}
+						}
+						xmlhttp.send(data);
+				}
+		}
+	</script>
+</body>
+</html>

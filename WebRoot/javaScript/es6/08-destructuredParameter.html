@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<script>
+	
+	    /**
+	     * 可以接受多个参数，并且第三个为对象的参数
+	     * @param drink
+	     * @param desser
+	     * @param location
+	     * @param name
+	     */
+	    function breakfast(drink,desser,{location,name}={}){
+	        console.log(drink,desser,location,name);
+	    }
+	    breakfast('beer','bread',{location:'上海',name:'董小姐'});
+	    console.log(breakfast.name);
+	    //es6位函数新增了name属性
+	    
+	    
+	    let drink = 'beer', desser = 'bread';
+	    let food ={
+	    		drink,			//对象的属性和定义的变量名是一样的时候 
+	    		desser,			//不需要再以键值对的形式 
+	    		fast(){}		//相当于fast:function(){}
+	    }
+	    console.log(food);
+	</script>
+</body>
+</html>

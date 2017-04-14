@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则</title>
+</head>
+<body>
+<script>
+	/**
+	 * 正则检测 qq号码 
+	 */
+	var str = '我的qq:407060373,  小号是 571393497';
+	var str01 = '    We are family,I love you.   ';
+	var str03 = '407060373@qq.com';
+	var str04 = '<head><meta charset="UTF-8"><title>正则</title></head><body>';
+	var reg = /[1-9]\d{4,10}/g;
+	console.log(str.match(reg));
+	
+	/**
+	 * 正则检测 是否含有中文 
+	 */
+	var reg01 = /[\u4e00-\u9fa5]/;
+	console.log(reg01.test(str));
+	console.log(reg01.test(str01));
+	
+	/**
+	 * 正则检测 敏感词 
+	 */
+	var reg02 = /love/gi;
+	console.log(str01.replace(reg02,'***'));
+	
+	/**
+	 * 正则检测 首尾去空格 
+	 */
+	var reg03 = /^\s+|\s+$/g;
+	console.log('('+str01.replace(reg03,'')+')');
+	
+	/**
+	 * 正则检测 邮箱检测 
+	 */
+	var reg04 = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+	console.log(reg04.test(str03));
+	 
+	/**
+	 * 正则检测 网络爬虫 
+	 */ 
+	var reg05 = /<[^<>]+>/g;
+	console.log(str04.replace(reg05,''));
+	
+	/**
+	 * 正则检测 getByClass
+	 */
+	
+</script>	
+</body>
+</html>

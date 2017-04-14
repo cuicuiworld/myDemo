@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta chartset="UTF-8">
+<title>ES6关于Object</title>
+</head>
+<body>
+	<script>
+		// http://www.10tiao.com/html/485/201507/209459702/1.html
+		/**
+		 * Object.assign 用于对象的合并
+		 * 第一个参数是目标 对象 后面都是源对象  
+		 * assign(a,b)	b to a 模式 
+		 * 存在覆盖 
+		 **/
+		//合并多个对象 
+		let
+		food01 = {
+			a : 1
+		}, food02 = {
+			b : 2
+		};
+		Object.assign(food01, food02);
+
+		//为对象添加属性,方法 
+		let
+		food03 = {};
+		Object.assign(food03, {
+			a : 1,
+			b(){}
+		});
+
+		/**
+		 * __proto__ 读取当前对象的prototype 对象 ,但是没有录入es6使用下列方法代替 
+		 * Object.setprototypeof()
+		 * Object.getprototypeof()
+		 * Object.create()
+		 * 
+		 **/
+
+		/**
+		 * Object.is()
+		 * 用来比较两个值是否严格相等
+		 * 
+		 */
+		+0 == -0 //true
+		+ 0 === -0 //true
+		NaN == NaN //false
+
+		Object.is(+0, -0);		//false
+		Object.is(NaN, NaN);	//true
+	</script>
+</body>
+</html>

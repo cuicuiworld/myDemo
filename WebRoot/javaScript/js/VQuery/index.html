@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VQuery</title>
+<style>
+#aDiv1 {
+	width: 100px;
+	height: 100px;
+	background: skyblue;
+}
+</style>
+<script src="./VQuery.js"></script>
+<script>
+	$(function() {
+		$('#obtn1').click(function() {
+			alert(1);
+		}).hover(function() {
+			console.log('mouseover');
+		}, function() {
+			console.log('mouseout');
+		})
+
+		$('.obtn2').eq(0).bind('click', function() {
+			$('#aDiv1').show();
+		})
+
+		$('.obtn2').eq(1).bind('click', function() {
+			$('#aDiv1').hide();
+		})
+
+		$('.obtn2').eq(2).toggle(function() {
+			$('#aDiv1').show();
+		}, function() {
+			$('#aDiv1').hide();
+		})
+
+		$(document).find('.obtn3').eq(1).click(function() {
+			$('#aDiv1').show().attr('title', '你好 ').css({
+				'width' : '200px',
+				'height' : '200px',
+				'background' : '#f40'
+			});
+		})
+		
+		$(document).bind('contextmenu',function(){
+			return false;
+		})
+		
+		//插件的形式扩展 
+		$().extend('size',function(){
+			return this.elements.length;
+		})
+		
+		alert($('button').size());
+	})
+</script>
+</head>
+<body>
+	<button id="obtn1">id按钮1</button>
+	<button class="obtn2">class按钮2</button>
+	<button class="obtn2">class按钮3</button>
+	<button class="obtn2 obtn3">多个class按钮4</button>
+	<button class="obtn3">多个class按钮5</button>
+	<button class="obtn4">多个class按钮6</button>
+	<button>普通按钮7</button>
+	<div id='aDiv1' style='display: none'></div>
+</body>
+</html>

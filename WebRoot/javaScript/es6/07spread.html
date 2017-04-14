@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * values
+     *
+     * ...values
+     *
+     * [values01,...values02]
+     */
+    let color01 = ['skyblue','blue'];
+    let color02 = ['red',...color01];
+
+    console.log(color01);
+    console.log(...color01);
+
+    console.log(color02);
+    console.log(...color02);
+
+
+    /**
+     *
+     * @param des       参数一
+     * @param dri       参数二
+     * @param values    参数三,是一个数组，接受多个参数，都放在...values里面
+     */
+    function breakfast(des,dri,...values){
+        console.log(...des);        //skyblue
+        console.log(...dri);        //blue
+        console.log(...values);     //yellow red
+        console.log(values);        //["yellow", "red"]
+    }
+    breakfast('skyblue','blue','yellow','red');
+
+
+</script>
+</body>
+</html>

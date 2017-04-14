@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta chartset="UTF-8">
+<title>filter 方法</title>
+<script src="./../jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<ul>
+		<li><strong>list</strong> item 1 - one strong tag</li>
+		<li><strong>list</strong> item <strong>2</strong> - two <span>strong
+				tags</span></li>
+		<li>list item 3</li>
+		<li>list item 4</li>
+		<li>list item 5</li>
+		<li>list item 6</li>
+	</ul>
+	<script>
+		/**
+		 * even 偶数 odd 奇数 
+		 */
+		$('li').filter(function(index) {
+			return $('strong', this).length == 2;
+		}).css('color', '#f40');
+		$('li').filter(':even').css('color', 'skyblue');
+	</script>
+</body>
+</html>

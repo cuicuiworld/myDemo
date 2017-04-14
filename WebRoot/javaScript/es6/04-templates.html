@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>templateString</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	let apple = 'apple',
+		orange = 'orange';
+	let nows =`今天中午吃的是${apple}和${orange} ！`;
+console.log(nows);
+
+let breakfast = kit`今天中午吃的是${apple}和${orange} ！`;
+function kit(strings,...values){
+	console.log(strings);		//["今天中午吃的是","和"," ！"]	将字符串重新分割成数组的每一个元素
+	console.log(values);		//["apple","orange"]			变量
+}
+
+
+let fast = kitchen`今天中午吃的是${apple}和${orange} ！`;
+function kitchen(strings,...values){
+	let res = '';
+	for(var i=0; i<values.length; i++){
+		res += strings[i];
+		res += values[i];
+	}
+	res += '\n';
+	res += values[values.length-1];
+	console.log(res);
+	return res;
+}
+/**
+ * 用反引号（\）来标识起始，用${}`来引用变量，而且所有的空格和缩进都会被保留在输出之中
+ *
+ * let breakfast 字符串前面可以添加一个标签,此标签是一个函数，
+ *
+ * 此函数有固定写法，可以接受两个参数
+ *
+ * 数组里面有个raw方法，是没有处理的字符串
+ */
+
+</script>
+</html>

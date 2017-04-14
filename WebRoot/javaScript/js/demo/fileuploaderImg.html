@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>上传图片</title>
+<script src="../jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div id="oDiv">
+		<img src='photo_icon.png' id="oDiv_pic">
+	</div>
+	<input type="file" name="file" id="imgFile" style="display: none" />
+	<br>
+	<img src="" id="imgs">
+	<script>
+		$('#oDiv_pic').on('click', function() {
+			$('#imgFile').trigger('click');
+		})
+		document.getElementById('imgFile').onchange = function(e) {
+			var ele = document.getElementById('imgFile').files[0];
+			//建立一个可存取file的url	
+			function getObjectURL(file) {
+				var url = null;
+				if (window.createObjectURL != undefined) { // basic
+					url = window.createObjectURL(file);
+				} else if (window.URL != undefined) { // mozilla(firefox)
+					url = window.URL.createObjectURL(file);
+				} else if (window.webkitURL != undefined) { // webkit or chrome
+					url = window.webkitURL.createObjectURL(file);
+				}
+				return url;
+			}
+			$('#imgs').attr('src', getObjectURL(ele)).css({
+				width : '100px',
+				height : ''
+			});
+		}
+	</script>
+</body>
+</html>
