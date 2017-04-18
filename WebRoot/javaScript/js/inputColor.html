@@ -1,9 +1,8 @@
-<html>    
-<head>    
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
-<title>input test</title>    
-<script type="text/javascript"  
-    src="./js/jquery.js"></script>  
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>input test</title>
+<script type="text/javascript" src="./js/jquery.js"></script>
 <script type="text/javascript">    
 function inputTipText(){      
 $("input[class*=grayTips]") //所有样式名中含有grayTips的input     
@@ -25,19 +24,20 @@ $("input[class*=grayTips]") //所有样式名中含有grayTips的input
 $(function(){     
 inputTipText();  //直接调用就OK了     
 })     
-</script>    
-</head>    
-<body>    
-<input type="text" value="输入您的用户名" class="grayTips" />    
-<input type="text" value="输入您的登录密码" class="aaagrayTips"/>    
-</body>    
-</html>二、input标签获取焦点是文本框内提示信息清空   
-  
-<html>  
-<head>  
-<title></title>  
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
-</head>  
+</script>
+</head>
+<body>
+	<input type="text" value="输入您的用户名" class="grayTips" />
+	<input type="text" value="输入您的登录密码" class="aaagrayTips" />
+</body>
+</html>
+二、input标签获取焦点是文本框内提示信息清空
+
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
 <script language="javascript" type="text/javascript">   
 function addLoadEvent(func){  
     var oldonload = window.onload;  
@@ -69,8 +69,8 @@ function checkText(){
     textId.onblur = res;  
 }  
 addLoadEvent (checkText);  
-</script>  
-<body>  
-<input type="text" id="test" value="中文" />  
-</body>  
-</html>  
+</script>
+<body>
+	<input type="text" id="test" value="中文" />
+</body>
+</html>

@@ -1,0 +1,114 @@
+@charset "UTF-8";
+/**
+ * 基础样式base.css
+ * @authors
+ * @date    2017-04-18 9:07:04
+ * @version 1.0.0
+ */
+
+/*clear float fix*/
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+/*text-align*/
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+.text-nowrap {
+	white-space: nowrap;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-capitalize {
+	text-transform: capitalize;
+}
+
+.center-block {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+/*float*/
+.pull-right {
+	float: right !important;
+}
+
+.pull-left {
+	float: left !important;
+}
+/*hide show*/
+.hide {
+	display: none !important;
+}
+
+.show {
+	display: block !important;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.text-hide {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+}
+
+.hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+a, input, button {
+	outline: none;
+}
+
+.ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.footer {
+	text-align: center;
+	height: 90px;
+	font-size: 13px;
+	color: #777;
+	background: #e7e7e7;
+	padding-top: 37px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+}

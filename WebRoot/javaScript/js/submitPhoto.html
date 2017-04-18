@@ -5,18 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name="uploadForm" id="uploadForm" method="post" enctype="multipart/form-data" action="/cars/api/v1/template/createTemplate" target="uploadFrame"> 
-	<p style="margin:10px 0;">上传图片: &nbsp;&nbsp;
-	<input type="file" name="imageFile" ID="fupPhoto"/>
-	<input type="text" name="brand" ID="brand" />
-	<input type="submit" id="fileSubmit" name="Submit" value="上传" />
-	<iframe name="uploadFrame" id="uploadFrame" style="display:none;"></iframe>
-	</p> 
-</form>
+	<form name="uploadForm" id="uploadForm" method="post"
+		enctype="multipart/form-data"
+		action="/cars/api/v1/template/createTemplate" target="uploadFrame">
+		<p style="margin: 10px 0;">
+			上传图片: &nbsp;&nbsp; <input type="file" name="imageFile" ID="fupPhoto" />
+			<input type="text" name="brand" ID="brand" /> <input type="submit"
+				id="fileSubmit" name="Submit" value="上传" />
+			<iframe name="uploadFrame" id="uploadFrame" style="display: none;"></iframe>
+		</p>
+	</form>
 
-<img id="imgPhoto" src="" width="300">
-<script src="jquery-1.11.1.min.js"></script>
-<script>
+	<img id="imgPhoto" src="" width="300">
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
 	$("#fileSubmit").click(function(){
 		if($.browser.msie){
 			window.uploadForm.submit();
