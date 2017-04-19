@@ -7,6 +7,26 @@
 <script src='checkBrowser.js'></script>
 </head>
 <body>
-
+	<script>
+		function MaxLength(field, maxlimit) {
+			var j = field.value.replace(/[^\x00-\xff]/g, "**").length;
+			//alert(j);
+			var tempString = field.value;
+			var tt = "";
+			if (j > maxlimit) {
+				for (var i = 0; i < maxlimit; i++) {
+					if (tt.replace(/[^\x00-\xff]/g, "**").length < maxlimit)
+						tt = tempString.substr(0, i + 1);
+					else
+						break;
+				}
+				if (tt.replace(/[^\x00-\xff]/g, "**").length > maxlimit)
+					tt = tt.substr(0, tt.length - 1);
+				field.value = tt;
+			} else {
+				;
+			}
+		}
+	</script>
 </body>
 </html>

@@ -1526,3 +1526,33 @@ function getMonthEndDate(date) {
 		var currDate = moment(date); 
 		return currDate.subtract(-1, 'months').format('YYYY-MM')+'-01';
 };
+
+//获取登录成功的域名
+function getHostName(){
+	var hostName='';
+		hostName=window.location.hostname;
+	return hostName;
+}
+
+function getUrlParam(name){
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); 
+	var r = window.location.search.substr(1).match(reg);  
+	if (r!=null) return unescape(r[2]); 
+	return null; 
+}
+
+/**
+ * 重置页面所有id
+ */
+var idReset=function(el){
+	console.time('重置id时间');
+	var random=new Date().getTime();
+	$('#'+el).find('*').each(function(){
+		var attr_id = $(this).attr("id");
+		if(attr_id!== undefined){
+			$(this).attr("id", attr_id+random);
+		}
+	})
+	$('#'+el).attr("id", el+random);
+	console.timeEnd('重置id时间')
+}
