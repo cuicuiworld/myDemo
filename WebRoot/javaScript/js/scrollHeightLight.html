@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>密码显示和隐藏</title>
+<script src="./jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div class="nav">
+		<span id="menu">&#9776;</span>
+		<ul id="top-menu">
+			<li><a href="#one" class="links">Menu 1</a></li>
+			<li><a href="#two" class="links">Menu 2</a></li>
+			<li><a href="#three" class="links">Menu 3</a></li>
+			<li><a href="#four" class="links">Menu 4</a></li>
+			<li><a href="#five" class="links">Menu 5</a></li>
+			<li><a href="#six" class="links">Menu 6</a></li>
+		</ul>
+	</div>
+	<div id="wrapper">
+		<div id="one" class="container">one</div>
+		<div id="two" class="container">two</div>
+		<div id="three" class="container">three</div>
+		<div id="four" class="container">four</div>
+		<div id="five" class="container">five</div>
+		<div id="six" class="container">six</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			var $sections = $('.container');
+			$(window).scroll(function() {
+				var currentScroll = $(this).scrollTop();
+				var $currentSection
+				$sections.each(function() {
+					var divPosition = $(this).offset().top;
+					if (divPosition - 1 < currentScroll) {
+						$currentSection = $(this);
+					}
+					var id = $currentSection.attr('id');
+					$('a').removeClass('active');
+					$("[href=#" + id + "]").addClass('active');
+				})
+			});
+		});
+	</script>
+</body>
+</html>
