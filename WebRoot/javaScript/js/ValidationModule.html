@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<input type="text" id="input" />
+	<script>
+		var obj = {
+			input : null,
+			init : function(config) {
+				this.input = document.getElementById(config.id);
+				this.bind();
+				return this;
+			},
+			bind : function() {
+				var me = this;
+				me.input.addEventListener('keyup', function() {
+					me.render();
+				})
+			},
+			getValue : function() {
+				return this.input.value;
+			},
+			render : function() {
+				var value = this.getValue();
+				if (!document.getElementById("show")) {
+					var append = document.createElement('span');
+					append.setAttribute("id", "show");
+					input.parentNode.appendChild(append);
+				}
+				var show = document.getElementById("show");
+				if (/^[0-9a-zA-Z]+$/.exec(value)) {
+					show.innerHTML = 'Pass!';
+				} else {
+					show.innerHTML = 'Failed!';
+				}
+			}
+		}
+		window.onload = function() {
+			obj.init({
+				id : 'input'
+			});
+		}
+	</script>
+</body>
+</html>

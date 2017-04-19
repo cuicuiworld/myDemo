@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<script>
+		var breadfast = {
+			getDrink : function() {
+				return 'red';
+			}
+		}
+		var bread = {
+			getDrink : function() {
+				return 'skyblue';
+			}
+		}
+		var peter = Object.create(breadfast);
+		console.log(peter.getDrink())
+		console.log(Object.getPrototypeOf(peter)===breadfast);
+		
+		var pet = {
+				__proto__: bread
+		} 
+		console.log(pet.getDrink());
+		console.log(Object.getPrototypeOf(pet)===bread);
+		
+		
+	</script>
+</body>
+</html>
