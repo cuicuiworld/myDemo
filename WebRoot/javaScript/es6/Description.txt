@@ -1,0 +1,382 @@
+
+-- http://caibaojian.com/es6/string.html
+
+-- let 
+	++ 命令在所在代码块内有效
+	++ 不存在变量提升
+	++ 在相同作用域内，不允许定义
+	
+-- do
+	++ 块级作用域是一个语句，多个封装起来，没有返回值。
+	++ let x = do {
+			let t = f();
+			t*t + 1;
+		}
+	++ 这样在外面就可以拿到块级作用域的返回值
+	
+-- const
+	++ 声明一个只读的常量，一旦声明，常量的值无法更改
+	++ 只声明，不赋值，会报错
+	++ 只在块级作用域内有效
+
+-- 顶层对象属性和全局变量挂钩，被认为是js语言最大的设计败笔
+	++ window.a = 1;
+	++ console.log(a);
+	++ a = 2;
+	++ console.log(a);
+	
+-- 变量解构赋值
+	++ 1,数组
+		++ var a = 1; var b = 2; var c = 3;	//es5
+		++ var [a, b, c] = [1, 2, 3];		//es6
+		
+		++ let [head, ...tail] = [1, 2, 3, 4];
+		++ head // 1
+		++ tail // [2, 3, 4]
+		
+		++ let [ , , third] = ["", "bar", "baz"];
+		++ foo	 //foo is not defined
+		++ third // "baz"
+		
+		++ 解构赋值允许指定默认值
+		++ 默认值可以引用解构赋值的其他变量
+		
+	++ 2,对象
+		++ 数组的元素是按次序排列的，变量的取值由它的位置决定
+		++ 对象的属性没有次序，变量必须与属性同名
+		
+		++ var { bar, foo } = { foo: "aaa", bar: "bbb" };
+		++ foo // "aaa"
+		++ bar // "bbb"
+		
+		++ let obj = { first: 'hello', last: 'world' };
+		++ let { first: f, last: l } = obj;
+		++ f // 'hello'
+		++ l // 'world'
+		
+		++ 内部机制
+		++ 先找属性，再找赋给的变量。
+		
+		++ 解构可以指定默认值
+		
+		++ var {x = 3} = {};
+		++ x // 3
+		
+		++ var {x, y = 5} = {x: 1};
+		++ x // 1
+		++ y // 5
+		
+		++ var {x:y = 3} = {};
+		++ y // 3
+		
+	++ 3,字符串
+		++ const [a, b, c, d, e] = 'hello';
+		++ let {length : len} = 'hello';
+		++ len // 5
+		
+	++ 4,数值和布尔
+		++ 解构时，如果等号右边是数值或布尔，则先转换为对象.只要等号右边不是对象，都将先转换成对象，null和undefined解构会报错
+		
+		++ let {toString: s} = 123;
+		++ s === Number.prototype.toString // true
+		
+	++ 5,函数参数
+		++ function add([x, y]){
+			  return x + y;
+		++ }
+		++ add([1, 2]); // 3
+		
+		++ 默认值,如果结构失败，就等于默认值
+			++ function move({x = 0, y = 0} = {}) {
+			  	  return [x, y];
+			++ }
+			
+			++ move({x: 3, y: 8}); // [3, 8]
+			++ move({x: 3}); // [3, 0]
+			++ move({}); // [0, 0]
+			++ move(); // [0, 0]
+			
+	++ 6,不能使用圆括号的情况
+		++ 声明语句时
+			++ var [(a)] = [1];
+			++ var { o: ({ p: p }) } = { o: { p: 2 } };
+			
+		++ 函数参数时
+			++ function f([(z)]) { return z; }
+		
+		++ 赋值时
+			++ ({ p: a }) = { p: 42 };
+			
+	++ 7,可以使用圆括号的情况只有一种
+		++ 赋值语句的非模式部分
+			++ [(b)] = [3]; // 正确
+			++ ({ p: (d) } = {}); // 正确
+			++ [(parseInt.prop)] = [3]; // 正确
+			
+	++ 8,解构用途
+		++ 1,交换变量的值
+			++ [x, y] = [y, x];
+			
+		++ 2,从函数返回多个值
+			++ function example() {
+			++   return {
+			++     foo: 1,
+			++     bar: 2
+			++   };
+			++ }
+			++ var { foo, bar } = example();
+			
+		++ 3,函数参数 将一组参数和变量名结合起来
+			++ function f({x, y, z}) { ... }
+			++ f({z: 3, y: 2, x: 1});
+			
+		++ 4,提取json数据（最为有用）
+			++ var json = {
+			++ 	  id:3,
+			++	  status:200,
+			++	  data:[666,999]
+			++ }
+			++ let {id,status,number} =json;
+			++ console.log(id, status, number);
+			
+		++ 5,函数参数默认值
+		++ 6,遍历map结构
+			++  var map = new Map();
+				map.set('first', 'hello');
+				map.set('second', 'world');
+				
+				for (let [key, value] of map) {
+				  console.log(key + " is " + value);
+				}
+				for (let [key] of map) {
+				  console.log(key);
+				}
+				for (let [,value] of map) {
+				  console.log(value);
+				}
+		++ 7,输入模块的指定方法
+		
+-- 字符串 
+	++ incldues() 返回布尔， 是否找到参数字符串
+	++ startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部。
+	++ endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部。
+	++ repeat() 将原字符串重复n次。如果是小数，会被取整。为负数即报错
+	++ padstart() 字符串首部补全
+	++ padend() 字符串尾部补全
+	++ `` 输出字符串模板 变量用${}包着。转义用\
+	
+-- 数组
+	++ 对象转为数组	Arrary.from
+		++ let obj = {'0':'a','1':'b','2':'c',length:3};
+		++ let arr = [].slice.call(obj);		//es5
+		++ let arr = Arrary.from(obj);			//es6
+		
+		++ Arrary.from可以接受第二个参数 对每一个元素进行处理，处理后放入数组
+		
+	++ 将一组值转化为数组  Array.of() 
+		++ Array.of(3, 11, 8) // [3,11,8]
+		++ function ArrayOf(){
+			  return [].slice.call(arguments);
+		++ }
+	
+	++ 数组实例 copyWithin()
+		++ Array.prototype.copyWithin(target, start = 0, end = this.length);
+		++ target,必填，从该位置开始替换
+		++ start ,从该位置开始读取数据，默认为0。如果为负值，表示倒数。
+		++ end ,到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。
+			
+		++ [1, 2, 3, 4, 5].copyWithin(0, 3)
+		++ // [4, 5, 3, 4, 5]
+		
+	++ find() 和 findIndex()
+		++ find可以接受三个回调函数
+		++ value 当前的值、index当前的位置和arr原数组。
+			++ [1, 5, 10, 15].find(function(value, index, arr) {
+			  	  return value > 9;
+			++ }) // 10
+			
+	++ 定值填充数组 fill()
+	++ entries()	对键值对的遍历
+	++ keys()		键名的遍历
+	++ values()		键值的遍历
+	++ includes()	判断数组里是否包含给定值
+	
+	++ ES5对空位的处理，已经很不一致了，大多数情况下会忽略空位
+		++ forEach(), filter(), every() 和some()都会跳过空位。
+		++ map()会跳过空位，但会保留这个值
+		++ join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。
+		
+	++ ES6将空位转化为undefined
+		++ entries()、keys()、values()、find()和findIndex()会将空位处理成undefined
+		
+-- 函数
+	++ 1,参数默认值
+		++ function log(x, y = 'World') {
+		++   console.log(x, y);
+		++ }
+		
+		++ log('Hello') 			// Hello World
+		++ log('Hello', 'China') 	// Hello China
+		++ log('Hello', '') 		// Hello
+		
+	++ 2,解耦赋值默认值结合
+		++ 参数不可省 
+			function fetch(url, { body = '', method = 'GET', headers = {} }) {
+			  console.log(method);
+			}
+			
+			fetch('http://example.com', {})
+			// "GET"
+			
+			fetch('http://example.com')
+			// 报错
+			
+		++ 参数可省
+			function fetch(url, { method = 'GET' } = {}) {
+			  console.log(method);
+			}
+			
+			fetch('http://example.com')
+			// "GET"
+			
+		++ 参数在undefined下回触发默认值，在null下不会触发
+		
+	++ 3,函数 length 失真情况
+		++ 函数length是返回没有默认值的参数的长度
+			(function (a) {}).length // 1
+			(function (a = 5) {}).length // 0
+			(function (a, b, c = 5) {}).length // 2
+			
+		++ 设置默认值的参数不是尾参数，后面的参数不会计入length里面
+			++ (function (a = 0, b, c) {}).length // 0
+			++ (function (a, b = 1, c) {}).length // 1
+			
+	++ 4,作用域
+		++ 参数默认值是一个变量时，该变量作用域是先是当前函数的作用域，再是全局作用域
+			++  var x = 1;
+
+				function f(x, y = x) {
+				  console.log(y);
+				}
+				
+				f(2) // 2
+		++ 若调用时参数默认值变量没有生成时，则指向全局
+		++ 若调用时参数默认值变量没有时，全局变量也没有，则会报错
+		
+	++ 5,rest参数
+		++ 多个参数集合，用...values表示。
+		++ rest之后就不可再加参数了。
+		++ 在函数调用时用f(...values),此时...values可以展开数组,不需要apply了。
+			function f(x, y, z) {
+			}
+			var args = [0, 1, 2];
+			
+			f.apply(null, args);	//es5
+			f(...args);				//es6
+			
+	++ 6,扩展运算
+		++ 合并数组
+			++  var arr1 = ['a', 'b'];
+				var arr2 = ['c'];
+				var arr3 = ['d', 'e'];
+				
+				arr1.concat(arr2, arr3);
+				[...arr1, ...arr2, ...arr3]
+				
+		++ 生成数组
+			++ 拓展运算符只能放在参数最后一位
+			++ 	var arr1 = ['a', 'b'];
+				var arr2 = ['c', ...arr1];
+				
+		++ 函数返回值
+			++ 可返回多个返回值
+			
+	++ 7,函数名name属性
+	
+	++ 8,箭头函数
+		++ 1,函数有参数，有返回值
+		
+			// 函数名   参数	返回值
+			var f = v => v;	
+			
+			var f = function(v) {
+			  return v;
+			};
+		
+		++ 2,函数不需要参数，则用()代表
+		
+			var f = () => 5;
+			var f = function () { return 5 };
+			
+			var sum = (num1, num2) => num1 + num2;
+			var sum = function(num1, num2) {
+			  return num1 + num2;
+			};
+			
+		++ 3,代码块部分多与一条语句，用大括号栝起来，并用return 语句返回
+			++	var sum = (num1, num2) =>{ return num1 + num2 };
+		
+		++ 4,如果返回为一个对象,在对象外面加上括号
+			++ var getItem = id => ({id:id,name:'Item'});
+		
+		++ 5,箭头函数和变量解构结合使用
+			++ const full = ({ first, last }) => first + ' ' + last;
+			
+		++ 6,简化回调函数和结合rest(...values);
+		
+			++ const headAndTail = (head, ...tail) => [head, tail];
+			++ headAndTail(1, 2, 3, 4, 5)
+		
+		++ 7,箭头函数注意点
+			++ 1,this问题。函数体内的this对象是定义时所在的对象，而不是使用时所在的对象。
+				 this指向是可变的，但是在箭头函数里面是固定的。
+				 
+				 	++  function foo() {
+						  setTimeout(() => {
+						    console.log('id:', this.id);
+						  }, 100);
+						}
+						//this指向当前函数(函数在哪定义的this就指向谁)
+						var id = 21;
+						foo.call({ id: 42 });
+						/**------------------------------------------------*/
+						function foo() {
+						  setTimeout(function(){
+						    console.log('id:', this.id);
+						  }, 100);
+						}
+						//this指向window
+						var id = 21;
+						foo.call({ id: 42 });
+			++ 2,不能当构造函数使用，不可用new关键词。
+			++ 3,不可使用arguments，如果要使用，用rest(...values)代替.
+			++ 4,不可使用yield命令，因为箭头函数不可用作Generator函数
+			
+				function foo() {
+				  return () => {
+				    return () => {
+				      return () => {
+				        console.log('id:', this.id);
+				      };
+				    };
+				  };
+				}
+				
+				var f = foo.call({id: 1});
+				
+				var t1 = f.call({id: 2})()(); // id: 1
+				var t2 = f().call({id: 3})(); // id: 1
+				var t3 = f()().call({id: 4}); // id: 1
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ 

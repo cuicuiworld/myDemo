@@ -129,3 +129,13 @@ $("id").onkeypress = function (event) {
         $("id").onclick();
     }
 } 
+
+/**
+ * ArrayOf
+ * 将多个字符串转化成数组
+ * @returns
+ */
+function ArrayOf(){
+	//[].slice.call(obj); {} => []
+	return [].slice.call(arguments);
+}
