@@ -368,8 +368,597 @@
 				var t2 = f().call({id: 3})(); // id: 1
 				var t3 = f()().call({id: 4}); // id: 1
 		
+		++ 绑定this(双冒号)
+			++ 左边是一个对象，右边是一个函数
+			
+			++ 该运算符自动将左边对象，作为上下文环境（this对象），绑定到右边函数上。
+				++ foo::bar                <===         bar.bind(foo)
+				
+			++ 如果双冒号左边为空，右边是一个对象的方法。就等于该方法绑定在该对象上
+				++ var method = obj::obj.foo;
+				++ var method = ::obj.foo;
+				
+			++ 可以用链式写法，
+		
+		++ 尾调用优化
+			++ 是链式编程非常重要的概念，某个函数最后一步调用另一个函数。
+				function f(x) {
+				  return g(x);
+				}
+				
+				//不是,有赋值操作
+				function f(x) {
+				  let y = g(x);
+				  return y;
+				}
+				
+				//调用后还有操作
+				function f(x) {
+					return g(x) + 1;
+				}
+			
+				//没有return
+				function f(x) {
+				  g(x);
+				}
+			
+			++ 函数调用会在内层形成一个调用记录，又称调用帧。所有的调用帧就形成一个调用栈
+			++ 尾调用优化只有在严格模式下有效	
+			
+		++ 尾递归
+			++ 自己调用自己就叫递归,递归的本质是循环操作,纯粹的函数式编程是没有循环操作命令的，所有的循环都是用递归实现,
+			++ 递归非常耗内存，容易栈溢出保留多个调用记录
+			++ 尾递归永远不存在栈溢出，只保留一个调用记录
+	
+		++ 递归函数的改写
+			++ 用尾递归实现防止内存溢出
+				++ function totalFactorial(n,total) {
+						if(n===1) return total;
+						return totalFactorial(n-1, n*total);
+				   }
+				   function factorial(n) {
+				   		return totalFactorial(n,1);
+				   }
+				   factorial(5)	
+				   
+				++ function factorial( n, total = 1 ) {
+						if(n === 1) return total;
+						return totalFactorial(n - 1, n * total);
+				   }
+				   factorial(5)		//ES6
+				 
+		++ 科里化
+			++ 将多参数的函数转换成单参数的函数	
+			
+		++ 尾递归优化
+		
+		++ 不能使用箭头函数
+		
+			++ 字面量定义对象时
+			
+			++ 原型方法定义对象时
+			
+			++ 回调函数时。
+			
+			++ 定义构造函数时
+			
+-- 对象
+	++ 属性
+		++ es6允许直接写入变量和函数，作为对象的属性和方法
+			++ 变量
+			    let foo = 'bar';			
+				let baz = {foo:foo};
+			++ 函数
+				let o = {
+					method(){
+						return 'Hello';
+					}
+				}
+				let obj = {
+					*m(){	// Generator函数
+						yield 'Hello World';					
+					}
+				}
+		
+	++ 属性名表达式
+		++ 标识符和表达式两种
+			++	obj.method = true;
+				obj['abc' + 'd'] = 123;
+		++ 使用字面量形式定义对象[ES5]
+			++	var obj ={
+					foo:true,
+					mon:'123'
+				}	
+				obj.foo		//true
+				obj[foo]	//undefined	
+				
+		++ 	使用字面量形式定义对象[ES6]
+			++	let flag = 'foo';
+				let obj ={
+					[foo]:true,
+					['abc' + 'd']:'123'
+				}	
+				obj[foo]		//true
+				obj.foo			//undefined
+				
+		++ 表达式可以定义方法名
+			++	let obj ={
+					['h'+'ello'](){
+						return 'hi';
+					}
+				}
+				
+		++ 属性名表达式如果是一个对象，默认将对象转化为字符串[object Object]
+			++	const keyA = {a:1};
+				const keyB = {b:2};
+				
+				const myObj = {
+					[keyA]:'valueA',
+					[keyB]:'valueB'
+				}
+		++ name属性
+			++	var person = {
+				  sayName() {
+				    console.log('Nicholas');
+				  }
+				};
+				person.sayName.name
+				
+		++ Object.is()
+			++	+0 == -0 //true
+				+ 0 === -0 //true
+				NaN == NaN //false
+		
+				Object.is(+0, -0);		//false
+				Object.is(NaN, NaN);	//true
+				
+		Object.assign()
+			++	用于对象的合并，将源对象(source)复制到目标对象上(target);
+			++	第一个参数是目标对象，第二个参数是源对象
+				++	let source1 = {a:1};
+					let target1 = {b:2};
+					Object.assign(target1,source1);
+			++ 目标对象和源对象同名，后面的会覆盖掉前面的。
+			++ 参数只有一个，直接返回。
+			++ 参数不是对象，先转化为对象
+			++ undefined 和null 不可作为参数
+			
+				
+
+
+
+
+-- class类
+	++ 通过class关键字 定义类
+		++	class Point{
+				constructor(x,y){
+					this.x = x;
+					this.y = y;
+				}
+				
+				toString(){
+					return '('+this.x+','+this.y+')'
+				}
+			}
+			var point = new Point(1,2);
+			point.toString();
+			
+			point.constructor = Point.prototype.constructor;
+			Point.prototype.constructor = Point;
+			
+	++ 类的数据类型就是函数，类的本身指向构造函数
+	++ 类的原型的constructor对象直接指向类本身
+	++ 在类的实例上调用方法，实际上就是调用类的原型的方法
+	++ 类的属性名可以用表达式
+	
+	++  constructor
+		++ 类的constructor方法是类默认方法。通过new生成对象实例时，自动生成constructor方法。
+	    ++ 一个类必须有constructor方法，如果没有，自动补上
+	    ++ constructor默认返回实例对象(this)
+	        
+	++ 类的prototype和实例的__proto__
+		++	子父类
+			class A {};
+			class B extend A {};
+			
+			B.prototype.__proto__ = A.prototype;
+			B.__proto__ = A;
+			
+			Object.setPrototypeOf = function( obj, proto) {
+				obj.__proto__ = proto;
+				return obj;
+			}
+			
+			Object.setPrototypeOf();
+			
+	++ extend
+		++ extend不仅可以继承类，也可以继承原生构造函数
+		
+	++ Class静态方法
+		++	类是实例的原型。所以在继承的时候，定义在类的方法，都会被继承。
+			如果在一个方法只前加上static关键字，表示该方法不会被实例继承，只是通过类调用
+			
+			class Foo {
+				static method() {
+					return 'hello';
+				}
+			}	
+			Foo.method();
+			
+			let foo = new Foo();
+			foo.method()		//TypeError: foo.method is not a function		
+		
+		++ 父类的静态，可以被子类继承
+			
+			class Foo {
+				static method() {
+					return 'hello';
+				}
+			}
+			class Bar extend Foo {
+			}
+			
+			Bar.method();
+			
+		++ class 静态方法和静态属性
+			++ 静态属性是指class本身就有的属性，不是定义在实例上的属性
+				class Foo {
+					return 'hello';
+				}
+				
+				Foo.prop = 1;
+				Foo.prop;
+				
+			++ class内部只有静态方法，没有静态属性。只有这种写法可行。
+				class Foo {
+					prop:1				//无效	
+					
+					static prop : 1		//无效
+				}
+				
+			++ 类的实例属性,只能写在constructor里面
+				class Foo {
+					myProp : 1
+					
+					constructor() {
+						console.log(this.myProp);
+					}
+				}
+				
+			++ 类的静态属性
+				class Foo {
+					static myProp = 1;
+					constructor() {
+						console.log(Foo.myProp);
+					}
+				}
+				
+				//老写法 
+				class Foo {
+				}
+				Foo.prop = 1;
+				
+				//新写法
+				class Foo {
+					static prop = 1;
+				}
+				
+			++ new.target属性
+				++ 确定构造函数是怎么调用的.
+					++	function Person(name) {
+							if(new.target != undefined || new.target == Person){
+								this.name = name;
+							}else{
+								throw new Error('必须使用new生成实例');
+							}
+						}
+						let person new Person('张三');
+						console.log(person.name());
+						
+						let notPerson = Person.call('person','张三')
+
+-- Symbol
+	++ 第七种数据类型,表示独一无二的值.
+	++ Symbol值，是有Symbol函数生成的。
+	++ 对象的属性名现在有两种类型。一种是字符串，一种是Symbol
+	++ 不能用new 关键字 (Symbol值不是对象，所以不能添加属性。它是类似于字符串的数据类型)
+	++ Symbol可以接受一个字符串作为参数。
+		++ 字符串
+			var s = Symbol('foo');
+			typeof s;			//symbol
+			s.toString();		//Symbol('foo')
+		++ 对象
+			const obj = {
+				toString(){
+					return 'abc';
+				}
+			}
+			const sym = Symbol(obj)
+			sym			//Symbol(abc)
+		
+
+-- Set和Map
+	++ 本身就是一个构造函数,构成set数据结构.
+	++ set类似于数组，但他的每一个值都是唯一的。
+		++	var s = new Set();
+			[2, 3, 5, 4, 5, 2, 2].map(x => s.add(x));
+			for(let i of s){
+				consolel.log(i);
+			}
+	++ 接受的参数
+		++ 可以为一个数组(类似数组的对象)
+			var s = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+			s			//
+			[...s]		//[1, 2, 3, 4, 5]
+			s.size		//5
+	++ set内部判断值是否相等,内部不允许值重复相等
+		let s = new Set();
+		let a = NaN,
+			b = NaN;
+		s.add(a);
+		s.add(b);
+		s	//Set{NaN}
+		
+		//两个空对象是不等的
+		s.add({})
+		s.add({})
+		s.size	//2
+		
+	++ set实例的属性和方法
+		++ Set.prototype.constructor	//set构造函数
+		++ Set.prototype.size			//成员个数
+		++ 操作
+			++ add()	添加某个值，返回set本身
+			++ delete()	删除某个值，返回布尔。
+			++ has()	是否拥有某个成员，返回布尔
+			++ clear()	//清除所有成员，没有返回值
+			++ Array.from 将set结构转为数组结构	*********
+				++	var s = new Set();
+					var arr = Array.from(s);
+				++	封装一下/数组去重
+					function uniqueArrary(array) {
+						return Arrary.from(new Set(array));
+					}
+			
+		++ 遍历,遍历顺序是插入顺序
+			++ keys()		返回键名
+			++ values()		返回简值
+			++ entries()	返回键值对
+			++ forEach()	使用函数遍历，没有返回值
+				let set = new Set(['red', 'green', 'blue']);
+				for(let i of set.entries){
+					console.log(i);
+				}
+				set.forEach((value,key) => console.log(value))
+			++ set结构默认可遍历，默认遍历器生成的函数就是他的values值
+			   for of 可直接遍历set
+			++ set实现并集，交集，差集
+				let a = new Set([1,2,3]);
+				let b = new Set([3,2,4]);
+				
+				let union = new Set([...a, ...b]);							//并集
+				let intersect = new Set([...a].filter(x => b.has(x)))		//交集
+				let difference = new Set([...a].filter(x => !b.has(x)))		//差集
+		
+		++ 遍历过程中，改变set数据结构
+			++ 1, Array.from().
+				let set = new Set([1,2,3])
+				set = new Set(Array.from(set,val => val*2));
+				set = Array.from(set)
+				
+			++ 2, 利用原set结构映射出来一种新结构，然后赋值给原来的set结构		
+				let set = new Set([1,2,3])
+				set = new Set([...set].map(val => val*2))
+				
+	++ WeakSet和Set
+		++ 区别
+			++ WeakSet成员只能是对象
+			++ weakSet不可遍历
+			++ 作为构造函数，WeakSet可以接受一个数组或类似于数组的对象
+			++	WeakSet.prototype.add()	
+				WeakSet.prototype.delete()
+				WeakSet.prototype.has()
+				WeakSet没有size属性，不能遍历
+				
+				let ws = new WeakSet();
+				let obj = {},
+					foos = {};
+					
+				ws.add(window);
+				ws.add(obj);
+				
+				ws.has(widnow);
+				ws.has(foos)
+		
+	++ Map-本质是键值对的集合
+		++	Obj 提供的结构是"字符串-值"
+			es6 提供的结构是"值-值"(键的范围不仅仅是字符串，可以为对象)
+		
+		++ 作为构造函数,Map可以接受一个数组作为参数，数组里面的成员是一个个表示键值对的数组
+			++	var map = new Map([
+					['name','张三'],
+					['Author','李白']
+				])
+				map.has('name');
+				map.get('name');
+				map.has('Author');
+				map.get('Author');
+			++ 同一个键被多次赋值，后面的会覆盖掉前面的
+			++ 字符串true和布尔true得到结果不一样
+				var map = new Map();
+				map.set('true','bar')
+				map.set(true,'foo');
+				map.get('true');
+				map.get(true);
+				
+			++ 读取一个未知的键，返回undefined
+			++ 只有对同一个对象的引用，map结构才将其视为同一个键。
+				var map = new Map();
+				map.set(['a'],'123');
+				map.get(['a']);			//undefined	这两个内存地址不一样
+			++ 只要内存地址不一样，就视为两个键
+				var map = new Map();
+				map.set(NaN,'123');
+				map.get(NaN);
+				
+				map.set('-0','123');
+				map.get('+0');
+				
+		++ 实例的属性和方法
+			++	size
+				set(key,value)
+				get(key,value)		参数为key value，返回map本身
+				has(key,value)		参数为key value，返回值为布尔
+				delete(key)			参数为key，返回值为布尔
+				clear()				没有参数和返回值
+				
+		++	遍历
+			keys()
+			values()
+			entries()
+			forEach()
+		++ 与其他数据结构的转换
+			++ map转为数组
+				let map = new Map().set(true,'1').set({foo:2},['abc']);
+				[...map] 
+				
+			++ 数组转为map
+				new Map([[true,'1'],[{foo:2},['abc']]]);
+				
+			++ map转为对象
+				function strMapToObj(strMap) {
+					var obj = Object.create(null);
+					for(let [k,v] of strMap){
+						obj[k] = v
+					}
+					return obj;
+				}
+				var map = new Map().set('Yes',true).set('No',false);
+				strMapToObj(map);
+				
+			++ 对象转成map
+				function objToStrMap(obj) {
+					var strMap = new Map();
+					for(let k of Object.keys(obj)){
+						strMap.set(k,obj[k])
+					}
+					console.log(strMap);
+				}
+				var obj = {
+					'Yes':'true',
+					'No':'false'
+				}
+				objToStrMap(obj);
+				
+			++ map转json
+				++ map键名是字符串时，转为对象json
+				         转换时，先将map转换成对象，再转换成json
+					function strMapToObj(strMap) {
+						var obj = Object.create(null);
+						for(let [k,v] of strMap){
+							obj[k] = v
+						}
+						return obj;
+					}
+					function strMapToJson(strMap) {
+						return JSON.stringify(strMapToObj(strMap));
+					}
+					var myMap = new Map().set('Yes',true).set('No',false);
+					strMapToJson(myMap)
+					
+				++ map键名是非字符串，转为数组json
+					function mapToArrayJson(map){
+						return JSON.stringify([...map]);
+					}
+					var map = new Map().set(['true',1]).set({foo:2},['abc']);
+					mapToArrayJson(map);
+				
+			++ JSON转Map
+				++ 键名是字符串---现将json字符串转换成对象，再将对象转换成Map
+					function objToStrMap(obj) {
+						var strMap = new Map();
+						for(let k of Object.keys(obj)){
+							strMap.set(k,obj[k])
+						}
+						console.log(strMap);
+					}
+					function jsonToStrMap(json) {
+						return objToStrMap(JSON.parse(json));					
+					}	
+					jsonToStrMap('{"Yes":"true","No":false}')
+				
+				++ 数组的json
+					function jsonToMap(json) {
+						return new Map(JSON.parse(json))
+					}
+					jsonToMap('[["true",1],[{"foo":2},["abc"]]]')
+					
+			  
+-- Proxy和Reflect
+	++ 修改某些操作的默认行为,等同于在语言层面做出修改，即对编程语言进行编程
+	++ 提供了Proxy构造函数，生成Proxy实例
+		var proxy = new Proxy(target,handler)
+			target	所要拦截的目标对象
+			handler	定制拦截行为
+	
+	++ handler没有设置任何拦截行为，直接通向源对象。访问handler就等于访问target
+		var target = {};
+		var handler = {};
+		var proxy = new Proxy(target,handler);
+		proxy.a = 'b';
+		target.a	//'b'
+		
+	++ 将proxy设置到object.proxy里面，从而可以在obj对象上调用
+		var object = {proxy:new Proxy(target,hanler)}
+	++ 实例也可以作为其他对象的原型对象
+		var proxy =new Proxy({},{
+			get:function(target,handler){
+				return 35;
+			}
+		})
+		var obj = Object.create(proxy);
+		obj.time;
+		
+	++ 同一个拦截器函数。可以设置多个拦截操作
 	
 	
+	
+	++ get()
+		---拦截某个属性的读取操作
+			var person = {
+				name:'张三'
+			}
+			var proxy = new Proxy(person,{
+				get : function(target,handler) {
+					if(handler in target){
+						return target[handler];
+					}else{
+						throw new ReferenceError('"handler:"handler+"is does not exist"')
+					}
+				}
+				
+			})
+			proxy.name
+			proxy.age
+		
+		---get方法可以继承
+			
+		
+		
+		
+	
+	
+	
+				
+		
+		
+-- Generator函数
+	++ ES6新型函数，用于异步编程。
+	++ 跟Promise联合使用，降低异步编程编写和阅读难度
+	++ 跟普通函数的区别
+		++ function与函数名之间有个星号
+		++ 函数内部定yield(产出)语句					
+				
 	
 	
 	

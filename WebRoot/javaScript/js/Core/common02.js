@@ -139,3 +139,157 @@ function ArrayOf(){
 	//[].slice.call(obj); {} => []
 	return [].slice.call(arguments);
 }
+
+//去左空格; 
+function ltrim(s){ 
+    return s.replace( /^\s*/, ""); 
+} 
+//去右空格; 
+function rtrim(s){ 
+    return s.replace( /\s*$/, ""); 
+} 
+//去左右空格; 
+function trim(s){ 
+    return rtrim(ltrim(s)); 
+}	
+//去所有的空格; 
+function trimAll(s){ 
+    return rtrim(ltrim(s)); 
+}
+
+//禁止copy
+function noCopy(){	   
+   document.selection.empty();
+   alert('禁止copy!');
+}		
+
+//禁止cut
+function noCut(){	   
+   document.selection.empty();
+   alert('禁止cut!');
+}
+
+//检查textarea的长度。
+/**
+ * Obj 文本框
+ * len 长度
+ * 
+ */
+function chkLen(Obj,len,T)
+{
+    if (typeof(T) == "undefined"){T='';}
+	var desc=T+"长度不能超过"+len+"!";
+    if (typeof(Obj) == "undefined") 
+	{
+       alert("目标不存在。");
+       return true;
+    }
+    var str=Obj.value;
+    if (str==''){return true;}
+
+    if(str.length<len){
+        return true;
+    }else{
+       alert(desc);
+       Obj.focus();
+	   return false;
+	}
+}
+
+//使组件可见
+function visible(){
+   for (var i=0;i<arguments.length;i++){
+     var ob = document.getElementById(arguments[i]);
+     ob.style.display='inline';
+     //document.getElementById(arguments[i]).disabled=false;
+     var oChild=ob.childNodes;
+     for (var j=0;j<oChild.length;j++){
+	      if (oChild[j].nodeType == 1 && oChild[j].type=='input')
+     	  oChild[j].disabled=false;
+     }	     
+   }
+}
+
+//使组件不可见
+function invisible(){
+   for (var i=0;i<arguments.length;i++){
+     var ob = document.getElementById(arguments[i]);
+     ob.style.display='none';
+     //document.getElementById(arguments[i]).disabled=true;
+     //不可用
+     var oChild=ob.childNodes;
+     for (var j=0;j<oChild.length;j++){
+	      if (oChild[j].nodeType == 1 && oChild[j].type=='input')
+     	  oChild[j].disabled=true;
+     }
+   }	
+}
+
+//随机码
+function rnd(){
+	var random = Math.floor(Math.random() * 10001);
+  	var id = (new Date().getTime()*random).toString();
+  	id = id.split('').reverse().join('');
+  	return '&'+random+'random'+random+'id='+id;
+  	// &4630random4630id=0626299186003196
+}
+
+/**
+ * Dight 数字
+ * how 位数
+ */
+function ForDight(Dight,How)
+{
+	Dight = Math.round (Dight*Math.pow(10,How))/Math.pow(10,How);
+	return Dight;
+} 
+
+//打开窗口。full：是否隐藏工具栏
+function openWindow(URL,W,H,full){
+
+   	var	top =Math.floor((screen.availHeight-H)/2);
+   	var	left =Math.floor((screen.availWidth-W)/2);
+    if (typeof(full) == "undefined"||full==true){	
+       window.open(URL, '', 'height='+H+', width='+W+', top='+top+', left='+left+', toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no', false);
+    }else{
+       window.open(URL, '', 'height='+H+', width='+W+', top='+top+', left='+left+', toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes,location=no, status=no', false);	    
+    }
+}
+
+//获取radio的值
+function getRadioValue(radioName,pid){
+   //$("div#divPosType input[@name=chkJobType][@checked]").each(function(){
+   var ob;
+   if (pid) {
+      ob = $('#'+pid+' input[name='+radioName+']:checked');
+   }else{
+      ob = $('input[name='+radioName+']:checked');
+   }
+   if (ob.val()){
+       return ob.val();
+   }else{
+       //alert('请选择一条记录！');
+       return false;
+   }
+}
+
+//获取checkbox的值,返回以豆号分隔的形式1,2,3
+function getCheckboxValue(chkName){
+   //$("div#divPosType input[@name=chkJobType][@checked]").each(function(){
+   //var ob = $('input[@type=checkbox][@name='+chkName+'][@checked]');
+   var ob = $('input[name='+chkName+']:checked');
+   var rs='';
+   ob.each(function(){
+         if (rs!='') {rs+=',';}
+         rs+=this.value;
+   });
+   return rs;
+}
+
+//获取checkbox选中的数目
+function getCheckCount(chkName){
+   //$("div#divPosType input[@name=chkJobType][@checked]").each(function(){
+   return $('input[@type=checkbox][@name='+chkName+'][@checked]').length;
+}
+
+

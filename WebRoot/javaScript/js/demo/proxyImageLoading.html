@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+</body>
+
+<script>
+var addImg = (function(){
+	var img = document.createElement('img');
+	document.body.appendChild(img);
+	return {
+		setSrc : function(src){
+			img.src = src;
+		}
+	}
+	
+})()
+
+var proxyAddImg = (function(){
+	var img = new Image();
+	img.onload = function(){
+		addImg.setSrc(this.src);
+	}
+	return {
+		setSrc : function(src){
+			addImg.setSrc('icond60.png');
+			img.src = src;
+		}
+	}
+	
+})()
+proxyAddImg.setSrc('appDown_bgWX.png');
+</script>
+</html>

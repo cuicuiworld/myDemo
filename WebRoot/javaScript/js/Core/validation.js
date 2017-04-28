@@ -1,9 +1,12 @@
 
+/********************************** Integer *************************************/
 /**
- * 
- * @param str
- * @returns {Boolean}
- */
+*校验字符串是否为整型
+*返回值：
+*如果为空，定义校验通过，      返回true
+*如果字串全部为数字，校验通过，返回true
+*如果校验不通过，              返回false     参考提示信息：输入域必须为数字！
+*/
 function isInteger(str) {
 	if (str.length != 0) {
 		reg = /^[-+]?\d*$/;
@@ -604,3 +607,152 @@ function isMatch(input, commit,reg){
 	 		return false;
 	   }
 } 
+
+/**
+ * 判断是否含有html字符
+ */
+function isHtmlChar(str){
+	if (str==''){return true;}
+    var reg='&\'<>/\\';
+	for (var i=0;i<reg.length;i++){ 
+		if (str.indexOf(reg.charAt(i))!=-1){
+		    return true;		
+		}		 
+	}
+	return false;
+}
+
+/**
+ * 校验电话号码.包括固话和手机
+ */
+function isPhone(str){
+		var mobile = /^1\d{10}$/;    
+		var tel = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+		var flag = false;    
+		if (mobile.test(str) || tel.test(str)) flag=true;    
+		if (!flag){       
+			return false;    
+		}else{
+			return true;
+		}
+}
+
+
+/********************************** date ******************************************/
+/**
+*校验字符串是否为日期型
+*返回值：
+*如果字串为日期型，校验通过，       返回true
+*如果日期不合法，                   返回false    参考提示信息：输入域的时间不合法！（yyyy-MM-dd）
+*/
+function isDate(str)
+{
+	if (str==''){return true;}
+    
+    var pattern = /^((\d{4})|(\d{2}))-(\d{1,2})-(\d{1,2})$/g;
+    if(!pattern.test(str)){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+/********************************** NumOrChar *************************************/
+/**
+*校验字符串是否为数字，英文，或下划线
+*返回值：
+*如果为空，定义校验通过，      返回true
+*如果字串全部为数字，校验通过，返回true
+*如果校验不通过，              返回false     参考提示信息：！
+*/
+function isNumOrChar(S,T)
+{
+    var Obj=eval('document.all[\'' +S+'\']');
+	var desc=T+"必须为数字、英文、或者下划线!";
+    if (typeof(Obj) == "undefined") 
+	{
+       alert("目标不存在。");
+       return true;
+    }
+    var str=Obj.value;
+    if (str==''){return true;}
+    if( !/[\W]/.test(str) )
+        return true;
+    else{
+       if (typeof(T) != "undefined"){alert(desc);}
+	   Obj.focus();
+	   return false;
+	}
+}
+
+//根据输入框的id,来取得其名称
+function getCaption(id){
+    //alert($("label[@for='"+id+"']").html());
+    var str='';
+    var ob = $("label[for='"+id+"']");
+    if (ob){
+        str = ob.text()
+        .replace('：','')
+        .replace(':','')
+        .replace('\*','');
+    }
+    return '"'+str+'"';
+}
+
+/*
+ * 检查姓名是否合法
+ * 1.不能有非法字符
+ * 2.不能为空
+ * @param {Object} me
+ * @return {TypeName} 
+ */
+function checkNicknameForReg(me){
+	
+	if(isNull($(me).val())){
+		showError(me,'姓名不能为空');
+		return false;
+	}else{
+		if (!isNormal($(me).val())){
+    	  showError(me,'姓名不能含非法字符');
+          return false;
+		}
+		
+		if (isChinese($(me).val()) && $(me).val().length>8){
+    	  showError(me,'姓名不能大于8个汉字');
+          return false;
+ 	       
+        }else if (getStrLen($(me).val())>15){
+    	   showError(me,'姓名不能大于15个字母(汉字算两个字母.)');
+           return true;
+        }else {
+           showRight(me);
+           return true;
+        }
+	}
+}
+
+//检查公司名
+function checkTenantNameForReg(me){
+	
+	if(isNull($(me).val())){
+		showError(me,'公司名不能为空');
+		return false;
+	}else{
+		if (!isNormal($(me).val())){
+    	  showError(me,'公司不能含非法字符');
+          return false;
+		}
+		
+		if (isChinese($(me).val()) && $(me).val().length>18){
+    	  showError(me,'公司名不能大于18个汉字');
+          return false;
+ 	       
+        }else if (getStrLen($(me).val())>40){
+    	   showError(me,'公司名不能大于40个字母(汉字算两个字母.)');
+           return true;
+        }else {
+           showRight(me);
+           return true;
+        }
+	}
+}
