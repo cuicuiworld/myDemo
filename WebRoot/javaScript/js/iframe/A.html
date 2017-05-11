@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<title>A</title>
+</style>
+</head>
+<body>
+	<iframe src="http://www.baidu.com" width="800px"></iframe>
+	<iframe src="B.html" id="name_iframe" name="name_iframe"></iframe>
+	<button value="buttonvalue" id="testid">buttonvalue</button>
+	<script src="../jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//父窗体获取子窗体的变量
+			alert(document.getElementById("name_iframe").contentWindow.vname);//父窗体获取子窗体的方法
+			document.getElementById("name_iframe").contentWindow.test();//父窗体获取子窗体的内容
+			alert(document.getElementById("name_iframe").contentWindow.document.body.outerHTML);
+		});
+		var myname = "hb";
+		function parentFunction() {
+			alert("parentFunction");
+		}
+	</script>
+</body>
+</html>

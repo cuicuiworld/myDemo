@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>B</title>
+</head>
+<body>
+	<button onclick="getParentContent()">getParentContent</button>
+</body>
+<html>
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script>
+	var vname = "v_name";
+	function test() {
+		alert("function test");
+	}
+	function getParentContent() {
+		//获取父窗体的变量
+		alert(window.parent.myname);
+		//获取父窗体的方法
+		window.parent.parentFunction();
+		//获取父窗体的dom节点
+		alert(parent.document.getElementById("testid").value);
+	}
+</script>

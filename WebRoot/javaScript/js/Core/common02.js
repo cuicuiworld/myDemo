@@ -88,21 +88,20 @@ function downApp() {
 	
 	window.location.href = isAndroid ? urls.android : isiOS ? urls.ios : urls.other;
 }
-downApp();
 
 
 /**
  * 判断是否是 IE 浏览器
  */
 if (document.all) {
-	alert('IE浏览器');
+	//alert('IE浏览器');
 } else {
-	alert('非IE浏览器');
+	//alert('非IE浏览器');
 }
 if (!!window.ActiveXObject) {
-	alert('IE浏览器');
+	//alert('IE浏览器');
 } else {
-	alert('非IE浏览器');
+	//alert('非IE浏览器');
 }
 // 判断是IE几
 var isIE = !!window.ActiveXObject;
@@ -191,7 +190,6 @@ function chkLen(Obj,len,T)
         return true;
     }else{
        alert(desc);
-       Obj.focus();
 	   return false;
 	}
 }
@@ -311,57 +309,80 @@ function enterSubmit(parentId,submitId){
 /**
  * 获取当前时间
  * 
- * 根据需要确定是否精确到秒
+ * 根据需求传参数确定是否精确到秒
  * 
+ * @param bool
+ * 			传true，时间精确到分秒
+ * 			不传时间到具体天数
  * @returns {String}
+ * 			返回当前时间
  */
-function getNowFormatDate() {
+function getNowFormatDate(bool) {
     var date = new Date();
     var seperator1 = "-";
     var seperator2 = ":";
     var month = date.getMonth() + 1;
     var strDate = date.getDate();
-    if (month >= 1 && month <= 9) {
-        month = "0" + month;
-    }
+    
     if (strDate >= 0 && strDate <= 9) {
         strDate = "0" + strDate;
     }
-    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-            + " " + date.getHours() + seperator2 + date.getMinutes()
-            + seperator2 + date.getSeconds();
+    
+    if(bool == true){
+    	var	strMinutes = date.getMinutes(),
+    		strSecond = date.getSeconds();
+    }
+    
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+    if(bool == true){
+    	currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + date.getHours() + seperator2 + strMinutes
+        + seperator2 + strSecond;
+    }
     return currentdate;
 }
-/** 
- * 依据当前月份，获取改变的时间，
+
+/**
+ * 依据当前月份，获取改变的时间
  * 
- * 获取下一个月 ，上一个月，下一个季度，下半年，一年
- * 
- * @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
- */ 
+ * @param date
+ * 			当前时间，格式为yyyy-mm-dd
+ * @param num
+ * 			改变的时长，可为正负整数
+ * @returns {String}
+ * 			改变之后的时间
+ */
 function getChangeDate(date,num) {  
     var arr = date.split('-');  
-    var year = arr[0]; //获取当前日期的年份  
+    var year = arr[0]; 	//获取当前日期的年份  
     var month = arr[1]; //获取当前日期的月份  
-    var day = arr[2]; //获取当前日期的日  
+    var day = arr[2]; 	//获取当前日期的日  
     var days = new Date(year, month, 0);  
     days = days.getDate(); //获取当前日期中的月的天数  
     var year2 = year;  
     var month2 = parseInt(month) + Number(num);  
+    
     if (month2 > 12) {  
         year2 = parseInt(year2) + 1;  
-        month2 = 1;  	
+        month2 = Number(month2 - 12);  	
     }
-    if(month2 < 1 ){
+    
+    if(month2 < 0 ){
     	year2 = parseInt(year2) - 1;
-    	month2 = 12;
+    	month2 = 12 + month2;
     }
     var day2 = day;  
     var days2 = new Date(year2, month2, 0);  
     days2 = days2.getDate();  
+    
     if (day2 > days2) {  
         day2 = days2;  
     }  
+    
     if (month2 < 10) {  
         month2 = '0' + month2;  
     }  
@@ -369,3 +390,324 @@ function getChangeDate(date,num) {
     var t2 = year2 + '-' + month2 + '-' + day2;  
     return t2;  
 } 
+
+/**
+ * getFixedNumber
+ * 
+ * 保留几位小数封装
+ * 
+ * @param num
+ * 			输入数字
+ * @param n
+ * 			要保留几位小数
+ * @returns {Number}
+ * 			返回保留几位小数之后的数字
+ */
+function getFixedNumber(num, n) {
+	return num.toFixed(n);
+}
+
+window.prefixURL;
+
+/**
+ * getRandomColor
+ * 
+ * 随机获取颜色
+ * 
+ * 两种方式
+ */
+function getRandomColor() {
+	return '#'+(function(h){
+		return new Array(7-h.length).join("0")+h
+	})((Math.random()*0x1000000<<0).toString(16))
+}
+
+function randomColor(opacity){
+    var opacity = opacity || 1;
+    var r=Math.floor(Math.random()*256);
+    var g=Math.floor(Math.random()*256);
+    var b=Math.floor(Math.random()*256);
+    return "rgba("+r+','+g+','+b+','+opacity+")";
+}
+
+/**
+ * removeByValue
+ * 
+ * 删除数组指定元素
+ * 
+ * @param arr
+ * 			要操作的数组
+ * @param val
+ * 			要删除的元素
+ */
+function removeByValue(arr, val) {
+	for(var i = 0; i<arr.length; i++){
+		if(arr[i] == val){
+			arr.splice(i, 1);
+			break;
+		}
+	}
+}
+
+/**
+ * downloadFile
+ * 
+ * @param filename
+ * 			保存的文件名
+ * @param content
+ * 			保存的文件内容
+ */
+function downloadFile(filename, content) {
+    var blob = new Blob([content], {type: 'text/plain'});
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+
+    a.style = "display: none";
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+
+    setTimeout(function () {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 5);
+}
+
+/**
+ * formatTime
+ * 
+ * 格式化的时间格式
+ * 
+ * @param time
+ * 			当前时间
+ * @param time
+ * 			要格式化的时间格式
+ * @returns {String}
+ * 
+ * 调用方式----应用到各个场景
+ * format(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss');
+ * format(new Date().getTime(), 'yyyy年MM月dd日 HH时mm分ss秒');
+ * format(new Date().getTime(), 'MM-dd');
+ * format(new Date().getTime(), 'HH:mm:ss');
+ * format(new Date().getTime(), 'yyyy-MM-dd);
+ */
+function formatTime(time, time) {
+    var t = new Date(time);//time.replace(/-/g, "/")
+    var tf = function(i){
+    	return (i < 10 ? '0' : '') + i;
+    }
+    
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a){
+        switch(a){
+            case 'yyyy':
+	            return tf(t.getFullYear());
+	            break;
+            case 'MM':
+	            return tf(t.getMonth() + 1);
+	            break;
+            case 'mm':
+	            return tf(t.getMinutes());
+	            break;
+            case 'dd':
+	            return tf(t.getDate());
+	            break;
+            case 'HH':
+	            return tf(t.getHours());
+	            break;
+            case 'ss':
+	            return tf(t.getSeconds());
+	            break;
+        }
+    });
+}
+
+/**
+ * 自定义alert窗口
+ * 
+ * @param {String}
+ *            settings.width 		窗口宽度
+ * @param {String}
+ *            settings.height 		窗口高度
+ * @param {String}
+ *            settings.title 		窗口标题
+ * @param {String}
+ *            settings.message 		显示信息
+ * @param {String}
+ *            settings.okBtn 		确定按钮名称
+ * @param {String}
+ *            settings.closeBtn 	关闭按钮
+ * @param {String}
+ *            settings.type 		提示类型(info, warning, error)
+ * @param {Function}
+ *            settings.callback 	确定按钮回调函数
+ * @param {Function}
+ *            settings.hide 		确认后窗口关闭
+ */
+
+var Core = {};
+
+Core.alert = function(settings) {
+	var width = settings.width === undefined ? 550 : settings.width,
+		height = settings.height === undefined ? 300 : settings.height,
+		title = settings.title === undefined ? '提示信息' : settings.title,
+		message = settings.message === undefined ? '操作成功！' : settings.message,
+		okBtn = settings.okBtn === undefined ? '确认' : settings.okBtn,
+		closeBtn = settings.closeBtn === undefined ? '' : settings.closeBtn,
+		callback = settings.callback === undefined ? function(){} : settings.callback,
+		colseCallback = settings.colseCallback === undefined ? function(){} : settings.colseCallback,
+		type = settings.type === undefined ? 'info' : settings.type,
+		hide = settings.hide === undefined ? true : settings.hide;
+	
+	this.init = function() {
+		this.initModal();
+		this.initDomStyle();
+		this.initHideAlertTime();
+		this.bindAlertEvent();
+	}
+	this.initModal = function() {
+		var html = $('<div id="alertWindow">'
+				+ '<div id="alertWindowHeader">'
+				+ '<span id="captureContainer">'+title+'</span>'
+				+ '<span id="alertCloseBtn">×</span>'
+				+ '</div>'
+				+ '<div id="alertWindowContent"><p style="line-height: 100px;">'+message+'</p></div>'
+				+ '<div id="alertWindowFooter" style="border-top: solid 1px #eef0f1;">'
+				+ '<div id="alertWindowGroup" style="float:right;">'
+				+ '<a id="alertWindowOkBtn" >'+okBtn+'</a>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="alertLayer"></div>');
+		html.appendTo($("body"));
+	}
+	this.initDomStyle = function() {
+		$('#alertWindow').css({
+		    position: 'fixed',
+		    left: '50%',
+		    top: '50%',
+		    'background-color': '#ffffff',
+		    'z-index': '2147000001',
+		    width: '550px',
+		    height: '300px',
+		    'margin-left': '-285px',
+		    'margin-top': '-150px',
+		    'border-radius': '5px',
+		    'font-weight': 'bold',
+		    color: '#535e66'
+		});
+		
+		$('#alertCloseBtn').css({
+			cursor: 'pointer',
+		    width: '12px',
+		    height: '12px',
+		    float: 'right',
+		    'text-align': 'center',
+			'font-size': '30px',
+			color: 'rgb(0, 149, 217)'
+		})
+		
+		$('#alertLayer').css({
+		    position: 'fixed',
+		    top: 0,
+		    left: 0,
+		    width: '100%',
+		    height: '100%',
+		    'background-color': '#666666',
+		    opacity: '0.5',
+		    'z-index': '2147000000',
+		    border: 'solid 1px #333'
+		});
+		
+		$('#alertWindowHeader').css({
+		    height: '30px',
+		    'line-height': '30px',
+		    padding: '14px 30px',
+		    'border-bottom': 'solid 1px #eef0f1'
+		})
+		
+		$('#captureContainer').css({
+			'font-size': '18px',
+		    display: 'block',
+		    float: 'left',
+		    height: '30px',
+		    position: 'relative'
+		});
+		
+		$('#alertWindowContent').css({
+		    height: '100px',
+		    overflow: 'hidden',
+		    'text-align':'center',
+		    padding: '40px 0'
+		});
+		
+		$('#alertWindowOkBtn').css({
+		    display: 'block',
+		    cursor: 'pointer',
+		    float: 'left',
+		    width: '95px',
+		    height: '35px',
+		    'line-height': '35px',
+		    'text-align': 'center',
+		    color: '#FFFFFF',
+		    'border-radius': '5px',
+		    'background-color': '#0095d9',
+		    color: '#FFFFFF',
+		    margin:'14px 14px 0 0'
+		});
+	}
+	
+	this.initHideAlertTime = function() {
+		var _hideAlert;
+		if(hide){
+			_hideAlert = setTimeout(function(){
+				if($('#alertWindowOkBtn')) $('#alertWindowOkBtn').trigger('click');
+			},5000);
+		}
+		if(settings.hide){
+			_hideAlert = setTimeout(function(){
+				if($('#alertWindowOkBtn')) $('#alertWindowOkBtn').trigger('click');
+			},settings.hide);
+		}
+	}
+	this.bindAlertEvent = function() {
+		$('#alertCloseBtn').off('click').on('click',function(){
+			$('#alertWindow').css('display','none');
+			$('#alertLayer').css('display','none');
+			
+			if (typeof colseCallback=='function') {
+				colseCallback();
+			}
+		});
+		
+		$('#alertWindowOkBtn').off('click').on('click',function(){
+			$('#alertWindow').css('display','none');
+			$('#alertLayer').css('display','none');
+			
+			if (typeof callback=='function') {
+				callback();	
+			}
+		})
+	}
+	this.init();
+}
+
+Core.alert({
+	message:'操作成功',
+	callback:function(){
+		console.log('成功回调函数')
+	},
+	colseCallback:function(){
+		console.log('关闭回调函数')
+	},
+	hide:'5000'
+});
+
+
+
+
+
+
+
+
+

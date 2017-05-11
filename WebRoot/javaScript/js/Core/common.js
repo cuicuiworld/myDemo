@@ -537,163 +537,89 @@ function getCurDate(){
 	return myDate.getDate();
 }
 
-/** 获取上一个月 
-* 
-* @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
-*/  
-function getPreMonth(date) {  
-   var arr = date.split('-');  
-   var year = arr[0]; //获取当前日期的年份  
-   var month = arr[1]; //获取当前日期的月份  
-   var day = arr[2]; //获取当前日期的日  
-   var days = new Date(year, month, 0);  
-   days = days.getDate(); //获取当前日期中月的天数  
-   var year2 = year;  
-   var month2 = parseInt(month) - 1;  
-   if (month2 == 0) {  
-       year2 = parseInt(year2) - 1;  
-       month2 = 12;  
-   }  
-   var day2 = day;  
-   var days2 = new Date(year2, month2, 0);  
-   days2 = days2.getDate();  
-   if (day2 > days2) {  
-       day2 = days2;  
-   }  
-   if (month2 < 10) {  
-       month2 = '0' + month2;  
-   }  
-   var t2 = year2 + '-' + month2 + '-' + day2;  
-   return t2;  
-}  
-
-/** 
- * 获取下一个月 
+/**
+ * getNowFormatDate获取当前时间
  * 
- * @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
- */ 
-function getNextMonth(date) {  
+ * 根据需求传参数确定是否精确到秒
+ * 
+ * @param bool
+ * 			传true或不传
+ * @returns {String}
+ * 			返回当前时间
+ */
+function getNowFormatDate(bool) {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    
+    if(bool == true){
+    	var	strMinutes = date.getMinutes(),
+    		strSecond = date.getSeconds();
+    }
+    
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+    if(bool == true){
+    	currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + date.getHours() + seperator2 + strMinutes
+        + seperator2 + strSecond;
+    }
+    return currentdate;
+}
+
+/**
+ * 依据当前月份，获取改变的时间
+ * 
+ * @param date
+ * 			当前时间，格式为yyyy-mm-dd
+ * @param num
+ * 			改变的时长，可为正负整数
+ * @returns {String}
+ * 			改变之后的时间
+ */
+function getChangeDate(date,num) {  
     var arr = date.split('-');  
-    var year = arr[0]; //获取当前日期的年份  
+    var year = arr[0]; 	//获取当前日期的年份  
     var month = arr[1]; //获取当前日期的月份  
-    var day = arr[2]; //获取当前日期的日  
+    var day = arr[2]; 	//获取当前日期的日  
     var days = new Date(year, month, 0);  
     days = days.getDate(); //获取当前日期中的月的天数  
     var year2 = year;  
-    var month2 = parseInt(month) + 1;  
-    if (month2 == 13) {  
+    var month2 = parseInt(month) + Number(num);  
+    
+    if (month2 > 12) {  
         year2 = parseInt(year2) + 1;  
-        month2 = 1;  
-    }  
+        month2 = Number(month2 - 12);  	
+    }
+    
+    if(month2 < 0 ){
+    	year2 = parseInt(year2) - 1;
+    	month2 = 12 + month2;
+    }
     var day2 = day;  
     var days2 = new Date(year2, month2, 0);  
     days2 = days2.getDate();  
+    
     if (day2 > days2) {  
         day2 = days2;  
     }  
+    
     if (month2 < 10) {  
         month2 = '0' + month2;  
     }  
   
     var t2 = year2 + '-' + month2 + '-' + day2;  
     return t2;  
-} 
-
-/** 
- * 依据当前月份
- * 获取下一个季度
- * 
- * @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
- */ 
-function getNextQuarter(date) {  
-    var arr = date.split('-');  
-    var year = arr[0]; //获取当前日期的年份  
-    var month = arr[1]; //获取当前日期的月份  
-    var day = arr[2]; //获取当前日期的日  
-    var days = new Date(year, month, 0);  
-    days = days.getDate(); //获取当前日期中的月的天数  
-    var year2 = year;  
-    var month2 = parseInt(month) + 3;  
-    if (month2 >12) {  
-        year2 = parseInt(year2) + 1;  
-        month2 = month2 - 12;
-    }  
-    var day2 = day;  
-    var days2 = new Date(year2, month2, 0);  
-    days2 = days2.getDate();  
-    if (day2 > days2) {  
-        day2 = days2;  
-    }  
-    if (month2 < 10) {  
-        month2 = '0' + month2;  
-    }  
-  
-    var t2 = year2 + '-' + month2 + '-' + day2;  
-    return t2;  
-} 
-/** 
- * 依据当前月份
- * 获取半年
- * 
- * @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
- */ 
-function getNextHalfYear(date) {  
-    var arr = date.split('-');  
-    var year = arr[0]; //获取当前日期的年份  
-    var month = arr[1]; //获取当前日期的月份  
-    var day = arr[2]; //获取当前日期的日  
-    var days = new Date(year, month, 0);  
-    days = days.getDate(); //获取当前日期中的月的天数  
-    var year2 = year;  
-    var month2 = parseInt(month) + 6;  
-    if (month2 >12) {  
-        year2 = parseInt(year2) + 1;  
-        month2 = month2 - 12;
-    }  
-    var day2 = day;  
-    var days2 = new Date(year2, month2, 0);  
-    days2 = days2.getDate();  
-    if (day2 > days2) {  
-        day2 = days2;  
-    }  
-    if (month2 < 10) {  
-        month2 = '0' + month2;  
-    }  
-    var t2 = year2 + '-' + month2 + '-' + day2;  
-    return t2;  
-} 
-
-/** 
- * 依据当前月份
- * 获取一年
- * 
- * @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
- */ 
-function getNextYear(date) {  
-    var arr = date.split('-');  
-    var year = arr[0]; //获取当前日期的年份  
-    var month = arr[1]; //获取当前日期的月份  
-    var day = arr[2]; //获取当前日期的日  
-    var days = new Date(year, month, 0);  
-    days = days.getDate(); //获取当前日期中的月的天数  
-    var year2 = year;  
-    var month2 = parseInt(month) + 12;  
-    if (month2 >12) {  
-        year2 = parseInt(year2) + 1;  
-        month2 = month2 - 12;
-    }  
-    var day2 = day;  
-    var days2 = new Date(year2, month2, 0);  
-    days2 = days2.getDate();  
-    if (day2 > days2) {  
-        day2 = days2;  
-    }  
-    if (month2 < 10) {  
-        month2 = '0' + month2;  
-    }  
-    var t2 = year2 + '-' + month2 + '-' + day2;  
-    return t2;  
-} 
+}
 
 var V_K_W = ["'","\n"];
 var V_K_R_W = ["&#39","<br>"];
