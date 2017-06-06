@@ -24,8 +24,8 @@
 var Core = {};
 
 Core.alert = function(settings) {
-	var width = settings.width === undefined ? 550 : settings.width,
-		height = settings.height === undefined ? 300 : settings.height,
+	var width = settings.width === undefined ? '550' : settings.width,
+		height = 300,
 		title = settings.title === undefined ? '提示信息' : settings.title,
 		message = settings.message === undefined ? '操作成功！' : settings.message,
 		okBtn = settings.okBtn === undefined ? '确认' : settings.okBtn,
@@ -59,86 +59,85 @@ Core.alert = function(settings) {
 	}
 	this.initDomStyle = function() {
 		$('#alertWindow').css({
-		    position: 'fixed',
-		    left: '50%',
-		    top: '50%',
+		    'position': 'fixed',
+		    'left': '50%',
+		    'top': '50%',
 		    'background-color': '#ffffff',
 		    'z-index': '2147000001',
-		    width: '550px',
-		    height: '300px',
+		    'width': width+'px' ,
+		    'height': height+'px',
 		    'margin-left': '-285px',
 		    'margin-top': '-150px',
 		    'border-radius': '5px',
 		    'font-weight': 'bold',
-		    color: '#535e66'
+		    'color': '#535e66'
 		});
 		
 		$('#alertCloseBtn').css({
-			cursor: 'pointer',
-		    width: '12px',
-		    height: '12px',
-		    float: 'right',
+			'cursor': 'pointer',
+		    'width': '12px',
+		    'height': '12px',
+		    'float': 'right',
 		    'text-align': 'center',
 			'font-size': '30px',
-			color: 'rgb(0, 149, 217)'
+			'color': 'rgb(0, 149, 217)'
 		})
 		
 		$('#alertLayer').css({
-		    position: 'fixed',
-		    top: 0,
-		    left: 0,
-		    width: '100%',
-		    height: '100%',
+		    'position': 'fixed',
+		    'top': 0,
+		    'left': 0,
+		    'width': '100%',
+		    'height': '100%',
 		    'background-color': '#666666',
-		    opacity: '0.5',
+		    'opacity': '0.5',
 		    'z-index': '2147000000',
-		    border: 'solid 1px #333'
+		    'border': 'solid 1px #333'
 		});
 		
 		$('#alertWindowHeader').css({
-		    height: '30px',
+		    'height': '30px',
 		    'line-height': '30px',
-		    padding: '14px 30px',
+		    'padding': '14px 30px',
 		    'border-bottom': 'solid 1px #eef0f1'
 		})
 		
 		$('#captureContainer').css({
 			'font-size': '18px',
-		    display: 'block',
-		    float: 'left',
-		    height: '30px',
-		    position: 'relative'
+		    'display': 'block',
+		    'float': 'left',
+		    'height': '30px',
+		    'position': 'relative'
 		});
 		
 		$('#alertWindowContent').css({
-		    height: '100px',
-		    overflow: 'hidden',
+		    'height': '100px',
+		    'overflow': 'hidden',
 		    'text-align':'center',
-		    padding: '40px 0'
+		    'padding': '40px 0'
 		});
 		
 		$('#alertWindowOkBtn').css({
-		    display: 'block',
-		    cursor: 'pointer',
-		    float: 'left',
-		    width: '95px',
-		    height: '35px',
+		    'display': 'block',
+		    'cursor': 'pointer',
+		    'float': 'left',
+		    'width': '95px',
+		    'height': '35px',
 		    'line-height': '35px',
 		    'text-align': 'center',
-		    color: '#FFFFFF',
 		    'border-radius': '5px',
 		    'background-color': '#0095d9',
-		    color: '#FFFFFF',
-		    margin:'14px 14px 0 0'
+		    'color': '#FFFFFF',
+		    'margin':'14px 14px 0 0'
 		});
 	}
 	
 	this.initHideAlertTime = function() {
 		var _hideAlert;
-		if(hide){
+		if(!settings.hide){
 			_hideAlert = setTimeout(function(){
 				if($('#alertWindowOkBtn')) $('#alertWindowOkBtn').trigger('click');
-			},5000);
+			},10000);
 		}
 		if(settings.hide){
 			_hideAlert = setTimeout(function(){
@@ -175,6 +174,5 @@ Core.alert({
 	},
 	colseCallback:function(){
 		console.log('关闭回调函数')
-	},
-	hide:'5000'
+	}
 });

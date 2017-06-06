@@ -28,8 +28,9 @@
 		<input type="checkbox" name="checkbox" value="checkbox8"> checkbox8 <br> 
 	</form>
 </body>
-<script src="./jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="./common02.js"></script>
+<script src="../jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./Core.alert.js"></script>
+<script type="text/javascript" src="../common02.js"></script>
 <script>
 function chooseCheckboxAll(name) {
 	$("input[name='"+name+"']").each( function() {
@@ -61,6 +62,57 @@ $('#btn4').on('click',function(){
 	chooseCheckboxOther('checkbox');
 })
 
+var version_html='2017-04-25_v1';
 
+//异步加载html,需要在localhost下运行。
+$.loadModal = function(html_url,callback){			
+	$('<div></div>').load( html_url+'?v='+version_html, function(res) {
+		callback(res);
+	});
+};
+$.loadModal('getCookie.html', function(res) {
+	debugger
+	$('body').append(res);
+	console.log(res);
+})
+
+$.loadHtml = function(html_url,title){
+	var temp_div = $("<div></div>");
+	temp_div.load( html_url, function(res) {
+		callback(res);
+	});
+};
+/* $.loadHtml('getCookie.html', function(res) {
+	$('body').append(res);
+	console.log(res);
+}) */
+
+//异步加载js
+$.loadScript = function(js_url, callback){
+	callback === undefined ? function(res){} : callback;
+	var flag = false,
+		js_array = [];
+	$.each(js_array, function(i, v) {
+		console.log(v);
+		if(v === js_url){
+			flag = true;
+			console.log(v);
+		}else{
+			console.log(v);
+		}
+	});
+	if(!flag){
+		$.getScript(js_url, function(){
+			callback();
+		})
+	}else{
+		callback();
+	}
+	return false;
+}
+
+$.loadScript('Core.alert.js', function(res){
+	console.log(res);
+});
 </script>
 </html>

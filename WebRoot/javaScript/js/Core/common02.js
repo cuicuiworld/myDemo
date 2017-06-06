@@ -1,3 +1,27 @@
+
+/**
+ * 设置全局参数
+ */
+var _global_settings = {
+		id: Math.random(),
+		js_path: '/js',
+		html_path: '/page',
+		service: {
+			url: ''
+		},
+		owner: {
+			username: '',
+			name: '',
+			id: '',
+			userid :'',
+			employeeCode: '',
+			companyName: '',
+			roleName : '',
+			roleNameCN : ''
+		}
+}
+
+
 /**
  * BrowserInfo 终端器信息
  */
@@ -588,8 +612,8 @@ Core.alert = function(settings) {
 		    top: '50%',
 		    'background-color': '#ffffff',
 		    'z-index': '2147000001',
-		    width: '550px',
-		    height: '300px',
+		    width: settings.width +'px',
+		    height: settings.height+'px',
 		    'margin-left': '-285px',
 		    'margin-top': '-150px',
 		    'border-radius': '5px',
@@ -703,6 +727,86 @@ Core.alert({
 	hide:'5000'
 });
 
+
+Core.AjaxRequest = function(settings) {
+	
+}
+
+//版本号
+var version_js='2017-04-25_v1';
+
+var version_html='2017-04-25_v1';
+
+//异步加载html
+$.loadModal = function(html_url,callback){			
+	$('<div></div>').load( html_url+'?v='+version_html, function(res) {
+		callback(res);
+	});
+};
+
+//异步加载js
+$.loadScript = function(js_url, callback){
+	callback === undefined ? function(res){} : callback;
+	var flag = false,
+		js_array = [];
+	$.each(js_array, function(i, v) {
+		console.log(v);
+		if(v === js_url){
+			flag = true;
+			console.log(v);
+		}else{
+			console.log(v);
+		}
+	})
+	if(!flag){
+		$.getScript(js_url, function(){
+			callback();
+		})
+	}else{
+		callback();
+	}
+	return false;
+}
+
+//监测登录超时。
+//退出登录事件
+//退出登录
+function logout(){
+	window.onbeforeunload = function(event){   
+	}		
+	$.post('logout',function(res){
+		$('body').html('').css('background-color', '#EAEBEC');
+		$(res).appendTo($('body'));
+	});
+}
+
+//阻止冒泡
+function stopDouble(e) {
+    if (e && e.stopPropagation) {
+        e.stopPropagation();
+    } else {
+        window.event.cancelBubble = true;
+    }
+}
+
+//阻止默认事件
+function stopDefault(e) {
+    if (e && e.preventDefault) {
+        e.preventDefault();
+    } else {
+        window.event.cancelable = false;
+    }
+}
+
+function formatNumber(num) {
+	var num = parseInt(num).toString();
+    var len = num.length;
+    if (len <= 3) {
+            return num;
+    }
+	var r = len % 3;
+	r > 0 ? num.slice(0, r) + "," + num.slice(r, len).match(/\d{3}/g).join(",") : num.slice(r, len).match(/\d{3}/g).join(",");
+}
 
 
 

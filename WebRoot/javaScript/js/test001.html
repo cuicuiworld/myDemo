@@ -3,10 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="jquery-1.11.1.min.js"></script>
 </head>
 <body>
-	<script>
-document.body.style.backgroundImage = 'url(./appDown_bgWX.png)'
-</script>
+	<ul id="oUl">
+		<li><button id="oBtn">确认</button></li>	
+	</ul>
 </body>
+<script>
+	var oUl = $('#oUl'),
+		oBtn = $('#oBtn');
+	
+	oUl.on('click',function(e){
+		debugger;
+		console.log(1);
+	});
+	oBtn.on('click',function(e){
+		debugger;
+		e.stopPropagation(); 
+		console.log(2);
+	});
+</script>
 </html>

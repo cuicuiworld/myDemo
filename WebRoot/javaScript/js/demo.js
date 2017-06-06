@@ -298,8 +298,8 @@ var BssSubjectBalMgt = function(){
 	}
 }
 
-var BssSubjectBalBindModle = function(bssSubjectBalMgt){
 	var me=this;
+	var BssSubjectBalBindModle = function(bssSubjectBalMgt){
 	var url = _global_settings.service.url+"/ac/";
 	bssSubjectBalMgt.type=1;
 	//每次点击搜索，需要清空表格数据
@@ -435,4 +435,32 @@ var BssSubjectBalBindModle = function(bssSubjectBalMgt){
 		}
 	});
 	
+}
+
+function show(el) {
+	switch(typeof el) {
+		case 'string':
+			switch(el.chartAt(0)) {
+				case '.':
+					//
+					break;
+				case '#':
+					//
+					break;
+				default :
+					//
+					break;
+			}
+			break;
+		default:
+			break;
+	}
+	$(el).addClass('Gcurrent').siblings().removeClass('Gcurrent');
+	if($(el).css('display','none')){
+		$(el).css('display','block');
+		$(el).addClass('Gcurrent');
+	}else{
+		$(el).css('display','none');
+		$(el).removeClass('Gcurrent');
+	}
 }
