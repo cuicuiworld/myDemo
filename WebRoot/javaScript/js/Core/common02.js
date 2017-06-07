@@ -34,6 +34,24 @@ var BrowserInfo = {
 }
 
 /**
+ * 通过ua判断是不是m站
+ */
+function isMweb() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+    var flag = false;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = true;
+            break;
+        }
+    }
+    return flag;
+}
+
+/**
  * 
  * @param str
  * @returns {Number}
@@ -732,6 +750,57 @@ Core.AjaxRequest = function(settings) {
 	
 }
 
+Core.console = function(settings) {
+	var text = (settings.text === undefined || settings.text === null || settings.text === '') ? 'this is console!' : settings.text;
+	var isOneLine = (settings.isOneline === undefined || settings.isOneline === null || settings.isOneline === '') ? 'one' : settings.text;
+	var author = (settings.author === undefined || settings.author === null || settings.author === '') ? '                           by cuicuiworld' : settings.text;
+
+	if(isOneLine === 'one'){
+		console.log('%c'+text+' '+author+'', "background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2Y2NjYyIvPjxzdG9wIG9mZnNldD0iMjAlIiBzdG9wLWNvbG9yPSIjMzM5OTk5Ii8+PHN0b3Agb2Zmc2V0PSI0MCUiIHN0b3AtY29sb3I9IiNjY2NjOTkiLz48c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzk5Y2NmZiIvPjxzdG9wIG9mZnNldD0iODAlIiBzdG9wLWNvbG9yPSIjY2NjY2ZmIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmY5OWNjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');background-size: 100%;background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #66cccc), color-stop(20%, #339999), color-stop(40%, #cccc99), color-stop(60%, #99ccff), color-stop(80%, #ccccff), color-stop(100%, #ff99cc));background-image: -moz-linear-gradient(left, #66cccc 0%, #339999 20%, #cccc99 40%, #99ccff 60%, #ccccff 80%, #ff99cc 100%);background-image: -webkit-linear-gradient(left, #66cccc 0%, #339999 20%, #cccc99 40%, #99ccff 60%, #ccccff 80%, #ff99cc 100%);background-image: linear-gradient(to right, #66cccc 0%, #339999 20%, #cccc99 40%, #99ccff 60%, #ccccff 80%, #ff99cc 100%);padding:20px 40px;color:#fff;font-size:12px;");
+		console.log('');
+	}else if(isOneLine === 'more'){
+		console.log('%c'+text+' '+author+'', "background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjAuNSIgeDI9IjEuMCIgeTI9IjAuNSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY2Y2NjYyIvPjxzdG9wIG9mZnNldD0iMjAlIiBzdG9wLWNvbG9yPSIjMzM5OTk5Ii8+PHN0b3Agb2Zmc2V0PSI0MCUiIHN0b3AtY29sb3I9IiNjY2NjOTkiLz48c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzk5Y2NmZiIvPjxzdG9wIG9mZnNldD0iODAlIiBzdG9wLWNvbG9yPSIjY2NjY2ZmIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmY5OWNjIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');background-size: 100%;background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #66cccc), color-stop(20%, #339999), color-stop(40%, #cccc99), color-stop(60%, #99ccff), color-stop(80%, #ccccff), color-stop(100%, #ff99cc));background-image: -moz-linear-gradient(left, #66cccc 0%, #339999 20%, #cccc99 40%, #99ccff 60%, #ccccff 80%, #ff99cc 100%);background-image: -webkit-linear-gradient(left, #66cccc 0%, #339999 20%, #cccc99 40%, #99ccff 60%, #ccccff 80%, #ff99cc 100%);background-image: linear-gradient(to right, #66cccc 0%, #339999 20%, #cccc99 40%, #99ccff 60%, #ccccff 80%, #ff99cc 100%);padding:0;color:#fff;font-size:12px;");
+		console.log('');
+	}
+}
+
+//网页性能测试
+Core.testConsole = function(){
+	var t = performance.timing;
+	var pageLoadTime = t.loadEventStart - t.navigationStart;
+	var dnsTime = t.domainLookupEnd - t.domainLookupStart;
+	var tcpTime = t.connectEnd - t.connectStart;
+	var ttfbTime = t.responseStart - t.navigationStart;
+/*	Core.console({
+		text: '\n测试网站性能(毫秒:ms)\n\n\n页面加载的耗时:'+pageLoadTime  +
+		'\n\n\n域名解析的耗时:'+ dnsTime  +'\n\n\nTCP连接的耗时:'+tcpTime  +
+		'\n\n\n读取页面第一个字节之前的耗时:'+ttfbTime,
+		isOneLine:'more'
+	})*/
+	
+	console.log('测试网站性能(毫秒:ms)\n\n页面加载的耗时:'+pageLoadTime+
+            '\n域名解析的耗时:'+ dnsTime +'\nTCP连接的耗时:'+tcpTime+
+            '\n读取页面第一个字节之前的耗时:'+ttfbTime);
+};
+
+//点击触发背景色
+Core.changeBgColor = function(settings) {
+	var ele = (settings.ele === undefined || settings.ele === '' || settings.ele === null) ? 'body' : settings.ele;
+	var beforeTouchColor = settings.beforeTouchColor || '#fff';
+	var afterTouchColor = settings.afterTouchColor || '#eee';
+	
+	$(ele).on('touchstart mousedown', function (e) {
+        var $this = $(this);
+        e.stopPropagation();
+        $this.css({background: afterTouchColor,'-webkit-transition':'background 0.3s ease','-moz-transition':'background 0.3s ease',transition:'background 0.3s ease'});
+    }).on('touchend mouseup', function (e) {
+        var $this = $(this);
+        e.stopPropagation();
+        $this.css({background: beforeTouchColor,'-webkit-transition':'background 0.3s ease','-moz-transition':'background 0.3s ease',transition:'background 0.3s ease'});
+    });
+}
+
+
 //版本号
 var version_js='2017-04-25_v1';
 
@@ -808,8 +877,267 @@ function formatNumber(num) {
 	r > 0 ? num.slice(0, r) + "," + num.slice(r, len).match(/\d{3}/g).join(",") : num.slice(r, len).match(/\d{3}/g).join(",");
 }
 
+var loadJS = function(url) {
+	var script = document.createElement('script');
+		script.type = "text/javascript";
+		script.async = 'true';
+		script.src = url;
+	var s = document.getElementByTagName('script')[0];
+		s.parentNode.insertBefore(script, s);
+	
+	//头部js插入
+	//var h = document.getElementsByTagName('head')[0];
+	//h.append(script)
+}
+
+//加载css
+var loadCss = function (url, domid) {
+    var css = document.createElement('link');
+	    css.setAttribute('rel', 'stylesheet');
+	    css.setAttribute('type', 'text/css');
+	    css.setAttribute('href', url);
+    var obj = document.getElementById(domid);
+    if (!!obj) {
+        obj.appendChild(css);
+    }
+}
+
+//另一种方式插入文本
+var crId = document.getElementById('copyright');
+if (crId != undefined) {
+    var currdate = new Date();
+    crId.insertAdjacentHTML("afterend", "1999-" + currdate.getFullYear());
+}
+
+//动态考虑兼容性
+var ua = navigator.userAgent.toLowerCase();
+if ((ua.indexOf("msie 7") > -1 || ua.indexOf("msie 8") > -1) && screen.width <= 1200) {
+	//这里写兼容ie78的css或js或其他业务需要。
+}
+
+//将addclass封装
+var addClass = function(id, className) {
+	var el =  document.getElementById(id);
+	if(el.className === ''){
+		el.className = className;
+	}else{
+		el.className += ' '+ className;
+	}
+}
+
+/*-----------------------------------------------------------------------
+ * decodeURIComponent
+ * 该函数可对 encodeURIComponent() 函数编码的 URI 进行解码。
+ * 
+ * escape
+ * 对字符串进行编码，使得所有计算机可以读取到这字符串
+ * 
+ */
+
+//前端对密码强度验证
+function checkStrong(sPW) {
+    Modes = 0;
+    for (i = 0; i < sPW.length; i++) {
+        //测试每一个字符的类别并统计一共有多少种模式
+        Modes |= CharMode(sPW.charCodeAt(i));
+    }
+    return bitTotal(Modes);
+}
+function CharMode(iN) {
+    if (iN >= 48 && iN <= 57) return 1; 	//数字		弱
+    if (iN >= 65 && iN <= 90) return 2; 	//大写字母		中
+    if (iN >= 97 && iN <= 122) return 4; 	//小写		强
+    else return 8; 							//特殊字符
+}
+function bitTotal(num) {
+    modes = 0;
+    for (i = 0; i < 4; i++) {
+        if (num & 1) modes++;
+        num >>>= 1;
+    }
+    return modes;
+}
+
+var CheckInput = {
+    checkStrong: function (sPW) {
+        Modes = 0;
+        for (i = 0; i < sPW.length; i++) {
+            //测试每一个字符的类别并统计一共有多少种模式
+            Modes |= CheckInput.CharMode(sPW.charCodeAt(i));
+        }
+        return CheckInput.bitTotal(Modes);
+    },
+    CharMode: function (iN) {
+        if (iN >= 48 && iN <= 57) return 1; 		//数字		弱
+        if (iN >= 65 && iN <= 90) return 2; 		//大写字母		中
+        if (iN >= 97 && iN <= 122) return 4; 		//小写		强
+        else return 8; 								//特殊字符
+    },
+    bitTotal: function (num) {
+        modes = 0;
+        for (i = 0; i < 4; i++) {
+            if (num & 1) modes++;
+            num >>>= 1;
+        }
+        return modes;
+    }
+}
+
+/*----------------------------运算符---------------------------------------
+ * a != b  ----->  a = a | b  , a 或者 b 只要有一个为 1, 那么，a 的最终结果就为 1  
+ * a &= b  ----->  a = a & b  , a 和 b 二者必须都为 1, 那么，a 的最终结果才为 1  
+ * a ^= b  ----->  a = a ^ b  , 当且仅当 a 和 b 的值不一致时，a 的最终结果才为1，否则为0
+ * a |= b  ----->  a = a | b  , 按位“或”赋值运算符 (|=)，并把结果返回左边的数,一般用于二进制
+ * a >>>= b ---->  a = a >>> b, 无符号右移赋值操作,对变量值根据表达式值所规定的位数进行无符号右移，并将结果赋给该变量。
+ * 
+ * charCodeAt()	返回指定位置的字符的 Unicode 编码
+ * 
+ * ---------------------------------------------------------------------------
+ */
+
+//显示错误信息时。可以用于验证时出现错误信息。
+var errorShow = function(obj, isShow, message) {
+	if(isShow){
+		//obj.parentElement.className = 'span_err';
+		//obj.message = message;
+	}else{
+		//进行相应的业务逻辑处理
+	}
+}
+
+/*------------------------------errorMessage----------------------------------------
+ *	 一般注册手机号有一下几种错误
+ * 		系统错误,请稍后再试
+ * 		请输入手机号码。
+ *		 请输入正确的手机号码。
+ * 		该手机号码与上一次输入的手机号码重复，请更换其他手机号码。
+ * 		该手机号码已于其他账号绑定，请更换其他手机号码。
+ * 		您的操作过于频繁，请24小时后再试。
+ * 		结合上面的额errorShow函数，显示在页面
+ * 
+ * 	
+ * 
+ * ---------------------------------------------------------------------------------
+ */
+
+var errorMsg = {
+		sysError : {},
+		emptyPhone : {},
+		validPhone : {},
+		existPhone : {},
+		frequently : {},
+}
+
+/*---------------------------------------------------------------------------------
+ * 通过缓存获取语言，并依次判断是否是大陆手机号码或者非大陆手机号码
+ * 大陆		/^1([3578]\d{9}|4\d{9})$/
+ * 非大陆		/^((852|853)(5|6|8|9)\d{7}|1[3458]\d{9}|659\d{7}|601[1-9]\d{7}|8869\d{8})$/
+ * 
+ * --------------------------------------------------------------------------------
+ */
 
 
+/*
+公共属性： 【无】
+公共方法：  ajax.get(url,status,callback);   使用get方法发送ajax请求。
+                                             url : 请求的地址，不需要添加随机数。
+                                             status :  true 时 为异步请求， false 时 为同步请求
+                                             callback : 回调函数
+            ajax.post(url,content,status,callback);  使用post方法发送ajax请求。
+                                             url : 请求的地址
+                                             content : 请求的参数
+                                             status : true 时 为异步请求， false  时 为同步请求
+                                             callback : 回调函数
+说明： 此方法解决了 在Firefox下 ajax同步请求 不调用 onreadystatechange 的问题。
+       可显视的指定为【同步方式】请求，可以并发执行。不会发生线程冲突
+*/
+var ajax = {
+	xmlhttp : false,
+	CreateXMLHttp : function() {
+	    try{
+	        ajax.xmlhttp = new XMLHttpRequest();
+	    }
+	    catch (e){
+	        try{
+	            ajax.xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); 
+	        }
+	        catch (e){
+	            try{
+	              ajax.xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+	            }
+	            catch (failed){
+	                  ajax.xmlhttp = false;
+	            }
+	        }            
+	    }
+	    return ajax.xmlhttp;
+	},
+	get : function(url,status,callback) {
+	    this.CreateXMLHttp();
+	    if(!ajax.xmlhttp) return;
+	    if(url.indexOf('?') !== -1) url += "&t"+ Math.floor(Math.random()*10000) + "=" + new Date();
+	    else url += "?t" + Math.floor(Math.random()*10000) + "=" + new Date();
+	    ajax.xmlhttp.open("GET",url,status);
+	    ajax.xmlhttp.onreadystatechange = function() {
+	        if(ajax.xmlhttp.readyState == 4) {
+	            if(ajax.xmlhttp.status == 200) {
+	                callback(ajax.getReturnValue());
+	            }
+	        }
+	    }
+	    ajax.xmlhttp.send(null);
+	    if(!status) {
+	        if(this.isFirefox())
+	            callback(ajax.getReturnValue());
+	    }
+	},
+	post : function(url,content,status,callback) {
+	    var para="";
+	    this.CreateXMLHttp();
+	    if(!ajax.xmlhttp) return;
+	    if(isJson(content)) {
+	         var i=0;
+	         for(var key in content){
+	            if(i===0) para += key + "=" + content[key];
+	            else para += "&" + key + "=" + content[key];
+	            i++;
+	         }
+	         if(para.length === 0) para += "t" + Math.floor(Math.random()*10000) + "=" + new Date();
+	         else para += "&t"+ Math.floor(Math.random()*10000) + "=" + new Date();
+	    }
+	    ajax.xmlhttp.open("POST",url,status);
+	    ajax.xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	    ajax.xmlhttp.setRequestHeader("If-Modified-Since", new Date(0));
+	    ajax.xmlhttp.onreadystatechange = function() {
+	        if(ajax.xmlhttp.readyState == 4) {
+	            if(ajax.xmlhttp.status == 200) {
+	                callback(ajax.getReturnValue());
+	            }
+	        }
+	    }
+	    ajax.xmlhttp.send(para);
+	    if(!status) {
+	        if(this.isFirefox())
+	            callback(ajax.getReturnValue());
+	    }
+	},
+	getReturnValue : function() {
+	    return ajax.xmlhttp.status == 200 ? /xml/i.test(ajax.xmlhttp.getResponseHeader("content-type")) ? ajax.xmlhttp.responseXML: ajax.xmlhttp.responseText: null
+	},
+	isFirefox : function() { 
+	    if(isFirefox=navigator.userAgent.indexOf("Firefox") > 0){ 
+	        return true
+	    } 
+	} 
+}
+
+/**
+ * 判断对象是否是json
+ */
+var isJson = function(obj) {
+	var isjson = typeof(obj) == "object" && Object.prototype.toString.call(obj).toLowerCase() == "[object object]" && !obj.length;   
+    return isjson;
+}
 
 
 

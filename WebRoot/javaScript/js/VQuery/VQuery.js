@@ -95,23 +95,35 @@ function getIndex(obj) {
 function VQuery(el) {
 
 	this.elements = [];
-
+	var res = null;
 	switch (typeof el) {
 	case 'function':
 		addEvent(window, 'load', el);
 		break;
 	case 'string':
 		switch (el.charAt(0)) {
-		case '#':
-			var obj = document.getElementById(el.substring(1));
-			this.elements.push(obj);
-			break;
-		case '.':
-			this.elements = getByClass(document, el.substring(1));
-			break;
-		default:
-			this.elements = document.getElementsByTagName(el);
-			break;
+			case '#':
+				if(!res){	//没有结果,即为顶层过滤
+					var obj = document.getElementById(el.substring(1));
+					this.elements.push(obj);
+				}else{
+					//有结果,即向下层过滤
+				}
+				break;
+			case '.':
+				if(!res){	//没有结果,即为顶层过滤
+					this.elements = getByClass(document, el.substring(1));
+					break;
+				}else{
+					//有结果,即向下层过滤
+				}
+			default:
+				if(!res){	//没有结果,即为顶层过滤
+					this.elements = document.getElementsByTagName(el);
+					break;
+				}else{
+					//有结果,即向下层过滤
+				}
 		}
 		break;
 	case 'object':
