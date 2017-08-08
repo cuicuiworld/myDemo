@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #333;
+}
+
+#box {
+	position: relative;
+	overflow: hidden;
+	margin: 50px auto;
+	border: 1px solid #fff;
+	background: #fff;
+}
+
+#box img {
+	position: absolute;
+}
+</style>
+<link rel="stylesheet" href="viewer.css" type="text/css">
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="viewer.js"></script>     
+</head>
+<body>
+	<div id="box" style="width: 500px; height: 500px;">
+		<div style="height:30px; background-color:#fff;"></div>
+		<img src="img2.jpg" style="width: 100%; height: 100%;" alt="">
+	</div>
+</body>
+</html>
+<script>
+	;
+	(function() {
+		//$('#box').find('img').viewer();
+		biggerImg('box')
+		function biggerImg(obj){
+			var obj = document.getElementById(obj);
+		    if (obj.addEventListener) {
+		    	obj.addEventListener("mousewheel", MouseWheelHandler, false);// IE9, Chrome, Safari, Opera
+		    	obj.addEventListener("DOMMouseScroll", MouseWheelHandler, false);// Firefox
+		    }else {
+		    	obj.attachEvent("onmousewheel", MouseWheelHandler);
+		    }// IE 6/7/8
+
+		    function MouseWheelHandler(e) {
+		    	//缩放函数
+				function zoom(e) {
+					scale((
+						e.wheelDelta ? e.wheelDelta / (-120) : (e.detail || 0) / 3
+					) * Math.abs(this._zoom));
+					e.preventDefault();
+				};
+				
+				function scale() {
+					var _x = _y = 1;
+					var zoom = .1;
+					function getZoom(scale, zoom) {
+						return scale > 0 && scale > -zoom ? zoom : scale < 0 && scale < zoom ? -zoom : 0;
+					}
+					return function(zoom) {
+						if (zoom) {
+							var hZoom = getZoom(_y, zoom),
+								vZoom = getZoom(_x, zoom);
+							if (hZoom && vZoom) {
+								this._y += hZoom;
+								this._x += vZoom;
+							}
+						}
+					}
+				}
+		    }
+		}
+	})();
+</script>

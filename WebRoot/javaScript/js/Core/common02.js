@@ -1,4 +1,17 @@
 
+/*******************************************************************************************************
+ * 小技巧，提高js效率
+ * 
+ * 三元表达式
+ * var a === b ? c : b;
+ * 
+ * 短路求值(判断某个值不为空，null，undefined)
+ * var a = b || '';
+ * 
+ * *****************************************************************************************************
+ */
+
+
 /**
  * 设置全局参数
  */
@@ -902,6 +915,21 @@ var loadCss = function (url, domid) {
     }
 }
 
+//全局加载css
+function LoadStyle(url) {
+    try {
+        document.createStyleSheet(url)
+    } catch(e) {
+        var cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.type = 'text/css';
+        cssLink.href = url;
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(cssLink)
+    }
+}
+
+
 //另一种方式插入文本
 var crId = document.getElementById('copyright');
 if (crId != undefined) {
@@ -1139,7 +1167,511 @@ var isJson = function(obj) {
     return isjson;
 }
 
+//json格式化
+function format(txt,compress/*是否为压缩模式*/){/* 格式化JSON源码(对象转换为JSON文本) */  
+        var indentChar = '    ';   
+        if(/^\s*$/.test(txt)){   
+            alert('数据为空,无法格式化! ');   
+            return;   
+        }   
+        try{var data=eval('('+txt+')');}   
+        catch(e){   
+            alert('数据源语法错误,格式化失败! 错误信息: '+e.description,'err');   
+            return;   
+        };   
+        var draw=[],last=false,This=this,line=compress?'':'\n',nodeCount=0,maxDepth=0;   
+           
+        var notify=function(name,value,isLast,indent/*缩进*/,formObj){   
+            nodeCount++;/*节点计数*/  
+            for (var i=0,tab='';i<indent;i++ )tab+=indentChar;/* 缩进HTML */  
+            tab=compress?'':tab;/*压缩模式忽略缩进*/  
+            maxDepth=++indent;/*缩进递增并记录*/  
+            if(value&&value.constructor==Array){/*处理数组*/  
+                draw.push(tab+(formObj?('"'+name+'":'):'')+'['+line);/*缩进'[' 然后换行*/  
+                for (var i=0;i<value.length;i++)   
+                    notify(i,value[i],i==value.length-1,indent,false);   
+                draw.push(tab+']'+(isLast?line:(','+line)));/*缩进']'换行,若非尾元素则添加逗号*/  
+            }else   if(value&&typeof value=='object'){/*处理对象*/  
+                    draw.push(tab+(formObj?('"'+name+'":'):'')+'{'+line);/*缩进'{' 然后换行*/  
+                    var len=0,i=0;   
+                    for(var key in value)len++;   
+                    for(var key in value)notify(key,value[key],++i==len,indent,true);   
+                    draw.push(tab+'}'+(isLast?line:(','+line)));/*缩进'}'换行,若非尾元素则添加逗号*/  
+                }else{   
+                        if(typeof value=='string')value='"'+value+'"';   
+                        draw.push(tab+(formObj?('"'+name+'":'):'')+value+(isLast?'':',')+line);   
+                };   
+        };   
+        var isLast=true,indent=0;   
+        notify('',data,isLast,indent,false);   
+        return draw.join('');   
+    } 
 
+/*
+ * 修改、添加、删除地址栏参数
+ * http://www.metinfo.cn
+ * */
+function replaceParamVal(paramName,replaceWith) {
+	var newUrl=oldUrl=window.location.href,
+        paramNames='&' + paramName + '=';
+        re = eval('/('+paramNames+')([^&]*)/gi');
+    if(replaceWith){
+        if(oldUrl.indexOf(paramNames)>=0){
+            newUrl = oldUrl.replace(re, paramNames + replaceWith);
+        }else{
+            newUrl = oldUrl+ paramNames + replaceWith;
+        }
+    }else if(oldUrl.indexOf(paramNames)>=0){
+        newUrl = oldUrl.replace(re, '');
+    }
+	history.pushState('','',newUrl);
+}
 
+/**
+ * 异步加载文件
+ * 
+ * file		文件名
+ * fun		回调函数
+ */
+function include(file, fun) {
+    var files = typeof file == "string" ? [file] : file;
+    for (var i = 0; i < files.length; i++) {
+        var name = files[i].replace(/^\s|\s$/g,""),
+            att = name.split('.'),
+            ext = att[att.length - 1].toLowerCase(),
+            ext = ext.split('?');
+        if (ext[0]=='js') {
+            var filesi = document.createElement('script');
+            filesi.src = name;
+            filesi.type = "text/javascript";
+            if (typeof filesi != "undefined") document.getElementsByTagName('html')[0].appendChild(filesi);
+        } else if (ext[0] == 'css') {
+            var filesi = document.createElement('link');
+            filesi.href = name;
+            filesi.type = 'text/css';
+            filesi.rel = "stylesheet";
+            if (typeof filesi != "undefined") document.getElementsByTagName('head')[0].appendChild(filesi);
+        }
+    }
+    if (typeof fun === "function") {
+        filesi.onload = filesi.onreadystatechange = function() {
+            var r = filesi.readyState;
+            if (!r || r === 'loaded' || r === 'complete') {
+                filesi.onload = filesi.onreadystatechange = null;
+                fun();
+            }
+        };
+    }
+}
 
+//域名格式验证
 
+function domain_verification(domain,suffix){
+	var rtn = true;
+	var maxlenth = 67 - suffix.length,//域名字节数不能超过67位（包含域名后缀.com...）
+		regexp = new RegExp("^^[a-z0-9-]{1,"+maxlenth+"}$","i");
+
+	if(!regexp.test(domain)){
+		rtn = false;
+	}
+
+	//开头不能为 - 
+	if(domain.indexOf('-')==0){
+		rtn = false;
+	}
+
+	//结尾不能为 -
+	if(domain.charAt(domain.length-1)=="-"){
+		rtn = false;
+	}
+	return rtn;
+
+}
+
+//检测浏览器版本
+var client = function() {
+    //呈现引擎
+    var engine = {
+        ie: 0,
+        gecko: 0,
+        webkit: 0,
+        khtml: 0,
+        opera: 0,
+        //完整的版本号
+        ver: null
+    };
+    //浏览器
+    var browser = {
+        //主要浏览器
+        ie: 0,
+        firefox: 0,
+        safari: 0,
+        konq: 0,
+        opera: 0,
+        chrome: 0,
+        //具体的版本号
+        ver: null
+    };
+    //平台、设备和操作系统
+    var system = {
+        win: false,
+        mac: false,
+        x11: false,
+        //移动设备
+        iphone: false,
+        ipod: false,
+        ipad: false,
+        ios: false,
+        android: false,
+        nokiaN: false,
+        winMobile: false,
+        //游戏系统
+        wii: false,
+        ps: false
+    };
+    //检测呈现引擎和浏览器
+    var ua = navigator.userAgent;
+    if (window.opera) {
+        engine.ver = browser.ver = window.opera.version();
+        engine.opera = browser.opera = parseFloat(engine.ver);
+    } else if (/AppleWebKit\/(\S+)/.test(ua)) {
+        engine.ver = RegExp["$1"];
+        engine.webkit = parseFloat(engine.ver);
+        //确定是 Chrome 还是 Safari
+        if (/Chrome\/(\S+)/.test(ua)) {
+            browser.ver = RegExp["$1"];
+            browser.chrome = parseFloat(browser.ver);
+        } else if (/Version\/(\S+)/.test(ua)) {
+            browser.ver = RegExp["$1"];
+            browser.safari = parseFloat(browser.ver);
+        } else {
+            //近似地确定版本号
+            var safariVersion = 1;
+            if (engine.webkit < 100) {
+                safariVersion = 1;
+            } else if (engine.webkit < 312) {
+                safariVersion = 1.2;
+            } else if (engine.webkit < 412) {
+                safariVersion = 1.3;
+            } else {
+                safariVersion = 2;
+            }
+            browser.safari = browser.ver = safariVersion;
+        }
+    } else if (/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)) {
+        engine.ver = browser.ver = RegExp["$1"];
+        engine.khtml = browser.konq = parseFloat(engine.ver);
+    } else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) {
+        engine.ver = RegExp["$1"];
+        engine.gecko = parseFloat(engine.ver);
+        //确定是不是 Firefox
+        if (/Firefox\/(\S+)/.test(ua)) {
+            browser.ver = RegExp["$1"];
+            browser.firefox = parseFloat(browser.ver);
+        }
+    } else if (/MSIE ([^;]+)/.test(ua)) {
+        engine.ver = browser.ver = RegExp["$1"];
+        engine.ie = browser.ie = parseFloat(engine.ver);
+    }
+    //检测浏览器
+    browser.ie = engine.ie;
+    browser.opera = engine.opera;
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    //检测 Windows 操作系统
+    if (system.win) {
+        if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
+            if (RegExp["$1"] == "NT") {
+                switch (RegExp["$2"]) {
+                    case "5.0":
+                        system.win = "2000";
+                        break;
+                    case "5.1":
+                        system.win = "XP";
+                        break;
+                    case "6.0":
+                        system.win = "Vista";
+                        break;
+                    case "6.1":
+                        system.win = "7";
+                        break;
+                    default:
+                        system.win = "NT";
+                        break;
+                }
+            } else if (RegExp["$1"] == "9x") {
+                system.win = "ME";
+            } else {
+                system.win = RegExp["$1"];
+            }
+        }
+    }
+    //移动设备
+    system.iphone = ua.indexOf("iPhone") > -1;
+    system.ipod = ua.indexOf("iPod") > -1;
+    system.ipad = ua.indexOf("iPad") > -1;
+    system.nokiaN = ua.indexOf("NokiaN") > -1;
+    //windows mobile
+    if (system.win == "CE") {
+        system.winMobile = system.win;
+    } else if (system.win == "Ph") {
+        if (/Windows Phone OS (\d+.\d+)/.test(ua)) {;
+            system.win = "Phone";
+            system.winMobile = parseFloat(RegExp["$1"]);
+        }
+    }
+    //检测 iOS 版本
+    if (system.mac && ua.indexOf("Mobile") > -1) {
+        if (/CPU (?:iPhone )?OS (\d+_\d+)/.test(ua)) {
+            system.ios = parseFloat(RegExp.$1.replace("_", "."));
+        } else {
+            system.ios = 2; //不能真正检测出来，所以只能猜测
+        }
+    }
+    //检测 Android 版本
+    if (/Android (\d+\.\d+)/.test(ua)) {
+        system.android = parseFloat(RegExp.$1);
+    }
+    //游戏系统
+    system.wii = ua.indexOf("Wii") > -1;
+    system.ps = /playstation/i.test(ua);
+    //返回这些对象
+    return {
+        engine: engine,
+        browser: browser,
+        system: system
+    };
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+window.isflsgrn = false;//ie11以下是否进入全屏标志，true为全屏状态，false为非全屏状态
+window.ieIsfSceen = false;//ie11是否进入全屏标志，true为全屏状态，false为非全屏状态
+//跨浏览器返回当前 document 是否进入了可以请求全屏模式的状态
+function fullscreenEnable(){
+    var isFullscreen = document.fullscreenEnabled ||
+    window.fullScreen ||
+    document.mozFullscreenEnabled ||
+    document.webkitIsFullScreen;
+    return isFullscreen;
+}
+//全屏
+var fScreen = function(){
+    var docElm = document.documentElement;
+    if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+    }
+    else if (docElm.msRequestFullscreen) {
+        docElm.msRequestFullscreen();
+        ieIsfSceen = true;
+    }
+    else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+    }
+    else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen();
+    }else {//对不支持全屏API浏览器的处理，隐藏不需要显示的元素
+        window.parent.hideTopBottom();
+        isflsgrn = true;
+        $("#fsbutton").text("退出全屏");
+    }
+}
+//退出全屏
+var cfScreen = function(){
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+    else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+    else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    }
+    else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+    }else {
+        window.parent.showTopBottom();
+        isflsgrn = false;
+        $("#fsbutton").text("全屏");
+    }
+}
+//全屏按钮点击事件
+$("#fsbutton").click(function(){
+    var isfScreen = fullscreenEnable();
+    if(!isfScreen && isflsgrn == false){
+        if (ieIsfSceen == true) {
+            document.msExitFullscreen();
+            ieIsfSceen = false;
+            return;
+        }
+        fScreen();
+    }else{
+        cfScreen();
+    }
+})
+//键盘操作
+$(document).keydown(function (event) {
+    if(event.keyCode == 27 && ieIsfSceen == true){
+        ieIsfSceen = false;
+    }
+});
+//监听状态变化
+if (window.addEventListener) {
+    document.addEventListener('fullscreenchange', function(){ 
+        if($("#fsbutton").text() == "全屏"){
+            $("#fsbutton").text("退出全屏"); 
+        }else{
+            $("#fsbutton").text("全屏");
+        }
+    });
+    document.addEventListener('webkitfullscreenchange', function(){ 
+        if($("#fsbutton").text() == "全屏"){
+            $("#fsbutton").text("退出全屏"); 
+        }else{
+            $("#fsbutton").text("全屏");
+        }
+    });
+    document.addEventListener('mozfullscreenchange', function(){ 
+        if($("#fsbutton").text() == "全屏"){
+            $("#fsbutton").text("退出全屏"); 
+        }else{
+            $("#fsbutton").text("全屏");
+        }
+    });
+    document.addEventListener('MSFullscreenChange', function(){ 
+        if($("#fsbutton").text() == "全屏"){
+            $("#fsbutton").text("退出全屏"); 
+        }else{
+            $("#fsbutton").text("全屏");
+        }
+    });
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 验证url是否有效
+ */
+function checkUrlState(url) {
+	var xmlHttp;
+	try {
+		xmlhttp = new XMLHttpRequest();
+	}catch (e) {
+		try {
+			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		}catch (e) {
+			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+	xmlhttp.open('GET', url, false);
+	try{
+		xmlhttp.send();	
+	}catch(e){
+	}finally{
+		var result = xmlhttp.responseText;
+		if(result) {
+			if(xmlhttp.status === 200) {
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+}
+
+/**
+ * 判断是否为网址
+ * @param strUrl
+ * @returns {Boolean}
+ */
+function IsURL(strUrl) {
+    var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i
+    if (regular.test(strUrl)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+/**
+ * 格式化css代码
+ */
+function formatCss(s){
+	s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+	s = s.replace(/;\s*;/g, ";"); //清除连续分号
+	s = s.replace(/\,[\s\.\#\d]*{/g, "{");
+	s = s.replace(/([^\s])\{([^\s])/g, "$1 {\n\t$2");
+	s = s.replace(/([^\s])\}([^\n]*)/g, "$1\n}\n$2");
+	s = s.replace(/([^\s]);([^\s\}])/g, "$1;\n\t$2");
+	return s;
+}
+
+/**
+ * 压缩css代码
+ */
+function yasuoCss (s) {
+	  s = s.replace(/\/\*(.|\n)*?\*\//g, ""); //删除注释
+	  s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+	  s = s.replace(/\,[\s\.\#\d]*\{/g, "{"); //容错处理
+	  s = s.replace(/;\s*;/g, ";"); //清除连续分号
+	  s = s.match(/^\s*(\S+(\s+\S+)*)\s*$/); //去掉首尾空白
+	  return (s == null) ? "" : s[1];
+}
+
+/**
+ * base64解码
+ * @param data
+ * @returns
+ */
+function base64_decode(data){
+	  var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+	  var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,ac = 0,dec = "",tmp_arr = [];
+	  if (!data) { return data; }
+	  data += '';
+	  do {
+	    h1 = b64.indexOf(data.charAt(i++));
+	    h2 = b64.indexOf(data.charAt(i++));
+	    h3 = b64.indexOf(data.charAt(i++));
+	    h4 = b64.indexOf(data.charAt(i++));
+	    bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
+	    o1 = bits >> 16 & 0xff;
+	    o2 = bits >> 8 & 0xff;
+	    o3 = bits & 0xff;
+	    if (h3 == 64) {
+	      tmp_arr[ac++] = String.fromCharCode(o1);
+	    } else if (h4 == 64) {
+	      tmp_arr[ac++] = String.fromCharCode(o1, o2);
+	    } else {
+	      tmp_arr[ac++] = String.fromCharCode(o1, o2, o3);
+	    }
+	  } while (i < data.length);
+	  dec = tmp_arr.join('');
+	  dec = utf8_decode(dec);
+	  return dec;
+}
+
+function utf8_decode(str_data){
+	  var tmp_arr = [],i = 0,ac = 0,c1 = 0,c2 = 0,c3 = 0;str_data += '';
+	  while (i < str_data.length) {
+	    c1 = str_data.charCodeAt(i);
+	    if (c1 < 128) {
+	      tmp_arr[ac++] = String.fromCharCode(c1);
+	      i++;
+	    } else if (c1 > 191 && c1 < 224) {
+	      c2 = str_data.charCodeAt(i + 1);
+	      tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
+	      i += 2;
+	    } else {
+	      c2 = str_data.charCodeAt(i + 1);
+	      c3 = str_data.charCodeAt(i + 2);
+	      tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+	      i += 3;
+	    }
+	  }
+	  return tmp_arr.join('');
+	}

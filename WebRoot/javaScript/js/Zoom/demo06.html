@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	//实现页面反转
+	var x, y, ny = 0, nx = 270, rotYINT
+	function begin() {
+		y = document.getElementById("rotatey1");
+		x = document.getElementById("rotatey2");
+		clearInterval(rotYINT);
+		rotYINT = setInterval("startYRotate11()", 5);
+		setTimeout("setValue()", 500);
+
+	}
+	function end() {
+		clearInterval(rotYINT);
+		rotYINT = setInterval("startYRotate21()", 5);
+		setTimeout("setValue1()", 500);
+	}
+	function setValue() {
+		y.style.display = "none";
+		x.style.display = "block";
+		clearInterval(rotYINT);
+		rotYINT = setInterval("startYRotate12()", 5);
+	}
+	function setValue1() {
+		x.style.display = "none";
+		y.style.display = "block";
+		clearInterval(rotYINT);
+		rotYINT = setInterval("startYRotate22()", 5);
+	}
+	//从270到360 1
+	function startYRotate12() {
+		nx = nx + 1;
+		x.style.transform = "rotateY(" + nx + "deg)";
+		x.style.webkitTransform = "rotateY(" + nx + "deg)";
+		x.style.OTransform = "rotateY(" + nx + "deg)";
+		x.style.MozTransform = "rotateY(" + nx + "deg)";
+		if (nx >= 360) {
+			nx = 270;
+			clearInterval(rotYINT);
+		}
+	}
+	//从270到360 2
+	function startYRotate22() {
+		nx = nx + 1;
+		y.style.transform = "rotateY(" + nx + "deg)";
+		y.style.webkitTransform = "rotateY(" + nx + "deg)";
+		y.style.OTransform = "rotateY(" + nx + "deg)";
+		y.style.MozTransform = "rotateY(" + nx + "deg)";
+		if (nx >= 360) {
+			nx = 270;
+			clearInterval(rotYINT);
+		}
+	}
+	//从0-90 把1
+	function startYRotate11() {
+		ny = ny + 1;
+		y.style.transform = "rotateY(" + ny + "deg)";
+		y.style.webkitTransform = "rotateY(" + ny + "deg)";
+		y.style.OTransform = "rotateY(" + ny + "deg)";
+		y.style.MozTransform = "rotateY(" + ny + "deg)";
+		if (ny >= 90) {
+			ny = 0;
+			clearInterval(rotYINT);
+		}
+	}
+	// 0-90 把2
+	function startYRotate21() {
+		ny = ny + 1;
+		x.style.transform = "rotateY(" + ny + "deg)";
+		x.style.webkitTransform = "rotateY(" + ny + "deg)";
+		x.style.OTransform = "rotateY(" + ny + "deg)";
+		x.style.MozTransform = "rotateY(" + ny + "deg)";
+		if (ny >= 90) {
+			ny = 0;
+			clearInterval(rotYINT);
+		}
+	}
+</script>
+</head>
+<div id="rotatey1"
+	style="display: block; width: 200px; height: 200px; background-color: pink;">
+	<button onclick="begin();">我是正面</button>
+</div>
+<div id="rotatey2"
+	style="display: none; width: 200px; height: 200px; background-color: pink;">
+	<button onclick="end();">我是反面</button>
+</div>
+<body>
+</body>
+</html>

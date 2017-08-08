@@ -32,6 +32,98 @@ EventEmitter
 	
 	events.EventEmitter核心就是事件触发和事件监听的封装
 	
+Buffer
+
+	存放二进制数据缓存区
+	
+	node核心库，他是node储存原始数据的方法。
+	
+	js本身只有字符串数据类型，没有二进制数据类型。
+	
+	而buffer就是一个专门存放二进制数据类型的缓存区，可以让node处理二进制数据
+	
+	创建buffer类的方法有很多，可以通过字符串，数据，和字节	
+	
+	语法
+	
+		写入
+	
+		buf.write(string[, offset][, length][, encoding]);
+	
+			string----写入缓存的字符串
+			
+			offset----开始写入的索引，默认以0开始
+			
+			length----写入字节数，默认以字符串长度
+			
+			encoding----字符编码，默认是'utf-8'
+			
+			返回值  	返回实际写入大小，如果buffer空间不足，则只会写入部分字符串
+				
+		读取
+		
+			buf.toString([encoding][, start][, end])
+			
+				encoding----字符编码，默认utf-8
+				
+				start----起始位置索引，默认为0
+				
+				end----结束位置索引，默认缓冲区尾部
+				
+				返回值	解码缓存区数据，并以指定字符编码返回字符串
+				
+	buffer转json
+	
+		buf.toJSON()--->返回JSON
+		
+	缓冲区合并
+	
+		Buffer.concat(list[, totalLength])
+		
+			list----用于合并buffer数组对象列表
+			
+			totalLength----合并后总长度
+			
+			返回值----多个成员合并的buffer新对象
+			
+	缓冲区比较
+	
+		buf.compare(otherBuffer);
+		
+			otherBuffer----相比较的对象
+			
+			返回一个数字表示buf在otherBuffer之前(小于0)之后(大于0)还是相同(0)
+			
+	拷贝缓冲区
+	
+		buf.copy(targetBuffer[, targetStart][, sourceStart][, sourceEnd])
+		
+			targetBuffer----要拷贝的对象
+			
+			targetStart ----可选，默认为0
+			
+			targetEnd   ----可选，默认为0
+			
+			sourceEnd	----默认为拷贝对象的长度
+			
+			没有返回值
+			
+	缓冲区裁剪
+	
+		buf.slice([start][, end])
+		
+			start----可选，默认为0
+			
+			end----默认为裁剪对象的长度
+
+			返回值----新的缓冲区，和之前的缓冲区指向同一个内存			
+			
+			
+			
+		
+		
+	
+	
 	
 	
 	

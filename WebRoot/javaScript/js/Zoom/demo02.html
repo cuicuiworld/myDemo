@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS实现用鼠标滚轮控制图片的放大和缩小</title>
+<meta http-equiv="content-type" content="text/html;charset=gb2312">
+<style>
+	.showMax{
+	    padding:5px;
+	    padding-top:30px;
+	    border-radius:3px;
+	    position:fixed;
+	    z-index:999991;
+	    top:25%;
+	    width:280px;
+	    height:500px;
+	    left:50%;
+	    margin-left:-140px;
+	    background-color:orange;
+	    cursor:move;    
+	}
+	.MAX_div{
+	
+	}
+	.close{
+	   color:#ffffff;
+	   position:fixed;
+	   z-index:999992;
+	   width:14px;
+	   height:14px;
+	   top:25%;
+	   left:50%;
+	   margin-left:125px;
+	   margin-top:8px;
+	
+	}
+	li >img:hover{
+	    border:1px solid orange;
+	    cursor:crosshair;
+	}
+	#Cover_Div{
+	    position: fixed;
+	    z-index: 9999; 
+	    width: 100%;
+	    height: 100%; 
+	    left: 0; 
+	    top: 0;
+	    min-width: 700px;
+	    min-height: 740px;      
+	    opacity: 0.5; 
+	    filter: alpha(opacity = 50); 
+	    background-color: #ffffff; 
+	    display:none;
+	}
+	.cut{
+	    font-weight:bold;
+	    font-weight:normal\0;
+	    font-size:18px;
+	    height:30px;
+	    max-height:35px;
+	    color:#FFFFFF;
+	    font-family:楷书;
+	}
+</style>
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+<img id="oImg" src="img2.jpg" style="width:288px;height:216px;position: absolute;" />
+
+<script type="text/javascript">
+/*绑定事件*/
+function addEvent(obj, sType, fn) {
+	if (obj.addEventListener) {
+		obj.addEventListener(sType, fn, false);
+	} else {
+		obj.attachEvent('on' + sType, fn);
+	}
+};
+function removeEvent(obj, sType, fn) {
+	if (obj.removeEventListener) {
+		obj.removeEventListener(sType, fn, false);
+	} else {
+		obj.detachEvent('on' + sType, fn);
+	}
+};
+function prEvent(ev) {
+	var oEvent = ev || window.event;
+	if (oEvent.preventDefault) {
+		oEvent.preventDefault();
+	}
+	return oEvent;
+}
+/*添加滑轮事件*/
+function addWheelEvent(obj, callback) {
+	if (window.navigator.userAgent.toLowerCase().indexOf('firefox') != -1) {
+		addEvent(obj, 'DOMMouseScroll', wheel);
+	} else {
+		addEvent(obj, 'mousewheel', wheel);
+	}
+	function wheel(ev) {
+		var oEvent = prEvent(ev),
+		delta = oEvent.detail ? oEvent.detail > 0 : oEvent.wheelDelta < 0;
+		callback && callback.call(oEvent, delta);
+		return false;
+	}
+};
+/*页面载入后*/
+window.onload = function() {
+	var oImg = document.getElementById('oImg');
+	/*拖拽功能*/
+	(function() {
+		addEvent(oImg, 'mousedown', function(ev) {
+			var oEvent = prEvent(ev),
+			oParent = oImg.parentNode,
+			disX = oEvent.clientX - oImg.offsetLeft,
+			disY = oEvent.clientY - oImg.offsetTop,
+			startMove = function(ev) {
+				if (oParent.setCapture) {
+					oParent.setCapture();
+				}
+				var oEvent = ev || window.event,
+				l = oEvent.clientX - disX,
+				t = oEvent.clientY - disY;
+				oImg.style.left = l +'px';
+				oImg.style.top = t +'px';
+				oParent.onselectstart = function() {
+					return false;
+				}
+			}, endMove = function(ev) {
+				if (oParent.releaseCapture) {
+					oParent.releaseCapture();
+				}
+				oParent.onselectstart = null;
+				removeEvent(oParent, 'mousemove', startMove);
+				removeEvent(oParent, 'mouseup', endMove);
+			};
+			addEvent(oParent, 'mousemove', startMove);
+			addEvent(oParent, 'mouseup', endMove);
+			return false;
+		});
+	})();
+	/*以鼠标位置为中心的滑轮放大功能*/
+	(function() {
+		addWheelEvent(oImg, function(delta) {
+			var ratioL = (this.clientX - oImg.offsetLeft) / oImg.offsetWidth,
+			ratioT = (this.clientY - oImg.offsetTop) / oImg.offsetHeight,
+			ratioDelta = !delta ? 1 + 0.1 : 1 - 0.1,
+			w = parseInt(oImg.offsetWidth * ratioDelta),
+			h = parseInt(oImg.offsetHeight * ratioDelta),
+			l = Math.round(this.clientX - (w * ratioL)),
+			t = Math.round(this.clientY - (h * ratioT));
+			with(oImg.style) {
+				width = w +'px';
+				height = h +'px';
+				left = l +'px';
+				top = t +'px';
+			}
+		});
+	})();
+};
+</script>
+</body>
+</html>

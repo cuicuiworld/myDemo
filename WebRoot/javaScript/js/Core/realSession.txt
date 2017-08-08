@@ -1,0 +1,15 @@
+
+## 保持缓存不失效，即页面session不过期。
+
+	1，检测ajax返回的内容是否含有html标签。
+	
+		一般页面过期时有用户操作，请求会返回登录页面。
+		
+		var res = request.responseText;//ajax返回内容
+		if(res.indexOf('<html>')>-1 || /<html>/ig.test(res) || res.indexOf('logInForMobile=OK')>-1){
+			//页面过期处理
+		}
+	
+	2,每次隔一定时间请求一次（这个时间小于session过期时间）,即每隔多久，用户和系统会有交互。
+	
+	一般是请求一个空接口。每隔多久请求一次。

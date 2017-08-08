@@ -1,0 +1,88 @@
+1,原始写法
+
+	function a() {}
+	function b() {}
+	
+	//污染全局变量，关联性差，变量名冲突
+	
+2,对象写法----命名空间
+	
+	var module = {
+		_count : 0,
+		a : function() {},
+		b : function() {}
+	}
+	//暴露模块成员
+
+3,立即执行函数----私有共有成员分离
+
+	var module = (function(){
+		
+		// 这里形成一个单独的私有的空间
+	    // 私有成员的作用：
+	    //1、将一个成员私有化
+	    //2、抽象公共方法（其他成员中会用到的）
+	    
+	    var _count = 0;
+	    var a = function() {}
+	    var b = function() {}
+	    
+	    return {
+	    	a : a,
+	    	b : b
+	    }
+	    
+	    //不暴露私有成员，解决变量名冲突问题。私有空间变量无法影响到全局
+    
+	})()
+	
+4,模块的扩展和维护
+	
+	var module = (function(mod){
+		mod.c = function() {};
+		return mod;		
+	})(mod);
+	
+	//利于对庞大的模块子模块的划分
+	//实现了开闭原理（对新增开发，对修改关闭）
+	
+5,第三方依赖的管理
+
+	var module = (function(mod, $) {
+		mod.d = function(){}
+		window.mod = mod;
+	})(window.mod||{}, JQuery);
+	
+	//高内聚低耦合，模块内相关性高，模块间关联低。
+	
+	
+-------------------------------------------SeaJs简介（CMD）------------------------------------------------
+
+1,基本语法
+
+	define(function(require, exports, module){//...});
+	
+	1，暴露接口
+		
+		exports
+		module.exports
+		
+	2,依赖模块
+	
+		require(模块名)
+		
+	3,启动模块系统
+		
+		seajs.use('模块id', function(模块对象){业务代码})
+
+
+
+
+
+
+
+
+
+	
+	
+	

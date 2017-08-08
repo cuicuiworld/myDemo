@@ -123,12 +123,28 @@ var Ajax = {
 Ajax.get({
 	url:_global_settings.service.url+'/common/customer',
 	method:'get',
-	async:true,
+	async:false,
 	success:function(res){
-		console.log(JSON.parse(res));
+		//标准格式其实就是try{}catch(e){}捕获异常
+		//JSON.parse和JSON.stringfy是用的最多的。
+		//一般还有状态码200情况下才做处理
+		//debugger是最好打断点的方式.
+		
+		//通常一般url上会有很大的文章，一般都会有base64加密，随机数，传参等等。
+		try{
+			//console.log(JSON.parse(res));
+			//console.log(JSON.stringfy(res));
+			if(res){
+				
+			}
+		}catch(e){
+			//异常处理
+		}
 	},
 	error:function(e){
 		console.log(e);
+		//这里面通常用的最多的就是如果请求失败，要显示后台返回的错误信息。
+		//e.responseJSON.errorMsg
 	}
 })
 

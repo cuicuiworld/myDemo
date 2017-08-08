@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+			div{width: 100px;height: 100px;border: 1px solid #000;background:#ccc;}
+			.div02{
+				width: 300px;
+				height: 200px;
+				background:pink;
+				position: absolute;
+			}
+        </style>
+        <script src="jquery-1.11.1.min.js"></script>
+        <script>
+        	$(function(){
+        		$(window).mousemove(function(e) {
+        			// e就是事件对象
+        			// 里面包含着事件触发瞬间，事件相关的信息
+        			var x=e.pageX;
+        			var y=e.pageY;
+
+        			$('.div01').html(x+'----'+y);
+        			// 让盒子 向鼠标右下方便宜20px
+        			var l=x+20;
+        			var t=y+20;
+
+        			// 将获取到的 鼠标 坐标赋值给  指定的盒子 left 和top 
+        			$('.div02').css({'left':l+'px','top':t+'px'});
+
+        		});
+        	})
+        </script>
+    </head>
+    <body>
+    	<div class="div01"></div>
+    	<div class="div02"></div>
+    </body>
+</html>

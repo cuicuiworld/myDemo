@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+        	*{margin:0;padding:0;}
+			.pic{width: 400px;height: 400px;margin:30px 0 0 30px; background:url(img1.png); position: relative;}
+			.show{ width: 400px; height: 400px; background:pink url(img2.jpg) no-repeat; position: absolute; left:420px;top:0; display:none;}
+
+			.bigger{
+				position: absolute;	width: 200px;height:200px;background:url(scope.png);left:0;top:0;
+                cursor: move;
+			}
+        </style>
+        <script src="jquery-1.11.1.min.js"></script>
+        <script>
+        	$(function(){
+        		// 鼠标进入的时候，show盒子显示
+        		$('.pic').mouseover(function(){
+        			$('.show').show();
+        		});
+        		// 鼠标移动时，放大镜跟随
+        		$('.pic').mousemove(function(e){
+        			// 获取鼠在屏幕上的坐标
+        			// 减去30 目的 将屏幕坐标转换成 相对于pic的坐标
+        			var x=e.pageX-30;
+        			var y=e.pageY-30;
+                    // 让鼠标在放大镜的中心
+                    x-=100;
+                    y-=100;  // y=y-100;
+
+                    console.log(x+'---'+y);
+                    // 到目前为止： x 和 y的值有可能不合理 为负值 或者过大
+
+                    // 边界检测
+                    if(x<0){
+                        x=0;
+                    }
+                     if(y<0){
+                        y=0;
+                    }
+                     if(x>200){
+                        x=200;
+                    }
+                     if(y>200){
+                        y=200;
+                    }
+
+                    // 设置放大镜的坐标
+        			$('.bigger').css({'left':x,'top':y});
+
+                    // 显示放大镜对应区域的大图
+                    // 比例尺
+                    // var r=800/400;
+                    // var r=$('.show').css('width');
+                    // 动态获取宽高 ，适用性更强  大图片/小图片
+                    var r=$('.show').width()*2/$('.pic').width();
+                   
+
+                    // 背景坐标去负值
+                    var sx=-x*r;
+                    var sy=-y*r;
+                    // 改变show背景图片的位置
+                    $('.show').css('background-position',sx+'px '+sy+'px') // 20px 20px 
+        		});
+
+                // 鼠标离开 show隐藏
+                $('.pic').mouseout(function(e){
+                    $('.show').hide();
+                });
+        	})
+        </script>
+    </head>
+    <body>
+    	<div class="pic" id="pic">
+    		<div class="show"></div>
+    		<span class='bigger'></span>
+    	</div>
+    </body>
+</html>

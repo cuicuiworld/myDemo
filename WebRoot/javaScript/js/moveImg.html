@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>拖动和放大缩小图片</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="block1" style="height: 60; left: 200; position: absolute; top: 200; width: 120;cursor: move;">
+	<img alt border="1" src="pic.jpg" width="300">
+</div>
+
+<script language="javascript">
+	
+	function dragImg(obj) {
+		var obj = document.getElementById(obj);
+		
+		obj.onmousedown = function(ev) {
+			var ev = ev || event;
+			
+			var disX = ev.clientX - this.offsetLeft;
+			var disY = ev.clientY - this.offsetTop;
+			
+			if ( obj.setCapture ) {
+				obj.setCapture();
+			}
+			
+			document.onmousemove = function(ev) {
+				var ev = ev || event;
+				
+				obj.style.left = ev.clientX - disX + 'px';
+				obj.style.top = ev.clientY - disY + 'px';
+				
+				//约定拖动元素在屏幕可见范围内 
+				var evLeft = obj.offsetLeft
+					evTop = obj.offsetTop,
+					evRight = document.body.offsetWidth;
+				
+				if(evLeft < 0){
+					obj.style.left = 0;
+				}
+				if(evTop < 0){
+					obj.style.top = 0;
+				}
+				if(ev.clientX - disX + obj.offsetWidth > evRight){
+					obj.style.left = evRight - obj.offsetWidth +'px';
+				}
+				
+			}
+			
+			document.onmouseup = function() {
+				document.onmousemove = document.onmouseup = null;
+				//释放全局捕获 releaseCapture();
+				if ( obj.releaseCapture ) {
+					obj.releaseCapture();
+				}
+			}
+			return false;	
+		}
+	}
+	
+	function biggerImg(obj){
+		var obj = document.getElementById(obj);
+		obj.onmousewheel = function() {
+			var zoom = parseInt(obj.style.zoom,10) || 100;
+				zoom += event.wheelDelta / 12;
+			if(zoom > 0 )
+				obj.style.zoom = zoom+'%';
+			return false;
+		}
+	}
+	dragImg('block1');
+	biggerImg('block1');
+	
+	
+</script>
+</body>
+</html>

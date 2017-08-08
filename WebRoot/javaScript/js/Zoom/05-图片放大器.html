@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+			*{margin: 0;padding: 0;list-style: none;}
+			.box{width: 900px; margin:100px auto;}
+			ul li{
+				float: left;
+				margin-right:5px;
+			}
+			.big{
+				position:absolute;
+			}
+
+        </style>
+		<script src="jquery-1.11.1.min.js"></script>
+        <script>
+        $(function(){
+        	$('li').mouseover(function(){
+        		// 页面上会多出一个盒子
+        		// 定义了一个节点
+        		// 定义一个变量 ，来存放编号的图片地址，大图片的地址和小图片相同
+        		
+        		var url=$(this).children().attr('src');
+
+        		// alert(url);
+
+        		var tag=$('<img  class="big" src="'+url+'" width="500"/>');
+        		$('.box').append(tag);
+        		$('.big').hide().show(300);
+        	});
+
+        	$('li').mouseout(function(){
+        		// 鼠标离开删除big图片
+        		$('.big').remove();
+        	});
+
+        	// 鼠标移动，大图片跟随
+        	$('li').mousemove(function(e){
+        		// 获取鼠标的坐标
+        		var x=e.pageX+15;
+        		var y=e.pageY+15;
+
+        		$('.big').css({'left':x,'top':y});
+
+        	});
+        })
+        </script>
+    </head>
+    <body>
+    	<div class="box">
+    		<ul>
+    			<li><img src="images/ad01.jpg" width="220"/></li>
+    			<li><img src="images/ad02.jpg" width="220"/></li>
+    			<li><img src="images/ad03.jpg" width="220"/></li>
+    			<li><img src="images/ad04.jpg" width="220"/></li>
+    		</ul>
+    	</div>
+    </body>
+</html>

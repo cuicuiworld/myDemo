@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS实现用鼠标滚轮控制图片的放大和缩小</title>
+<meta http-equiv="content-type" content="text/html;charset=gb2312">
+</head>
+<body>
+<div id="floatImg">
+	<img id="img2" src="img2.jpg" alt="my image" style="position:absolute;width:100%;height:100%;"/>  
+</div>
+	
+	<script type="text/javascript">  
+	biggerImg()	
+	function biggerImg() {
+		debugger
+		var obj = document.getElementById('floatImg');
+	    if (obj.addEventListener) {
+	    	obj.addEventListener("mousewheel", MouseWheelHandler, false);// IE9, Chrome, Safari, Opera
+	    	obj.addEventListener("DOMMouseScroll", MouseWheelHandler, false);// Firefox
+	    }else {
+	    	obj.attachEvent("onmousewheel", MouseWheelHandler);
+	    }// IE 6/7/8
+
+	    //为了让不同浏览器都能支持的处理做法,我们将对Firefox的detail值取反然后返回1或者-1的其中一个
+	    function MouseWheelHandler() {
+	    	var d = document, 
+			on = function(b, o) {
+				for ( var a in o) {
+					b["on" + a] = o[a];
+				}
+			};
+
+		var isRun,
+			startX,
+			startY,
+			endX, 
+			endY, 
+			rX, 
+			rY, 
+			bgX = 0, 
+			bgY = 0, 
+			$b =  document.getElementById('floatImg'),
+			ww = parseInt($b.style.width),
+			wh = parseInt($b.style.height), 
+			i = $b.getElementsByTagName('img')[0], 
+			img = i.style,
+			imgw = parseInt(img.width), 
+			imgh = parseInt(img.height),
+			scaleSize = 1;
+		
+		function rs() {
+			var w, h;
+			//以完全显示图片为基准,如果改为>，则为以铺满屏幕为基准
+			if (ww / wh < imgw / imgh) {
+				w = ww;
+				h = imgh * ww / imgw;
+				bgX = 0;
+				bgY = -(h - wh) / 2;
+				scaleSize = ww / imgw;//初始比率
+			} else {
+				w = imgw * wh / imgh;
+				h = wh;
+				bgX = -(w - ww) / 2;
+				bgY = 0;
+				scaleSize = wh / imgh;
+			}
+			img.width = w + "px";
+			img.height = h + "px";
+			img.left = bgX + "px";
+			img.top = bgY + "px";
+		}
+		rs();
+		/* Init */
+		on(d, {
+			"mousedown" : function(e) {
+				//按中建快速还原大小
+				if (e.which === 2) {
+					rs();
+				}
+				if (e.which === 1 && e.target && (e.target === i)) {
+					isRun = true;
+					startX = e.pageX;
+					startY = e.pageY;
+					return false;
+				}
+			},
+			"mouseup" : function(e) {
+				if (e.which !== 1) {
+					return;
+				}
+				img.cursor = "default";
+				isRun = false;
+				bgX = rX;
+				bgY = rY;
+				return false;
+			},
+			"mousemove" : function(e) {
+				if (e.which !== 1) {
+					return;
+				}
+				if (isRun) {
+					img.cursor = "move";
+					endX = e.pageX;
+					endY = e.pageY;
+					rX = bgX + endX - startX;
+					rY = bgY + endY - startY;
+
+					img.left = rX + "px";
+					img.top = rY + "px";
+				}
+			},
+			"mousewheel" : function(e) {
+				//以鼠标为中心缩放，同时进行位置调整
+				var deltaY = 0;
+				var x = e.pageX;
+				var y = e.pageY;
+				e.preventDefault();
+
+				if (e.target && (e.target === i)) {
+					x = x - $b.offsetLeft;
+					y = y - $b.offsetTop;
+
+					var p = -(e.deltaY) / 1000;
+					var ns = scaleSize;
+					ns += p;
+					//ns = ns < 0.1 ? 0.1 : (ns > 5 ? 5 : ns);//可以缩小到0.1,放大到20倍
+
+					//计算位置，以鼠标所在位置为中心
+					//以每个点的x、y位置，计算其相对于图片的位置，再计算其相对放大后的图片的位置
+					bgX = bgX - (x - bgX) * (ns - scaleSize) / (scaleSize);
+					bgY = bgY - (y - bgY) * (ns - scaleSize) / (scaleSize);
+					scaleSize = ns;//更新倍率
+
+					img.width = imgw * ns + "px";
+					img.height = imgh * ns + "px";
+					img.top = bgY + "px";
+					img.left = bgX + "px";
+				}
+			}
+		});
+	    }
+	}
+
+	function changeImg() {
+		var d = document, 
+			on = function(b, o) {
+				for ( var a in o) {
+					b["on" + a] = o[a];
+				}
+			};
+
+		var isRun,
+			startX,
+			startY,
+			endX, 
+			endY, 
+			rX, 
+			rY, 
+			bgX = 0, 
+			bgY = 0, 
+			$b =  document.getElementById('floatImg'),
+			ww = parseInt($b.style.width),
+			wh = parseInt($b.style.height), 
+			i = $b.getElementsByTagName('img')[0], 
+			img = i.style,
+			imgw = parseInt(img.width), 
+			imgh = parseInt(img.height),
+			scaleSize = 1;
+		
+		function rs() {
+			var w, h;
+			//以完全显示图片为基准,如果改为>，则为以铺满屏幕为基准
+			if (ww / wh < imgw / imgh) {
+				w = ww;
+				h = imgh * ww / imgw;
+				bgX = 0;
+				bgY = -(h - wh) / 2;
+				scaleSize = ww / imgw;//初始比率
+			} else {
+				w = imgw * wh / imgh;
+				h = wh;
+				bgX = -(w - ww) / 2;
+				bgY = 0;
+				scaleSize = wh / imgh;
+			}
+			img.width = w + "px";
+			img.height = h + "px";
+			img.left = bgX + "px";
+			img.top = bgY + "px";
+		}
+		rs();
+		/* Init */
+		on(d, {
+			"mousedown" : function(e) {
+				//按中建快速还原大小
+				if (e.which === 2) {
+					rs();
+				}
+				if (e.which === 1 && e.target && (e.target === i)) {
+					isRun = true;
+					startX = e.pageX;
+					startY = e.pageY;
+					return false;
+				}
+			},
+			"mouseup" : function(e) {
+				if (e.which !== 1) {
+					return;
+				}
+				img.cursor = "default";
+				isRun = false;
+				bgX = rX;
+				bgY = rY;
+				return false;
+			},
+			"mousemove" : function(e) {
+				if (e.which !== 1) {
+					return;
+				}
+				if (isRun) {
+					img.cursor = "move";
+					endX = e.pageX;
+					endY = e.pageY;
+					rX = bgX + endX - startX;
+					rY = bgY + endY - startY;
+
+					img.left = rX + "px";
+					img.top = rY + "px";
+				}
+			},
+			"mousewheel" : function(e) {
+				//以鼠标为中心缩放，同时进行位置调整
+				var deltaY = 0;
+				var x = e.pageX;
+				var y = e.pageY;
+				e.preventDefault();
+
+				if (e.target && (e.target === i)) {
+					x = x - $b.offsetLeft;
+					y = y - $b.offsetTop;
+
+					var p = -(e.deltaY) / 1000;
+					var ns = scaleSize;
+					ns += p;
+					//ns = ns < 0.1 ? 0.1 : (ns > 5 ? 5 : ns);//可以缩小到0.1,放大到20倍
+
+					//计算位置，以鼠标所在位置为中心
+					//以每个点的x、y位置，计算其相对于图片的位置，再计算其相对放大后的图片的位置
+					bgX = bgX - (x - bgX) * (ns - scaleSize) / (scaleSize);
+					bgY = bgY - (y - bgY) * (ns - scaleSize) / (scaleSize);
+					scaleSize = ns;//更新倍率
+
+					img.width = imgw * ns + "px";
+					img.height = imgh * ns + "px";
+					img.top = bgY + "px";
+					img.left = bgX + "px";
+				}
+			}
+		});
+	}
+    </script>  
+</body>
+</html>

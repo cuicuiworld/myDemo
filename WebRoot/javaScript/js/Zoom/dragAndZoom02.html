@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <style type="text/css">
+    .moveAndZoom {
+        width: 1500px;
+        height: 500px;
+        background-color: #eee;
+        position: relative;
+    }
+    
+    .moveElement {
+        display: inline-block;
+        position: absolute;
+    }
+    
+    .zoomElement {}
+    </style>
+</head>
+
+<body>
+    <div class="moveAndZoom">
+        <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2924457848,620118164&fm=58" width="100" height="100" class="moveElement zoomElement" style="left:200px;">
+        <img src="https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1720629075,2054575099&fm=96&s=F0A2B51D4E1057F78E9C9D86030040A1" width="200" height="200" class="moveElement zoomElement" style="left:400px;">
+        <img src="http://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=http%3A%2F%2Fupload.shunwang.com%2F2016%2F0115%2F1452823786627.jpg&thumburl=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D3586300058%2C327117950%26fm%3D21%26gp%3D0.jpg" width="400" height="300" class="moveElement zoomElement" style="left:600px;">
+    </div>
+    <hr>
+    <div class="moveAndZoom">
+        <div class="moveElement zoomElement" style="width:100px;height:100px;background-color: blue;"></div>
+    </div>
+</body>
+<script type="text/javascript">
+$(function() {
+    var moveObj = undefined,
+        startX, startY, endX, endY, orignX, orignY;
+
+    $(".zoomElement").each(function() {
+
+
+        $(this).mousemove(function(e) {
+            var target = e.target;
+
+            var offsetX = e.offsetX;
+            var offsetY = e.offsetY;
+
+            var direction = inZoomArea(offsetX, offsetY, target);
+        });
+
+        $(this).mousedown(function(e) {
+            var target = e.target;
+
+            var offsetX = e.offsetX;
+            var offsetY = e.offsetY;
+
+            var direction = inZoomArea(offsetX, offsetY, target);
+
+            handleZoomByDirection(direction, target);
+        });
+    })
+
+    window.onmousedown = function(e) {
+        e.preventDefault();
+        if (e.target.className.indexOf("moveElement") != -1 && inZoomArea(e.offsetX, e.offsetY, e.target) == "no") {
+            moveObj = e.target;
+
+            var parent = $(moveObj).parents(".moveAndZoom");
+
+            orignX = e.offsetX;
+            orignY = e.offsetY;
+
+            startX = findOffsetLeftOrTopFromElementToParent("offsetLeft", parent, $("body"));
+            startY = findOffsetLeftOrTopFromElementToParent("offsetTop", parent, $("body"));
+            endX = parent[0].offsetWidth - moveObj.offsetWidth;
+            endY = parent[0].offsetHeight - moveObj.offsetHeight;
+
+            moveObj.style.cursor = "move";
+        }
+    }
+
+    window.onmousemove = function(e) {
+        e.preventDefault(); //阻止默认事件
+        if (moveObj != undefined && moveObj.className.indexOf("moveElement") != -1) {
+            var target = moveObj;
+
+            var left = e.pageX - startX - orignX;
+            var top = e.pageY - startY - orignY;
+
+            if (left <= 0) left = 0;
+            if (top <= 0) top = 0;
+            if (left >= endX) left = endX;
+            if (top >= endY) top = endY;
+
+            moveObj.style.left = left + "px";
+            moveObj.style.top = top + "px";
+
+            moveObj.style.cursor = "move";
+        }
+    }
+
+    window.onmouseup = function(e) {
+        e.preventDefault();
+        if (moveObj != undefined && moveObj.className.indexOf("moveElement") != -1) {
+            var target = moveObj;
+
+            var left = e.pageX - startX - orignX;
+            var top = e.pageY - startY - orignY;
+            if (left <= 0) left = 0;
+            if (top <= 0) top = 0;
+            if (left >= endX) left = endX;
+            if (top >= endY) top = endY;
+
+            moveObj.style.left = left + "px";
+            moveObj.style.top = top + "px";
+
+            moveObj.style.cursor = "auto";
+
+            moveObj = undefined;
+        }
+    }
+});
+
+/*
+ return element is in zoom area or not
+*/
+function inZoomArea(offsetX, offsetY, target) {
+    var width = target.offsetWidth;
+    var height = target.offsetHeight;
+
+    //只处理右下角一种情况
+    if (offsetX >= width - 5 && offsetY >= height - 5) {
+        target.style.cursor = "nw-resize";
+        return "nw";
+    }else{
+    	target.style.cursor = "auto";
+    	return "no";
+    }
+
+    return;
+
+    if (offsetX < 5 && offsetY < 5 || offsetX >= width - 5 && offsetY >= height - 5) {
+        target.style.cursor = "nw-resize";
+        return "nw";
+    } else if (offsetX < 5 && offsetY >= height - 5 || offsetX >= width - 5 && offsetY < 5) {
+        target.style.cursor = "sw-resize";
+        return "sw";
+    } else if (offsetX < 5 || offsetX >= width - 5) {
+        target.style.cursor = "w-resize";
+        return "w";
+    } else if (offsetY < 5 || offsetY >= height - 5) {
+        target.style.cursor = "n-resize";
+        return "n";
+    } else {
+        target.style.cursor = "auto";
+        return "no";
+    }
+}
+
+function handleZoomByDirection(direction, target) {
+    switch (direction) {
+        //左上和右下
+        case "nw":
+            //左下和右上
+        case "sw":
+            (function() {
+                var parent = $(target).parents(".moveAndZoom");
+
+                var orignX = target.offsetLeft;
+                var orignY = target.offsetTop;
+                var orignWidth = target.offsetWidth;
+                var orignHeight = target.offsetHeight;
+
+                parent.mousedown(function(e) {
+                    e.preventDefault();
+                    startX = findOffsetLeftOrTopFromElementToParent("offsetLeft", parent, $("body"));
+                    startY = findOffsetLeftOrTopFromElementToParent("offsetTop", parent, $("body"));
+                    endX = parent[0].offsetWidth;
+                    endY = parent[0].offsetHeight;
+                });
+
+                parent.mousemove(function(e) {
+                    e.preventDefault();
+
+                    var newWidth = e.pageX - startX - orignX;
+                    var newHeight = e.pageY - startY - orignY;
+
+                    target.style.opacity = 0.5;
+                    target.style.width = newWidth + "px";
+                    target.style.height = newHeight + "px";
+
+                });
+
+                parent.mouseup(function(e) {
+                    e.preventDefault();
+
+                    parent.unbind("mousedown");
+                    parent.unbind("mousemove");
+                    parent.unbind("mouseup");
+
+                    target.style.opacity = 1;
+                });
+
+
+
+            })();
+            break;
+        case "w":
+            break;
+        case "n":
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+startElement and endElement are jquery object
+
+direction value = offsetLeft or offsetTop
+*/
+function findOffsetLeftOrTopFromElementToParent(direction, startElement, endElement) {
+    if (startElement[0] === endElement[0]) {
+        return 0;
+    } else {
+        return findOffsetLeftOrTopFromElementToParent(direction, $(startElement[0].offsetParent), endElement) + startElement[0][direction];
+    }
+}
+</script>
+
+</html>

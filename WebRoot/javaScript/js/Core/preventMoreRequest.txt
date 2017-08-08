@@ -1,0 +1,64 @@
+##防止用户发生多次请求
+
+	1，setTimeout + clearTimeout，前一个请求没有真正发出来的时候，就被clearTimeout了。
+	
+	2，disabled按钮
+	
+	3，使用递增id，每次发送请求时，往回调里加闭包，带唯一递增id，每次请求成功回调以后看这个id是不是主函数体里面最后一次点击的id，是则调用回调，不是则不返回。
+	
+	4，比较ajax的url以及参数是否一致，
+	
+	5，loading加载
+	
+	6，
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(
+	var xhr; 
+	var fn = function() {
+		
+		if(xhr && xhr.readystate != 4){
+			xhr.abort();
+		}
+		
+		xhr = $.ajax({
+			url:'demo.php',
+			success:function(res) {
+				//do something
+			}
+		});
+	}
+	
+	var interval = setInterval(fn, 500);
+)
+
+$(document).ready(
+	var xhr = $.ajax({
+		url:'demo.php',
+		success:function(res) {
+			//do something
+		},
+		error :function(e.error){
+			console.log(e.error);
+		},
+		complete : function(){
+			xhr = null;
+		}
+	});
+	
+	setTimeout(function(){
+		if(xhr && xhr.readystate != 4){
+			xhr.abort();
+		}
+	}, 50)
+)
+
