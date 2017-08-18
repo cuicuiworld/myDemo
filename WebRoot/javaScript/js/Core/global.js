@@ -153,4 +153,20 @@ function changeCase(str,type) {
     }
 }
 
+function rsArrary(rs) {
+	if(typeof rs != 'object') {
+		return console.log('入参错误');
+	}
+	var tanArr=[];
+	for(var key in rs) {
+		tanArr.push(rs[key])
+		console.log(tanArr);
+	}
+	var keyArr = tanArr[0];
+	var valArr = tanArr[1];
+	var newArr = [];
+	
+	$.each()
+}
+
 

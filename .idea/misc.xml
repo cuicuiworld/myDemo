@@ -17,4 +17,7 @@
     <ConfirmationsSetting value="0" id="移除" />
   </component>
   <component name="ProjectRootManager" version="2" />
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
 </project>
