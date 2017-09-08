@@ -1,0 +1,9 @@
+## 自己制作一个base64转换
+	包含图片，音频等文件
+
+## 参考文档
+	http://cobain-li.iteye.com/blog/2323237
+
+## 上传文件多个
+	multiple属性
+	<input type="file" multiple="multiple">

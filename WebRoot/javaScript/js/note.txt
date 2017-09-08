@@ -1,0 +1,26 @@
+##
+1,输入框内输入时，光标定位可以定到当前位置，或是文字末尾。
+	//参考文献	http://www.bubuko.com/infodetail-239974.html
+	##当有插件自带定到末尾，而需求不能定到末尾时
+		//无参数时，返回当前光标所有位置.
+		//有参数时，返回最终光标所在位置。
+		focusIndex : function(value) {
+			var el = this[0];
+			if(el && (el.tagName == 'TEXTAREA' || el.type.toLowerCase() == 'text')) {
+				if(value === undefined) {
+					return el.selectionStart;
+				}else if(typeof value == 'number') {
+					el.selectionEnd = value;
+					el.selectionStart = value;
+				}
+			} else {
+				if(value === undefined) {
+					return undefined;
+				}
+			}
+		}
+	##当需求需要定位到末尾时
+		当selectionEnd = selectionStart = 最后的位置时
+		
+
+		
