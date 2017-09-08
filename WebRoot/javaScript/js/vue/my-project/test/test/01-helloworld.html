@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>hello vue</title>
+    <style>
+      .class-a,.classA {
+        color: #FF0000;
+      }
+
+      .classB {
+        color: skyblue;
+      }
+
+      .class-b {
+        text-decoration: underline;
+      }
+    </style>
+</head>
+<body>
+  <div id="test">
+    {{message}}
+  </div>
+
+  <div id="test01">
+    <ol>
+      <li v-for="list in lists">
+        <span v-bind:class="classObj">{{ list.name }}</span>
+        <span v-bind:class="[classObj]">{{ list.age }}</span>
+        <span v-bind:class="{classA:list.isDo,classB:!list.isDo}" v-on:click="toggleItem(list)">{{ list.sex }}</span>
+      </li>
+    </ol>
+  </div>
+
+  <div id="test02">
+    <span v-bind:title="message">
+      查看信息
+    </span>
+  </div>
+
+  <div id="test03">
+    <input type="button" value="点击显示隐藏" v-on:click="showToggle">
+    <!-- @click="showToggle"-->
+    <span v-if="see">我是一只小小小小鸟</span>
+  </div>
+
+  <div id="test04">
+    <input type="button" value="点击我倒序显示字符" v-on:click="changeStr">
+    <span>{{msg}}</span>
+  </div>
+
+  <div id="test05">
+    <p>{{msg}}</p>
+    <input type="text" v-model="msg">
+  </div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+  //hello world
+  var test = new Vue({
+    el:'#test',
+    data () {
+      return {
+        message:'hello world'
+      }
+    }
+  });
+
+  //v-for
+  var test01 = new Vue({
+    el:'#test01',
+    data () {
+      return {
+        lists:[
+          {
+            name:'daiwei',
+            age:24,
+            sex:'男',
+            isDo:true
+          },
+          {
+            name:'fan',
+            age:24,
+            sex:'男',
+            isDo:false
+          },
+          {
+            name:'xuefei.wu',
+            age:25,
+            sex:'男',
+            isDo:true
+          },
+          {
+            name:'girl',
+            age:22,
+            sex:'女',
+            isDo:false
+          }
+        ],
+        classObj : {
+          //'class-a',不能写成class-a（不带引号）；这里的classObject是js对象，而class-b是代表的是一个样式，所以必须写成'class-a',用引号括起来。
+          //否则这里的class-a只能代表classObject的一个属性名称而已，这样vuejs在初始化时，会报错。
+          'class-a':false,
+          'class-b': true
+        }
+      }
+    },
+    methods : {
+      toggleItem(item){
+        console.log(item);
+        item.isDo= !item.isDo;
+      }
+    }
+  });
+
+  //v-bind-绑定属性
+  //v-bind:class=[]
+
+  var test02 = new Vue({
+    el:'#test02',
+    data () {
+      return {
+        message:'页面加载于'+new Date()
+      }
+    }
+  });
+
+  //v-if
+  var test03 = new Vue({
+    el:'#test03',
+    data () {
+      return {
+        see :true
+      }
+    },
+    methods:{
+      showToggle(){
+        this.see = !this.see;
+      }
+    }
+  });
+
+  //v-on-绑定事件
+  var test04 = new Vue({
+    el:'#test04',
+    data () {
+      return {
+        msg :'I Love You'
+      }
+    },
+    methods:{
+      changeStr(){
+        this.msg = this.msg.split('').reverse().join('');
+      }
+    }
+  });
+
+  //v-model
+  var test05 = new Vue({
+    el:'#test05',
+    data () {
+      return {
+        msg : 'I love you'
+      }
+    }
+  });
+</script>

@@ -164,7 +164,10 @@ $.fn.extend({
                 }
             }
         })
-	}
+	},
+	deffered : function() {
+		
+	},
 })
 
 

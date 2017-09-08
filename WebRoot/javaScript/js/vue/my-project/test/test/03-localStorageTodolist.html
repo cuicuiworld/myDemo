@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>todolist</title>
+    <style>
+      #test{
+        width:200px;
+        margin:100px auto 0;
+        text-align: center;
+      }
+      .classA{
+        text-decoration: underline;
+        color:#f40;
+      }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+  <div id="test">
+    <h1>{{msg}}</h1>
+    <input type="text" v-on:keyup.enter="addNewItem" v-model="newItem">
+    <ul>
+      <li v-for="item in items" v-bind:class="{classA:item.isFinished}" v-on:click="toggleClass(item)">{{item.label}}</li>
+    </ul>
+  </div>
+  <script>
+    /*import Store from './store';
+    console.log(Store);*/
+
+    var test = new Vue({
+      el:'#test',
+      data(){
+        return {
+          //初始化
+          msg:'Todolist',
+          items : [],
+          newItem : ''
+        }
+      },
+      methods:{
+        toggleClass(item){
+          item.isFinished = !item.isFinished;
+        },
+        addNewItem(){
+          this.items.push({
+            label:this.newItem,
+            isFinished:false
+          });
+          this.newItem = '';
+        }
+      },
+      watch : {
+        label : {
+          items : function(val, oldVal) {
+            console.log(val);
+            console.log(oldVal);
+          },
+          deep: true
+        }
+      }
+    });
+  </script>
+</body>
+</html>

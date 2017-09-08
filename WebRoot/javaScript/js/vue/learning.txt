@@ -1,0 +1,53 @@
+##  vue
+
+##  开发环境搭建
+
+    全局安装vue
+        npm install -g vue-cli
+
+    下载一个模板
+        vue init webpack my-project
+
+    安装依赖
+        cd my-pro-ject
+        npm install
+
+    运行项目
+       npm run dev
+
+##  属性和方法
+
+    data    数据源
+
+    method  方法
+
+    watch   监听
+
+
+##  指令
+
+            <p>{{a}}</p>
+
+    v-html  <p v-html="a"></p>
+
+    v-text  <p v-text="a"></p>
+
+    v-on    v-on:click = ""    绑定事件
+            @click = ""
+
+    v-if    控制显示
+
+    v-for   循环
+
+    v-bind  v-bind:title
+            :title
+
+    v-link  跳转
+
+
+
+##
+
+
+
+

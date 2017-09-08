@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/Todos_Vuejs-withVuex/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/b0ifnz/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/build/dev-server.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/build/webpack.base.conf.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/build/webpack.dev.conf.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/src/App.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/src/components/Hello.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/src/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/src/store.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/test/test/01-helloworld.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/test/test/02-todolist.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/test/test/03-localStorageTodolist.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/my-project/test/test/store.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/build/webpack.base.conf.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/src/App.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/src/components/Hello.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/src/components/home.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/src/components/list.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/src/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/webpack.config.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test01/webpack.config.js.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/src/App.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/src/components/Hello.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/src/components/home.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/src/components/list.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/src/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/test02/webpack.config.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/config/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/src/App.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/src/components/goods/goods.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/src/components/header/header.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/src/components/ratings/ratings.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/src/components/seller/seller.vue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WebRoot/javaScript/js/vue/testVersion1.0/src/main.js" charset="UTF-8" />
+  </component>
+</project>
