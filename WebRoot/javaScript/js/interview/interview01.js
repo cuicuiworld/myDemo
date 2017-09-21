@@ -99,7 +99,7 @@ var sum = add.apply({},arr);
  *
  */
 
-var nam e = 'window';
+var name = 'window';
 var obj = {
     name:'object',
     getName1: function () {
