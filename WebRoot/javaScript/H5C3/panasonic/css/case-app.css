@@ -1,0 +1,17 @@
+@media only screen and (max-width: 768px) {
+	.container_category {
+		display: none !important; 
+	}
+	.agent-pc .npagePage:not(.post) #pageTarget .module_container .container_target{
+		display: none;
+	}
+	#indexPage .project .item_block, .npagePage:not(.post) .project .item_block {
+	    width: calc(100% / 2 - 15px) !important;
+	}
+	#banner{
+		display: none;
+	}
+	.agent-pc .npagePage:not(.post) .module .module_container .container_content {
+	    padding-top: 12px !important;
+	}
+}

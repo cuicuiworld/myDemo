@@ -1,0 +1,5 @@
+﻿.ad01 .module_container .container_header .title { padding-left: 0; padding-top: 80px;}/*css  */
+.singlescreen #indexPage .mlist.project .container_header { padding:0px;}
+.singlescreen #indexPage .module .module_container { width:calc(100% - 160px);}
+.singlescreen #indexPage .team .module_container .container_header { padding-top:0; top:20px;}
+.agent-pc .singlescreen #indexPage .project .content_wrapper .more_wrap .more { top:30px}

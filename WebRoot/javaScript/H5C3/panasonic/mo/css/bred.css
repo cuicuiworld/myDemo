@@ -1,0 +1,901 @@
+﻿@charset "utf-8";
+
+
+
+
+
+
+
+/* CSS Document */
+
+
+
+
+
+
+
+#topSlider .bx-wrapper .bx-controls-direction a i {color:#666;}
+
+
+
+#topSlider .bx-wrapper .bx-controls-direction a.bx-prev .fa-angle-left:after {
+
+    content: "\e900";
+
+    color: #e40807;
+
+    transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+
+    position: relative;
+
+    top:30px;
+
+    left: -34px;
+
+}
+
+
+
+#topSlider .bx-wrapper .bx-controls-direction a.bx-next .fa-angle-right:after {
+
+    content: "\e901";
+
+    color: #e40807;
+
+    transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+
+    position: relative;
+
+    top: 30px;
+
+    left: -34px;
+
+}
+
+#topSlider .bx-wrapper .bx-controls-direction a .fa{ overflow:hidden; line-height:10px;}
+
+#topSlider .bx-wrapper .bx-controls-direction a .fa:before{transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;  position:relative; top:0}
+
+#topSlider .bx-wrapper .bx-controls-direction a:hover .fa:after{top:0px}
+
+#topSlider .bx-wrapper .bx-controls-direction a:hover .fa:before{ top:30px;}
+
+
+
+/*chrome */
+
+
+
+
+
+
+
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar { background-color: #ddd; }
+
+
+
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar { background-color: #e40807; }
+
+
+
+.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar { background-color: #e40807 }
+
+
+
+.mCSB_scrollTools .mCSB_draggerRail { background-color: #333; }
+
+
+
+
+
+
+
+
+::-webkit-scrollbar-track-piece {background-color:#101012;}
+::-webkit-scrollbar {background-color:#e40807; width:5px;}
+::-webkit-scrollbar-thumb {background-color:#333; width:5px;}
+::-webkit-scrollbar-thumb:hover {background-color:#e40807;}
+
+
+
+
+
+
+
+
+#sitecontent .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar { background-color: #ccc; }
+
+
+
+#sitecontent .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar { background-color: #e40807; }
+
+
+
+#sitecontent .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar { background-color: #e40807 }
+
+
+
+#sitecontent .mCSB_scrollTools .mCSB_draggerRail { background-color: #333; }
+
+
+
+.agent-pc #header .nav>li>a span:after,
+
+
+
+.agent-pc a.active,.agent-pc a:hover,
+
+
+
+#indexPage #topSlider ul li p.title,
+
+
+
+.agent-pc #header .nav>li a.active i,
+
+
+
+.agent-pc #header .nav>li:hover a i,
+
+
+
+.agent-pc #header .nav .subnav li a.active, 
+
+
+
+.agent-pc #header .nav .subnav li a:hover, 
+
+
+
+.agent-mobile .mm-listview>li>a.active,
+
+
+
+.agent-mobile .mlist .header .title,
+
+
+
+.theme-bred  #sitecontent .module .container_header .title,
+
+
+
+#olx_qq li a:hover i,
+
+
+
+#sitecontent .service .content_list .item_block:hover .title,
+
+
+
+#sitecontent .ad01 .content_list li .title,
+
+
+
+#sitecontent .mlist.team_tabs .tab_content li.item_block .title,
+
+
+
+.mcustomize .title,
+
+
+
+#sitecontent .team li.item_block:hover .title,
+
+
+
+#pages a.active,
+
+
+
+.npagePage .container_target a:last-child,
+
+
+
+.agent-pc .npagePage .news li.item_block:hover .title,
+
+
+
+.agent-pc .npagePage.post a:hover p.title,
+
+
+
+.agent-pc .npagePage.post a.active p.title,
+
+
+
+.theme-bred  #sitecontent .content_list li:hover .title,
+
+
+
+.dropmenu ul li a.active,
+
+
+
+.agent-pc .imagelink .bx-wrapper .bx-controls-direction a:hover i,
+
+
+
+.theme-bred #sitecontent .npagePage .news .content_list li:hover .title,
+
+
+
+.theme-bred #sitecontent .indexPage .news .content_list li:hover .title,
+
+
+
+#pages a:hover 
+
+
+
+{color: #e40807;}
+
+
+
+
+
+
+
+#olx_head,
+
+
+
+.agent-pc #shares a:hover,
+
+
+
+#indexPage #topSlider .bx-wrapper .bx-pager a div.mask,
+
+
+
+.agent-pc .bx-wrapper .bx-controls-direction a:hover,
+
+
+
+#sitecontent .project .content_list .item_block:hover .item_wrapper,
+
+
+
+#sitecontent .ad01 .content_list .item_block:hover .item_wrapper,
+
+
+
+#sitecontent .container_category a:hover,
+
+
+
+#sitecontent .container_category a.active,
+
+
+
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar,
+
+
+
+.agent-pc .news .content_list .item_block:hover:before,
+
+
+
+.agent-pc .news .container_content .more:hover,
+
+
+
+#sitecontent .npagePage.post .item_tags a:hover,
+
+
+
+.agent-pc .npagePage.post ul.navlist li.active a.navlist_t,
+
+
+
+.agent-pc .npagePage.post ul.navlist li:hover a.navlist_t,
+
+
+
+.agent-pc #sitecontent .project .description p a:hover,
+
+
+
+#online_open,
+
+
+
+.agent-mobile .ad01 ul.content_list li:hover .item_wrapper,
+
+
+
+#sitecontent .project .content_list .item_block:hover .item_wrapper,
+
+
+
+.agent-mobile .npagePage.post .project #postInfo .description a:hover,
+
+
+
+#category .label,
+
+
+
+.agent-pc #mcontact #contactinfo div a:hover,
+
+
+
+#online_open:hover,
+
+
+
+.agent-mobile .npagePage.post #postWrapper .item_tags a:hover
+
+
+
+{background-color: #e40807;}
+
+
+
+.agent-pc #header .nav>li:hover .subnav,
+
+
+
+.agent-pc .service .content_list .item_block:hover .item_wrapper:after,
+
+
+
+.agent-pc .ad01 .content_list .item_block.first:hover .item_img::before,
+
+
+
+.agent-pc .mlist.team_tabs .tab_button li.item_block.active .item_img:after,
+
+
+
+.agent-pc .news .content_list .item_block:hover::after,
+
+
+
+.agent-pc .news .container_content .more:hover,
+
+
+
+.agent-pc .project .description p a,
+
+
+
+.agent-pc #sitecontent .project .description p a:hover,
+
+
+
+.agent-mobile .npagePage.post .project #postInfo div.description a,
+
+
+
+.agent-mobile .npagePage.post .project #postInfo .description a:hover
+
+
+
+,#online_open,
+
+
+
+.agent-pc #shares a:hover,
+
+
+
+.agent-pc .news .more,
+
+
+
+.agent-pc #mcontact #contactinfo div a:hover,
+
+
+
+#online_open:hover,
+
+
+
+.agent-pc .news .item_block:hover
+
+
+
+{border-color: #e40807;}
+
+
+
+
+
+
+
+
+
+
+
+.theme-bred #header,
+
+
+
+.theme-bred #footer, 
+
+
+
+.agent-pc #shares a,
+
+
+
+.agent-pc #olx_qq li a,
+
+
+
+.agent-pc .npagePage .news .item_block .item_wrapper,
+
+
+
+.agent-pc .npagePage.post .service #postNav li.navitem,
+
+
+
+.npagePage .content hr,
+
+
+
+.agent-pc .npagePage .news li.item_block .item_wrapper,
+
+
+
+.agent-mobile .mlist.news .content_list li,
+
+
+
+.agent-mobile .npagePage.post #postNav .navitem,
+
+
+
+.agent-mobile .module.mcounter ul.content_list li div
+
+
+
+{border-color: #303030; }
+
+
+
+
+
+
+
+
+
+
+
+.npagePage .mpageEditor .container_header .title,
+
+
+
+.module.mcounter ul.content_list li p.number .counterDX,
+
+
+
+#sitecontent .project .content_list  .item_block .title,
+
+
+
+.agent-pc .mlist.team_tabs .tab_button .content_list .item_info p.title,
+
+
+
+.theme-bred #sitecontent .content_list .title,
+
+
+
+.agent-pc #contactinfo h3.ellipsis,
+
+
+
+#sitecontent .npagePage.post #postContent p.title,
+
+
+
+.agent-pc .npagePage.post .service p.title,
+
+
+
+.agent-pc .npagePage.post #postNav h3,
+
+
+
+.agent-pc .team p.title,
+
+
+
+.agent-pc .project p.title,
+
+
+
+.agent-pc #shares a:hover i,
+
+
+
+.agent-mobile .npagePage.post #postInfo .title,
+
+
+
+.agent-mobile .npagePage.post .content_wrapper h3,
+
+
+
+.agent-pc .project .description a,
+
+
+
+.agent-mobile #sitecontent .project .content_list .item_block:hover .title,
+
+
+
+.theme-bred #sitecontent .news .content_list li:hover .title,
+
+
+
+.theme-bred #sitecontent .tab_button .content_list li:hover .title,
+
+
+
+.agent-mobile .npagePage.post #listContent h3,
+
+
+
+.agent-mobile #sitecontent #listContent  .item_block:hover .title,
+
+
+
+.agent-mobile .npagePage.post .project #postInfo .description a
+
+
+
+
+
+
+
+{color: #f0f0f0;}
+
+
+
+
+
+
+
+
+
+
+
+html, 
+
+
+
+body,
+
+
+
+.agent-pc #header .wrapper,
+
+
+
+.theme-bred  #header,
+
+
+
+.agent-pc #header .nav .subnav,
+
+
+
+.theme-bred  #footer, 
+
+
+
+.agent-pc #shares a,
+
+
+
+.agent-pc #indexPage .mcounter,
+
+
+
+#sitecontent .module.bgShow.mcustomize,
+
+
+
+#sitecontent #mcontact.module,
+
+
+
+#pageTarget,
+
+
+
+.agent-pc .news .content_list .item_block:after,
+
+
+
+.yyloading, .bx-wrapper .bx-loading,
+
+
+
+.agent-pc .news .more,
+
+
+
+.module.mcounter .module_container,
+
+
+
+.agent-mobile .imagelink
+
+
+
+
+
+
+
+{background-color: #131313;}
+
+
+
+
+
+
+
+
+
+
+
+#sitecontent .project .content_list .item_block .item_wrapper,
+
+
+
+.agent-pc .mlist.team_tabs .tab_content .content_list li.item_block:after,
+
+
+
+.agent-pc .mlist.team_tabs .content_list .tab_button .icon:after,
+
+
+
+#online_lx,
+
+
+
+.agent-pc .news .content_wrapper .content_list:before,
+
+
+
+.agent-pc #header .nav .subnav li a.active, 
+
+
+
+.agent-pc #header .nav .subnav li a:hover,
+
+
+
+#olx_qq li a:hover,
+
+
+
+#sitecontent .npagePage .item_tags a,
+
+
+
+.agent-pc .npagePage.post .navlist li a.navlist_t,
+
+
+
+.agent-mobile .npagePage.post #postWrapper .item_tags a
+
+
+
+{background-color: #222;}
+
+
+
+
+
+
+
+
+
+
+
+.agent-pc .mlist.team_tabs .content_wrapper .tab_button .icon:after{ border-top-color:#222;}
+
+
+
+.agent-mobile .npagePage.post #postWrapper .item_tags a{border-color: #222;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container_category a::after,
+
+
+
+.news .content_list::before,
+
+
+
+#indexPage #topSlider .bx-wrapper .bx-pager a div.progress, 
+
+
+
+#olx_qq li a, 
+
+
+
+.bx-wrapper .bx-pager.bx-default-pager a,
+
+
+
+.mlist.team_tabs .tab_content li .item_info::after {
+
+
+
+    background-color: #303030;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+#sitecontent .npagePage .item_tags i{color:#444;}
+
+
+
+#sitecontent .module.mcounter ul.content_list li p.title{color:#959595;}
+
+
+
+.module.mcounter ul.content_list li div:after{ display:none;}
+
+
+
+#footer span,#footer strong{color:#666}
+
+
+
+
+
+
+
+
+
+
+
+.agent-pc #contactform p textarea.inputtxt,
+
+
+
+.agent-pc #contactform p .inputtxt{border-color:rgba(255,255,255,.1);color:#999999;}
+
+
+
+
+
+
+
+.agent-pc #contactform p .inputtxt.submit{border-color:#e40807;}
+
+
+
+.agent-pc #contactform p .inputtxt.submit:hover{border-color:#e40807;color:#131313;background-color:#e40807;}
+
+
+
+
+
+
+
+
+
+
+
+.bx-wrapper .bx-pager.bx-default-pager a{border-color:#303030;}
+
+
+
+.bx-wrapper .bx-pager.bx-default-pager a.active, .bx-wrapper .bx-pager.bx-default-pager a:focus{ background-color:#5a5a5a; border-color:#5a5a5a;}
+
+
+
+
+
+
+
+#mcontact .contactinfo h3{color:#FFFFFF;}
+
+
+
+
+
+
+
+
+
+
+
+.mm-menu,.dropmenu ul li a{ background-color:#0C0C0C;color:#959595;}
+
+
+
+.mm-menu .mm-listview>li:after,
+
+
+
+.mm-menu .mm-listview>li .mm-next:before, .mm-menu .mm-listview>li .mm-prev:after,
+
+
+
+.dropmenu ul li,
+
+
+
+.dropmenu ul li{border-color:rgba(255,255,255,.05);}
+
+
+
+.mm-menu em.mm-counter{color:#959595;}
+
+
+
+.mm-menu .mm-listview>li.mm-selected>a:not(.mm-next), .mm-menu .mm-listview>li.mm-selected>span{ background-color:rgba(255,255,255,.05)}
+
+
+
+.mm-menu .mm-navbar{border-color:transparent;}
+
+
+
+.mm-menu .mm-navbar>a{color:transparent;}
+
+
+
+.mm-menu .mm-listview>li .mm-arrow:after, .mm-menu .mm-listview>li .mm-next:after, .mm-menu .mm-listview>li .mm-prev:before,
+
+
+
+.mm-arrow:after, .mm-next:after, .mm-prev:before,
+
+
+
+.mm-menu .mm-navbar .mm-btn:after, .mm-menu .mm-navbar .mm-btn:before{border-color:rgba(255,255,255,.3);}
+
+
+
+
+
+
+
+.cate-box,.dropmenu ul li a.active{ background-color:#222222;}
+
+.dropmenu ul{ background-color:#0c0c0c;}
+
+
+
+#online a::after{ background-color:rgba(255,255,255,.05);}
+
+#online{ background-color:rgba(29, 29, 29, 0.9);box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);}
+
+#online a{color: #e40807;}
+

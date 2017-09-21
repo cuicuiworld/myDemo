@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>arrow</title>
+    <style>
+        #box{
+            /* box-sizing:border-box; */
+            width: 300px;
+            height: 30px;
+            border:solid 1px #000;
+            margin:100px auto;
+            position: relative;
+        }
+        #box::after{
+            content: '';
+            width:10px;
+            height: 10px;
+            position: absolute;
+            right: 10px;
+            top:50%;
+            border-right:solid 1px #000;
+            border-bottom:solid 1px #000;
+            transform: translateY(-70%) rotate(45deg);
+            transition: all 1s;
+        }
+        #box:hover::after{
+            transform: translateY(-70%) rotate(225deg); 
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

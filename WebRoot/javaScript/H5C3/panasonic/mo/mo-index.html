@@ -1,0 +1,1152 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="agent-pc theme-b theme-bred">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" type="text/css" href="css/lib.css">
+		<link rel="stylesheet" type="text/css" href="css/style.1807.css">
+		<link rel="stylesheet" type="text/css" href="css/bred.css" id="themeCssPath">
+		<link rel="stylesheet" type="text/css" href="css/1872.css">
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/org.1487311756.js" data-main="indexMain"></script>
+		<script type="text/javascript" src="js/1807.js"></script>
+		<script>
+			document.domain = "uemo.net";
+		</script>
+		<title>mo005_1872 - 企业类模板</title>
+	</head>
+
+	<body id="longPage" class="gh0  longPage ">
+		<div class="bodyMask"></div>
+		<div id="header">
+			<div class="wrapper">
+				<div class="content">
+					<div id="headTop">
+						<a href="mo-index.html" id="logo"><img src="picture/1498707025620.png" height="44" /></a>
+
+						<div id="hcontact" class="fr"><i class="fa fa-phone"></i>
+							<p><span class="telNum">400-888-8888</span><br />
+								<a href="#">0008008@qq.com</a>
+							</p>
+						</div>
+						<div id="openBtn" class="fl btn">
+							<div class="lcbody">
+								<div class="lcitem top">
+									<div class="rect top"></div>
+								</div>
+								<div class="lcitem bottom">
+									<div class="rect bottom"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="navWrapper">
+
+						<div class="content">
+							<div id="headerNavScroll">
+								<ul class="nav movedx" data-movedx-mid="1">
+									<li class="navitem">
+										<a class="active" href="mo-index.html" target="_self"> <span data-title="首页">首页</span> </a>
+									</li>
+									<li class="navitem">
+										<a href="mo-zuopin.html" target="_self"> <span data-title="作品">作品</span> </a>
+									</li>
+									<li class="navitem">
+										<a href="javascript:;" target=""> <span data-title="关于">关于</span> <i class="fa fa-angle-down"></i></a>
+										<ul class="subnav">
+											<li>
+												<a href="mo-about-us.html" target="_self">关于我们</a>
+											</li>
+											<li>
+												<a href="mo-about-news.html" target="_self">新闻</a>
+											</li>
+											<li>
+												<a href="mo-about-other.html" target="_self">其他</a>
+											</li>
+										</ul>
+									</li>
+									<li class="navitem">
+										<a href="mo-sixiang.html" target="_self"> <span data-title="思想">思想</span> </a>
+									</li>
+									<li class="navitem">
+										<a href="mo-contact.html" target="_self"> <span data-title="联系">联系</span> </a>
+									</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="sitecontent" class="ff_sitecontent">
+
+			<div id="navMini">
+				<div id="navMiniTable">
+					<div id="navMiniCell">
+						<ul class="nav">
+							<li class="navitem">
+								<a class="active" href="mo-index.html" target="_self">首页</a>
+							</li>
+							<li class="navitem">
+								<a href="mo-zuopin.html" target="_self">作品</a>
+							</li>
+							<li class="navitem">
+								<a href="javascript:;" target="">关于<i class="fa fa-angle-down"></i></a>
+								<ul class="subnav">
+									<li>
+										<a href="mo-about-us.html" target="_self">关于我们</a>
+									</li>
+									<li>
+										<a href="mo-about-news.html" target="_self">新闻</a>
+									</li>
+									<li>
+										<a href="mo-about-other.html" target="_self">其他</a>
+									</li>
+								</ul>
+							</li>
+							<li class="navitem">
+								<a href="mo-sixiang.html" target="_self">思想</a>
+							</li>
+							<li class="navitem">
+								<a href="mo-contact.html" target="_self">联系</a>
+							</li>
+							<li class="search-but" style=" opacity:0">
+								<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				var searchAddr = window.location + 'search/s/';
+
+				function jumpToSearch($el) {
+					var searchInfor = encodeURIComponent(encodeURIComponent($el.val())) + '/';
+					window.open(searchAddr + searchInfor);
+				}
+				$('.searchGroup .searchSub').click(function() {
+
+					jumpToSearch($(this).parent().find('input'));
+					return false;
+				});
+				$('.searchGroup input').on({
+					'keydown': function(ev) {
+						if(ev.keyCode == 13) {
+							jumpToSearch($(this));
+						}
+					},
+					'blur': function() {
+						var _this = this;
+						setTimeout(function() {
+							$(_this).val("");
+						}, 200);
+					}
+				});
+			</script>
+			<div id="indexPage" class="ff_indexPage" data-scroll-ease="Expo.easeInOut" data-scroll-speed="1" data-control="0" data-control-wheel="0" data-singlescreen="0">
+				<div id="topSlider" class="ff_topSlider mslider module">
+					<ul class="content_list" data-slider-height="550" data-slider-auto="1" data-slider-mode="3" data-slider-pause="4" data-slider-ease="ease-out" data-slider-speed="1" data-slider-thumb="1" style="height:550px">
+						<li class="active">
+							<div class="item_bg image" data-thumb="picture/1488333746944_80x80.jpg" style="background-image:url(images/1488333746944.jpg)"></div>
+							<a target="_blank">
+								<div class="description" style="vertical-align:middle; text-align:center">
+									<p class="title ellipsis">///</p>
+									<p class="subtitle">Designer of original SICBO HIG Black-235</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<div class="item_bg image" data-thumb="picture/1488333862606_80x80.jpg" style="background-image:url(images/1488333862606.jpg)"></div>
+							<a target="_blank">
+								<div class="description" style="vertical-align:middle; text-align:center">
+									<p class="title ellipsis">DEALER STREAK</p>
+									<p class="subtitle">Designer of original SICBO Slide Black-123</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<div class="sliderArrow">
+						<div></div>
+					</div>
+				</div>
+				<div class="mlist service module ff_slider" style="">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">思想</p>
+							<p class="subtitle">Our advantage</p>
+						</div>
+						<div class="container_category wow movedx one" data-movedx-mid="2" data-movedx-distance="15">
+							<a href="mo-sixiang.html" class="active"><span>全部</span></a>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper slider" data-slider-num='4' data-slider-loop="1">
+								<div class="more_wrap">
+									<a href="mo-sixiang.html" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								</div>
+								<ul class="content_list clearfix">
+									<li id="item_block_0" class="item_block wow">
+										<a href="mo-sixiang-msg.html" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39699/" class="item_img" target="_blank">
+												<img src="picture/1488881580660.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<p class="title ellipsis">DELEAR STREAK？</p>
+													<p class="subtitle ellipsis">博弈胜败坚守使命的逐利者</p>
+												</div>
+												<p class="date_wrap">
+													<span class="year">2017</span>
+													<span class="md">03-07</span>
+												</p>
+												<div class="item_des">
+													<p class="description"></p>
+												</div>
+											</div>
+										</a>
+										<a href="mo-sixiang-msg.html" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="#">纹身</a>
+											<a href="#">衣制品</a>
+										</div>
+
+									</li>
+									<li id="item_block_1" class="item_block wow">
+										<a href="mo-sixiang-msg.html" class="item_box">
+											<div href="mo-sixiang-msg.html" class="item_img" target="_blank">
+												<img src="picture/1488881454800.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<p class="title ellipsis">为什么而创造？</p>
+													<p class="subtitle ellipsis">让全世界看到我们的潮流</p>
+												</div>
+												<p class="date_wrap">
+													<span class="year">2017</span>
+													<span class="md">03-07</span>
+												</p>
+												<div class="item_des">
+													<p class="description"></p>
+												</div>
+											</div>
+										</a>
+										<a href="mo-sixiang-msg.html" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="#">衣制品</a>
+											<a href="#">纹身</a>
+										</div>
+
+									</li>
+									<li id="item_block_2" class="item_block wow">
+										<a href="mo-sixiang-msg.html" class="item_box">
+											<div href="mo-sixiang-msg.html" class="item_img" target="_blank">
+												<img src="picture/1488881335837.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<p class="title ellipsis">消费品？艺术品？</p>
+													<p class="subtitle ellipsis">以精致工业力量将艺术品限量创造 PRUDENCE INVESTMENT LIMITED</p>
+												</div>
+												<p class="date_wrap">
+													<span class="year">2017</span>
+													<span class="md">03-07</span>
+												</p>
+												<div class="item_des">
+													<p class="description"></p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39697/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="mo-sixiang-msg.html"><i class="fa fa-tags"></i>
+											<a href="#">纹身</a>
+											<a href="#">衣制品</a>
+										</div>
+
+									</li>
+								</ul>
+								<a href="mo-sixiang.html" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="mcustomize module bgShow" style=" background-image:url(images/1488335003241.jpg);">
+
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_content">
+							<div class="contentbody">
+								<div class="wrapper">
+									<div class="description wow"></div>
+								</div>
+							</div>
+							<div class="mediabody wow">
+								<a target="_popup" href="#"><img src="picture/1488335003265.jpg" />
+									<div class="mask"></div>
+									<div class="link_icon"><i class="fa fa-link" aria-hidden="true"></i></div>
+								</a>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="mlist ad01 module bgShow ff_noSlider" style="  background-image:url(images/1488335343478.png);">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">广告</p>
+							<p class="subtitle">副标题</p>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper">
+								<ul class="content_list">
+									<li id="item_block_0" class="item_block wow  first " style="animation-delay:.0s">
+
+										<a class="item_img" title="DS Street Tracker">
+											<img src="picture/1488335572397.jpg" />
+										</a>
+										<div class="item_wrapper clearfix">
+											<a class="item_info clearfix">
+												<p class="title ellipsis">DS Street Tracker</p>
+												<p class="subtitle ellipsis">Warm Prompt</p>
+												<p class="item_date">
+													<span class="year">2017</span>
+													<span class="md">02-23</span>
+												</p>
+												<div class="description">
+													<p>法兰琳卡，十年专注自然护肤。全球甄选有机植物，采用减法配方，只给肌肤真正所需，为消费者带来更健康的护肤方式，让自然、健康、纯净的护肤触手可及。法兰琳卡产品涵盖补水保湿、美白、滋润、嫩肤、面膜、BB霜等类别，满足不同人群的健康护肤需求。</p>
+												</div>
+											</a>
+										</div>
+
+									</li>
+									<li id="item_block_1" class="item_block wow " style="animation-delay:.1s">
+
+										<a href="mo-sixiang-msg.html" target="_blank" class="item_img" title="DS Street Tracker">
+											<img src="picture/1488335979268.jpg" />
+										</a>
+										<div class="item_wrapper clearfix">
+											<a href="mo-sixiang-msg.html" class="item_info clearfix">
+												<p class="title ellipsis">DS Street Tracker</p>
+												<p class="subtitle ellipsis">Warm Prompt</p>
+												<p class="item_date">
+													<span class="year">2017</span>
+													<span class="md">02-23</span>
+												</p>
+												<div class="description">
+													<p>佰草集与故宫博物院达成合作,获得故宫博物院院藏的“十二美人图”使用授权，倾情打造美妆界的又一重磅的限量产品——十二美人限量版太极丹。更有高端产品“御·五行焕肌系列”，明星产品试用以及限时优惠活动，尽在佰草集官方网站。2.28佰草集春季美妆节与你相约唯品会。</p>
+												</div>
+											</a>
+										</div>
+
+									</li>
+									<li id="item_block_2" class="item_block wow " style="animation-delay:.2s">
+
+										<a href="mo-sixiang-msg.html" target="_blank" class="item_img" title="DS Street Tracker">
+											<img src="picture/14883361561.jpg" />
+										</a>
+										<div class="item_wrapper clearfix">
+											<a href="mo-sixiang-msg.html" class="item_info clearfix">
+												<p class="title ellipsis">DS Street Tracker</p>
+												<p class="subtitle ellipsis">Warm Prompt</p>
+												<p class="item_date">
+													<span class="year">2017</span>
+													<span class="md">02-23</span>
+												</p>
+												<div class="description"></div>
+											</a>
+										</div>
+
+									</li>
+									<li id="item_block_3" class="item_block wow " style="animation-delay:.3s">
+
+										<a href="mo-sixiang-msg.html" target="_blank" class="item_img" title="DS Street Tracker">
+											<img src="picture/148833629049.jpg" />
+										</a>
+										<div class="item_wrapper clearfix">
+											<a href="mo-sixiang-msg.html" class="item_info clearfix">
+												<p class="title ellipsis">DS Street Tracker</p>
+												<p class="subtitle ellipsis">Warm Prompt</p>
+												<p class="item_date">
+													<span class="year">2017</span>
+													<span class="md">02-23</span>
+												</p>
+												<div class="description"></div>
+											</a>
+										</div>
+
+									</li>
+									<li id="item_block_4" class="item_block wow " style="animation-delay:.4s">
+
+										<a href="mo-sixiang-msg.html" target="_blank" class="item_img" title="DS Street Tracker">
+											<img src="picture/1488336311438.jpg" />
+										</a>
+										<div class="item_wrapper clearfix">
+											<a href="mo-sixiang-msg.html" class="item_info clearfix">
+												<p class="title ellipsis">DS Street Tracker</p>
+												<p class="subtitle ellipsis">Warm Prompt</p>
+												<p class="item_date">
+													<span class="year">2017</span>
+													<span class="md">02-23</span>
+												</p>
+												<div class="description"></div>
+											</a>
+										</div>
+
+									</li>
+								</ul>
+								<div class="clear"></div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="mcounter module " style=" ">
+					<div class="bgmask"></div>
+					<div id="counterBgdx" style="position:absolute; width:100%; height:100%"></div>
+					<div class="module_container">
+						<div class="container_content">
+							<ul class="content_list">
+								<li>
+									<div>
+										<p class="number"><span class="counterDX" data-counter-value="2016">2016</span><span class="unit">年</span></p>
+										<p class="title">成立 establish</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<p class="number"><span class="counterDX" data-counter-value="512">512</span><span class="unit">项</span></p>
+										<p class="title">工艺Technology</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<p class="number"><span class="counterDX" data-counter-value="368">368</span><span class="unit">家</span></p>
+										<p class="title">入驻 Settled</p>
+									</div>
+								</li>
+								<li>
+									<div>
+										<p class="number"><span class="counterDX" data-counter-value="74">74</span><span class="unit">款</span></p>
+										<p class="title">作品 works</p>
+									</div>
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="mlist project module ff_slider" style=" ">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">作品</p>
+							<p class="subtitle">Product line</p>
+						</div>
+						<div class="container_category wow movedx" data-movedx-mid="2" data-movedx-distance="15">
+							<a href="mo-zuopin.html" class="active">
+								<span>全部</span>
+							</a>
+							<a href="z">
+								<span>配饰</span>
+							</a>
+							<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14614/">
+								<span>鞋履</span>
+							</a>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper slider" data-slider-num='4' data-slider-loop="1">
+								<ul class="content_list clearfix">
+									<li id="item_block_0" class="item_block wow" style="animation-delay:.0s">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38016/" class="item_box">
+											<div class="item_img" target="_blank">
+												<img src="picture/1488336706381.jpg" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">DS GENT</p>
+														<p class="subtitle ellipsis">SHOEHORN</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2016</span>
+														<span class="md">12-14</span>
+													</p>
+												</div>
+												<div class="item_des">
+													<p class="description">制作数量：10套&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 售价：￥1,000.00微店购买</p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38016/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E5%2585%25B6%25E4%25BB%2596/">其他</a>
+										</div>
+									</li>
+									<li id="item_block_1" class="item_block wow" style="animation-delay:.1s">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38015/" class="item_box">
+											<div class="item_img" target="_blank">
+												<img src="picture/1488338229341.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">Captain Thenault</p>
+														<p class="subtitle ellipsis">Wool scarf</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2016</span>
+														<span class="md">12-14</span>
+													</p>
+												</div>
+												<div class="item_des">
+													<p class="description">尺码：40#—44#&nbsp;&nbsp;&nbsp;&nbsp; 制作数量：14双&nbsp;&nbsp;&nbsp;&nbsp; 售价：￥2,800.00淘宝购买&nbsp;&nbsp;&nbsp;&nbsp;微店购买</p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38015/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E7%259A%25AE%25E5%2588%25B6%25E5%2593%2581/">皮制品</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E9%259E%258B/">鞋</a>
+										</div>
+									</li>
+									<li id="item_block_2" class="item_block wow" style="animation-delay:.2s">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38014/" class="item_box">
+											<div class="item_img" target="_blank">
+												<img src="picture/1488338518856.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">Captain Thenault</p>
+														<p class="subtitle ellipsis">Wool scarf</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2016</span>
+														<span class="md">12-14</span>
+													</p>
+												</div>
+												<div class="item_des">
+													<p class="description"></p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38014/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E5%2585%25B6%25E4%25BB%2596/">其他</a>
+										</div>
+									</li>
+									<li id="item_block_3" class="item_block wow" style="animation-delay:.0s">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38013/" class="item_box">
+											<div class="item_img" target="_blank">
+												<img src="picture/1488338666699.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">Captain Thenault</p>
+														<p class="subtitle ellipsis">Wool scarf</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2016</span>
+														<span class="md">12-14</span>
+													</p>
+												</div>
+												<div class="item_des">
+													<p class="description"></p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38013/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E5%2585%25B6%25E4%25BB%2596/">其他</a>
+										</div>
+									</li>
+									<li id="item_block_4" class="item_block wow" style="animation-delay:.1s">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38012/" class="item_box">
+											<div class="item_img" target="_blank">
+												<img src="picture/14883389103.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">Captain Thenault</p>
+														<p class="subtitle ellipsis">Wool scarf</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2016</span>
+														<span class="md">12-14</span>
+													</p>
+												</div>
+												<div class="item_des">
+													<p class="description">尺码：40#—45#制作数量：235双售价：￥1818.00</p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38012/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E9%259E%258B/">鞋</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E7%259A%25AE%25E5%2588%25B6%25E5%2593%2581/">皮制品</a>
+										</div>
+									</li>
+									<li id="item_block_5" class="item_block wow" style="animation-delay:.2s">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38011/" class="item_box">
+											<div class="item_img" target="_blank">
+												<img src="picture/1488339198475.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">Captain Thenault</p>
+														<p class="subtitle ellipsis">Wool scarf</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2016</span>
+														<span class="md">12-14</span>
+													</p>
+												</div>
+												<div class="item_des">
+													<p class="description"></p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/38011/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/tag/%25E5%2585%25B6%25E4%25BB%2596/">其他</a>
+										</div>
+									</li>
+								</ul>
+								<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14611/" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="mlist team_tabs module bgShow ff_noSlider" style="  background-image:url(images/1488339558781.jpg);">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">团队</p>
+							<p class="subtitle">team</p>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper">
+								<div class="tab_content">
+									<ul class="content_list">
+										<li id="item_block_0" class="item_block wow" style="animation-delay:.0s">
+											<div class="wrapper">
+												<a href="" target="_blank">
+													<div class="item_img">
+														<img src="picture/1488340912293.jpg" />
+													</div>
+													<div class="item_wrapper">
+														<div class="item_info">
+															<p class="title ellipsis">CTRL</p>
+															<p class="subtitle">DEALER STREAK架构师</p>
+															<div class="description">
+																<div class="cScrollbar">
+																	<p>与鞋为伍12年有余，轮廓设计组建人，痴迷传统制作工艺，DEALER STREAK新品研发负责人，完美星人。</p>
+																	<p>Dealer Streak主理人，但我更喜欢架构师这个称呼，它可以让我完全融入作品制作的全过程，我很享受。</p>
+																	<p>从事以鞋为主的产品设计开发十多年，与国内外很多品牌一起工作，中间经历了太多，学习了太多，当然也有不少遗憾，但“我想做好东西”这个信念一刻也没有改变。Dealer Streak正是我们一展身手的舞台，从开始那一刻，太多人不看好我们，但正如品牌的含义一样，做一个博弈胜败坚守使命的逐利者不是很好吗？</p>
+																	<p><br/></p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</a>
+											</div>
+										</li>
+										<li id="item_block_1" class="item_block wow" style="animation-delay:.1s">
+											<div class="wrapper">
+												<a href="" target="_blank">
+													<div class="item_img">
+														<img src="picture/1488343754671.jpg" />
+													</div>
+													<div class="item_wrapper">
+														<div class="item_info">
+															<p class="title ellipsis">FarkleCho</p>
+															<p class="subtitle">DEALER STREAK创意合伙人</p>
+															<div class="description">
+																<div class="cScrollbar">
+																	<p>兴趣广泛的神游症患者，对所有事物同时持有多种观点，DEALER STREAK概念创意负责人，怪点子大师。<br/></p>
+																	<p>自小就是身边圈子里爱好广泛的记录保持者，凭借开阔的眼界、跳跃的思维混进了设计圈。却一直认为自己还没找到真正的要踏上的道路。一直不断地参加各种圈子的活动，体验各种从没经历过的事物，认识各种靠谱或不靠谱的人......总想着自己要凭一己之力开创属于自己的道路。越深入的了解越让我认清这件事的难度，但是人生本来不就是一场赌博吗？不管输赢拼尽全力就是了。这样人生才有乐趣啊！</p>
+																	<p><br/></p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</a>
+											</div>
+										</li>
+										<li id="item_block_2" class="item_block wow" style="animation-delay:.2s">
+											<div class="wrapper">
+												<a href="" target="_blank">
+													<div class="item_img">
+														<img src="picture/1488344029765.jpg" />
+													</div>
+													<div class="item_wrapper">
+														<div class="item_info">
+															<p class="title ellipsis">TiTi</p>
+															<p class="subtitle">DEALER STREAK设计合伙人</p>
+															<div class="description">
+																<div class="cScrollbar">
+																	<p>爱心泛滥的模范狗主人，DEALER STREAK设计执行负责人，色彩搭配及潮流改装达人。</p>
+																	<p>八月出生的我，有一些逃不开的宿命，但也从另一方面造就了我严谨的设计态度，对待生活亦如此，简单执着，喜欢的事就去坚持，正如，我坚持了很多年的绘画研习，大学毕业后从事了产品设计，一晃八年，我深爱着产品设计，享受那种从无到有地创造带来的乐趣，感受每一次头脑风暴对彼此认知的洗礼。</p>
+																	<p>如今，我作为Dealer Streak的设计合伙人，和我们的团队成员再次踏上新的旅程。</p>
+																	<p><br/></p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</a>
+											</div>
+										</li>
+									</ul>
+									<div class="clear"></div>
+								</div>
+								<div class="tab_button" data-tab-num="4">
+									<ul class="content_list">
+										<li id="item_block_0" class="item_block active  wow" data-tab-index="0" style="animation-delay:.0s">
+											<div class="wrapper">
+												<div class="item_img"><img src="picture/1488340912293.jpg" /></div>
+												<div class="item_wrapper">
+													<div class="item_info">
+														<p class="title ellipsis">CTRL</p>
+														<p class="subtitle">DEALER STREAK架构师</p>
+													</div>
+												</div>
+
+											</div>
+										</li>
+										<li id="item_block_1" class="item_block  wow" data-tab-index="1" style="animation-delay:.1s">
+											<div class="wrapper">
+												<div class="item_img"><img src="picture/1488343754671.jpg" /></div>
+												<div class="item_wrapper">
+													<div class="item_info">
+														<p class="title ellipsis">FarkleCho</p>
+														<p class="subtitle">DEALER STREAK创意合伙人</p>
+													</div>
+												</div>
+
+											</div>
+										</li>
+										<li id="item_block_2" class="item_block  wow" data-tab-index="2" style="animation-delay:.2s">
+											<div class="wrapper">
+												<div class="item_img"><img src="picture/1488344029765.jpg" /></div>
+												<div class="item_wrapper">
+													<div class="item_info">
+														<p class="title ellipsis">TiTi</p>
+														<p class="subtitle">DEALER STREAK设计合伙人</p>
+													</div>
+												</div>
+
+											</div>
+										</li>
+									</ul>
+									<p class="icon"></p>
+									<div class="clear"></div>
+								</div>
+
+								<script type="text/javascript">
+									$(document).ready(function(e) {
+										var idcnStartX = $(".tab_button li.active").position().left + ($(".tab_button li.active").width() - $(".tab_button .icon").width) / 2;
+										$(".tab_button .icon").css("left", idcnStartX);
+
+										$(".tab_button li").click(function(e) {
+											var left = $(this).position().left;
+											var iconLeft = left + ($(this).width() - $(".tab_button .icon").width) / 2;
+											$(".tab_button .icon").stop().animate({ left: iconLeft }, 500);
+										});
+									});
+								</script>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="mcustomize module bgShow horizontal tlir" style=" background-image:url(images/1488344455787.png);">
+
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_content">
+							<div class="contentbody">
+								<div class="wrapper">
+									<div class="header wow">
+										<p class="title">DEALER STREAK SICBO系列样品确认样完成</p>
+										<p class="subtitle">Sample confirmation sample</p>
+									</div>
+									<div class="description wow">
+										<p>2015年9月24日，北京，阴。SICBO系列样品历时七个月的研发基本定型。按照以往的经验研发快则一个月慢则两个月，但这次我们用了七个月，在这七个月中我们更新制造商达15个之多，设立的工艺标准与意大利传统手工标准一致...</p>
+									</div>
+								</div>
+							</div>
+							<div class="mediabody wow">
+								<a target="_blank" href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39699/">
+									<div class="image" style="background-image:url(images/1488344297824.png)"></div>
+									<div class="mask"></div>
+									<div class="link_icon"><i class="fa fa-link" aria-hidden="true"></i></div>
+								</a>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="mlist news module ff_noSlider" style=" ">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">新闻</p>
+							<p class="subtitle">News</p>
+						</div>
+						<div class="container_category wow movedx" data-movedx-mid="2" data-movedx-distance="15">
+							<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/" class="active">
+								<span>全部</span>
+							</a>
+							<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14618/">
+								<span>最新</span>
+							</a>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper">
+								<div class="more_wrap">
+									<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								</div>
+								<ul class="content_list clearfix">
+									<li id="item_block_0" class="item_block wow">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37976/" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37976/" class="item_img" target="_blank">
+												<img src="picture/1488421182229.jpg" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<p class="date_wrap">
+													<span class="year">2016</span>
+													<span class="md">12-08</span>
+												</p>
+												<div class="item_info clearfix">
+													<p class="title ellipsis">DELEAR STREAK公众号于AD：2016.1.8推出星特辑恒赐Tattoo成员演绎与纹身文化..在Biker暴走族，开着重型机车四处狂飙的年轻一代</p>
+													<p class="subtitle ellipsis"></p>
+												</div>
+												<div class="item_des">
+													<p class="description">恒赐Tattoo成员演绎与纹身文化结合的DEALER STREAK</p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37976/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/tag/%25E7%259A%25AE%25E5%2588%25B6%25E5%2593%2581/">皮制品</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/tag/%25E8%25A1%25A3%25E5%2588%25B6%25E5%2593%2581/">衣制品</a>
+										</div>
+									</li>
+									<li id="item_block_1" class="item_block wow">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37975/" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37975/" class="item_img" target="_blank">
+												<img src="picture/14884217766.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<p class="date_wrap">
+													<span class="year">2016</span>
+													<span class="md">12-07</span>
+												</p>
+												<div class="item_info clearfix">
+													<p class="title ellipsis">拳刺是当年Biker们斗争的武器，而鞋子就是我们DEALER STREAK的终极兵刃。</p>
+													<p class="subtitle ellipsis"></p>
+												</div>
+												<div class="item_des">
+													<p class="description">MAGMODE名堂是由作家蔡崇达、《智族GQ》原时尚副总监梁春敏、《一条》原美学总监冯鹏、《外滩画报》前时尚版主编许佳、《AD》原资深编辑简君舫等文化媒体人，联合服装资深运营人刘冬梅、斯波帝卡原COO郑立强</p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37975/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/tag/%25E7%259A%25AE%25E5%2588%25B6%25E5%2593%2581/">皮制品</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/tag/%25E7%25BA%25B9%25E8%25BA%25AB/">纹身</a>
+										</div>
+									</li>
+									<li id="item_block_2" class="item_block wow">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37974/" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37974/" class="item_img" target="_blank">
+												<img src="picture/1488421852325.jpg" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<p class="date_wrap">
+													<span class="year">2016</span>
+													<span class="md">12-06</span>
+												</p>
+												<div class="item_info clearfix">
+													<p class="title ellipsis">DELEAR STREAK与恒赐Tattoo纹身合作</p>
+													<p class="subtitle ellipsis"></p>
+												</div>
+												<div class="item_des">
+													<p class="description">恒赐Tattoo成员演绎与纹身文化结合的DEALER STREAK</p>
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/37974/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/tag/%25E7%25BA%25B9%25E8%25BA%25AB/">纹身</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/tag/%25E8%25A1%25A3%25E5%2588%25B6%25E5%2593%2581/">衣制品</a>
+										</div>
+									</li>
+								</ul>
+								<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/14616/" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="mlist imagelink module ff_slider" style=" ">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">合作伙伴</p>
+							<p class="subtitle"> / PARTNER</p>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper slider" data-slider-num='6' data-slider-loop="1">
+								<ul class="content_list">
+									<li id="item_block_0" class="item_block wow" style="animation-delay:.0s">
+										<a href="http://www.baidu.com" target="_blank" class="item_img" title="Facebook"><img src="picture/1488877624372.png" /></a>
+									</li>
+									<li id="item_block_1" class="item_block wow" style="animation-delay:.1s">
+										<a class="item_img" title="Mozilla"><img src="picture/1488344880949.png" /></a>
+									</li>
+									<li id="item_block_2" class="item_block wow" style="animation-delay:.2s">
+										<a class="item_img" title="Oracle"><img src="picture/1488345823656.png" /></a>
+									</li>
+									<li id="item_block_3" class="item_block wow" style="animation-delay:.3s">
+										<a class="item_img" title="Microsoft"><img src="picture/148834587762.png" /></a>
+									</li>
+									<li id="item_block_4" class="item_block wow" style="animation-delay:.4s">
+										<a class="item_img" title="Apple"><img src="picture/14883459164.png" /></a>
+									</li>
+									<li id="item_block_5" class="item_block wow" style="animation-delay:.5s">
+										<a class="item_img" title="IBM"><img src="picture/1488345960121.png" /></a>
+									</li>
+									<li id="item_block_6" class="item_block wow" style="animation-delay:.0s">
+										<a class="item_img" title="Adobe"><img src="picture/1488877654522.png" /></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="mlist team module ff_noSlider" style=" ">
+					<div class="bgmask"></div>
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">其他</p>
+							<p class="subtitle">Other</p>
+						</div>
+						<div class="container_category wow movedx one" data-movedx-mid="2" data-movedx-distance="15">
+							<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/" class="active"><span>全部</span></a>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper">
+								<div class="more_wrap">
+									<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								</div>
+								<ul class="content_list clearfix">
+									<li id="item_block_0" class="item_block wow">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39693/" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39693/" class="item_img" target="_blank">
+												<img src="picture/1488880183711.jpg" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">在此Dealer Streak祝所有朋友新年快乐</p>
+														<p class="subtitle ellipsis">恒赐Tattoo成员演绎与纹身文化结合的DEALER STREAK</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2017</span>
+														<span class="md">03-07</span>
+													</p>
+												</div>
+												<div class="item_des description">
+
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39693/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/tag/%25E8%25A1%25A3%25E5%2588%25B6%25E5%2593%2581/">衣制品</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/tag/%25E7%259A%25AE%25E5%2588%25B6%25E5%2593%2581/">皮制品</a>
+										</div>
+
+									</li>
+									<li id="item_block_1" class="item_block wow">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39692/" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39692/" class="item_img" target="_blank">
+												<img src="picture/1488880030337.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">在此Dealer Streak祝所有朋友新年快乐</p>
+														<p class="subtitle ellipsis">恒赐Tattoo成员演绎与纹身文化结合的DEALER STREAK</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2017</span>
+														<span class="md">03-07</span>
+													</p>
+												</div>
+												<div class="item_des description">
+
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39692/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/tag/%25E7%25BA%25B9%25E8%25BA%25AB/">纹身</a>
+											<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/tag/%25E8%25A1%25A3%25E5%2588%25B6%25E5%2593%2581/">衣制品</a>
+										</div>
+
+									</li>
+									<li id="item_block_2" class="item_block wow">
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39691/" class="item_box">
+											<div href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39691/" class="item_img" target="_blank">
+												<img src="picture/1488879479883.png" />
+												<div class="item_mask"></div>
+											</div>
+											<div class="item_wrapper clearfix">
+												<div class="item_info clearfix">
+													<div class="text_wrap">
+														<p class="title ellipsis">在此Dealer Streak祝所有朋友新年快乐</p>
+														<p class="subtitle ellipsis">恒赐Tattoo成员演绎与纹身文化结合的DEALER STREAK</p>
+													</div>
+													<p class="date_wrap">
+														<span class="year">2017</span>
+														<span class="md">03-07</span>
+													</p>
+												</div>
+												<div class="item_des description">
+
+												</div>
+											</div>
+										</a>
+										<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/post/39691/" class="details">详情<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+										<div class="item_tags clearfix"><i class="fa fa-tags"></i></div>
+
+									</li>
+								</ul>
+								<a href="http://mo005-1872.mo5.line1.jsmo.xin/list/id/15173/" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div id="mcontact" class="mcontact module" style=" ">
+					<div class="module_container">
+						<div class="container_header wow">
+							<p class="title">联系我们</p>
+							<p class="subtitle">Contact Us</p>
+						</div>
+						<div class="container_content">
+							<div class="content_wrapper">
+								<div id="contactlist" class="contactlist">
+									<div id="contactinfo" class="contactinfo wow">
+										<h3 class="ellipsis contact_name">网站建设文化传播有限公司</h3>
+										<p class="ellipsis contact_add">地址：中国地区XX分区5A写字楼8-88室</p>
+										<p class="ellipsis contact_zip">邮编：100000</p>
+										<p class="ellipsis contact_tel">电话：400-888-8888</p>
+										<p class="ellipsis contact_mob">手机：188-6666-5188</p>
+										<p class="ellipsis contact_fax">传真：000-66668888</p>
+										<p class="ellipsis contact_eml">邮箱：0008008@qq.com</p>
+										<div class="ff_social">
+											<a class="fl" target="_blank" href="http://weibo.com/web"><i class="fa fa-weibo"></i></a>
+											<a class="fl" target="_blank" href="tencent://message/?uin=40080000&Site=uemo&Menu=yes"><i class="fa fa-qq"></i></a>
+											<a id="mpbtn" class="fl" target="_blank" href="http://resources.jsmo.xin/templates/upload/1/201508/1438424052624.jpg"><i class="fa fa-weixin"></i></a>
+										</div>
+									</div>
+									<div id="contactform" class="contactform wow">
+										<form action="http://mo005-1872.mo5.line1.jsmo.xin/service/message" method="post">
+											<p class="contactform_name">
+												<input type="text" class="inputtxt" name="name" placeholder="姓名" autocomplete="off" />
+											</p>
+											<p class="contactform_eml">
+												<input type="text" class="inputtxt" name="email" placeholder="邮箱" autocomplete="off" />
+											</p>
+											<p class="contactform_tel">
+												<input type="text" class="inputtxt" name="tel" placeholder="电话" autocomplete="off" />
+											</p>
+											<p class="contactform_content">
+												<textarea class="inputtxt" name="content" placeholder="内容" autocomplete="off"></textarea>
+											</p>
+											<p class="contactform_submit">
+												<input class="inputtxt submit" type="submit" value="提交" />
+											</p>
+										</form>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<p><span class="ellipsis">COPYRIGHT (©) 2017  mo005_1872 - 企业类模板. </span>
+				<a class="beian" href="http://www.miitbeian.gov.cn/" style="color: #363636;vertical-align: top;margin-left: 10px;display: inline-block;" target="_blank"></a>
+			</p>
+		</div>
+		<div id="shares">
+			<a href="http://service.weibo.com/share/share.php?appkey=3206975293&" target="_blank" id="sweibo"><i class="fa fa-weibo"></i></a>
+			<a href="javascript:;" id="sweixin"><i class="fa fa-mobile"></i></a>
+			<a href="javascript:;" id="gotop"><i class="fa fa-angle-up"></i></a>
+		</div>
+		<div class="fixed" id="fixed_weixin">
+			<div class="fixed-container">
+				<div id="qrcode"></div>
+				<p>扫描二维码分享到微信</p>
+			</div>
+		</div>
+		<div id="online_open"><i class="fa fa-comments-o"></i></div>
+		<div id="online_lx">
+			<div id="olx_head">在线咨询<i class="fa fa-times fr" id="online_close"></i></div>
+			<ul id="olx_qq">
+				<li>
+					<a href="tencent://message/?uin=40080000&Site=uelike&Menu=yes"><i class="fa fa-qq"></i>40080000</a>
+				</li>
+			</ul>
+			<div id="olx_tel">
+				<div><i class="fa fa-phone"></i>联系电话</div>
+				<p>400-888-8888<br /></p>
+			</div>
+		</div>
+		<a id="openAssist" href="javascript:;"><i class="icon iconfont icon-add"></i></a>
+		<div id="assistBtn">
+			<a href="javascript:;" onclick="$('html,body').scrollTop(0);return false;"><i class="fa fa-angle-up"></i></a>
+			<a href="tel:400-888-8888"><i class="fa fa-phone"></i></a>
+			<a href="mqqwpa://im/chat?chat_type=wpa&uin=&version=1"><i class="fa fa-qq"></i></a>
+		</div>
+		<div class="hide"></div>
+	</body>
+
+</html>

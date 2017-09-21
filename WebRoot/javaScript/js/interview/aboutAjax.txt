@@ -1,0 +1,66 @@
+ 
+--Asynchronous JavaScript and XML
+
+--传统的http请求和ajax的http请求区别
+	++传统http请求会刷新整个页面，即发起者是当前页面，此时页面处于不可用状态，等待页面刷新，浏览器接收到服务器响应后会刷新整个页面.
+	++ajax请求市绝不刷新，即发起者可以使页面的任何元素,任何一个HttpRequest对象，页面不收影响.浏览器接收到服务器的响应后传递给对应的处理函数.
+	
+--Ajax工作原理
+	++相当于在客户端和服务端加了一个中间层，使得客户端和服务端响应异步化
+	++Ajax核心技术是js对象的XMLHttpRequest，支持异步请求，达到非阻塞效果。
+	++减轻服务器的带宽和压力
+	
+--浏览器四种线程机制
+	++GUI渲染线程
+	++Javascript引擎线程
+	++浏览器事件触发线程
+	++http请求线程
+	
+--Ajax没有破坏js单线程机制
+	++线程之间的交互以事件的方式发生，通过事件回调方式予以通知。而事件回调, 又是以先进先出的方式添加到任务队列 的末尾 , 等到js引擎空闲时, 任务队列 中排队的任务将会依次被执行. 这些事件回调包括 setTimeout, setInterval, click, ajax异步请求等回调.
+
+	++浏览器中, js引擎线程会循环从 任务队列 中读取事件并且执行, 这种运行机制称作 Event Loop (事件循环).
+
+	++对于一个ajax请求, js引擎首先生成 XMLHttpRequest 实例对象, open过后再调用send方法. 至此, 所有的语句都是同步执行. 但从send方法内部开始, 浏览器为将要发生的网络请求创建了新的http请求线程, 这个线程独立于js引擎线程, 于是网络请求异步被发送出去了. 另一方面, js引擎并不会等待 ajax 发起的http请求收到结果, 而是直接顺序往下执行.
+
+	++当ajax请求被服务器响应并且收到response后, 浏览器事件触发线程捕获到了ajax的回调事件 onreadystatechange (当然也可能触发onload, 或者 onerror等等) . 该回调事件并没有被立即执行, 而是被添加到 任务队列 的末尾. 直到js引擎空闲了, 任务队列 的任务才被捞出来, 按照添加顺序, 挨个执行, 当然也包括刚刚append到队列末尾的 onreadystatechange 事件.
+
+	++在 onreadystatechange 事件内部, 有可能对dom进行操作. 此时浏览器便会挂起js引擎线程, 转而执行GUI渲染线程, 进行UI重绘(repaint)或者回流(reflow). 当js引擎重新执行时, GUI渲染线程又会被挂起, GUI更新将被保存起来, 等到js引擎空闲时立即被执行.
+
+	++以上整个ajax请求过程中, 有涉及到浏览器的4种线程. 其中除了 GUI渲染线程 和 js引擎线程 是互斥的. 其他线程相互之间, 都是可以并行执行的. 通过这样的一种方式, ajax并没有破坏js的单线程机制.
+	
+-- 一次Ajax请求并非所有都是异步。
+	++ readyState=1
+	++ onreadystatechange 回调
+	++ onloadstart
+	
+-- js 数据类型
+	++ 原始数据类型  常量   Undefined Null String Number Boolean Symbol
+	++ 引用数据类型  对象  Object Arrary Funtion Date RegExp
+	
+-- 值传递和引用传递
+	++ es所有函数的参数都是按照值传递，不是按引用传递
+	++ 引用数据类型变量储存的值就是内存的地址
+	
+-- 代码
+	var url = _global_settings.service.url+'/common/customer'+'?='+Math.random()+'&null';
+	var xmlhttp;	// XMLHttpRequest对象用于在后台与服务器交换数据
+	if (window.XMLHttpRequest) 
+		xmlhttp=new XMLHttpRequest(); 
+	else 
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+
+	xmlhttp.open('GET',url,true);
+	xmlhttp.onreadystatechange = function(res){
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200 || xmlhttp.status == 304) {  // readyState==4说明请求已完成
+			window.location.href = url;
+			console.log(res);
+			console.log(JSON.parse(res.target.responseText));
+		}
+	}
+	xmlhttp.send(null);
+	
+	
+	
+	
+	
